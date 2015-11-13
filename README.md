@@ -15,7 +15,9 @@ After cloning this repository:
   - Institution
   - Type
   - Research Field
+  - PMs
 * Rename Funder(s) to Funder
+* Rename PMs to Effort
 * Save as comma-separated values file SSIConsultancyProjects.csv 
 * Move file to prototypes/codes-force-bubbles/data/
 
