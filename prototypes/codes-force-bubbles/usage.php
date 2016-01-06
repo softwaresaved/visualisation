@@ -1,5 +1,5 @@
     <style type="text/css">
-        @import url("css/bootstrap.css");
+        @import url("css/bootstrap_min.css");
         body {
           background-color: white;
           padding-left: 50px;
