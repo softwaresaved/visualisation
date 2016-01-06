@@ -1,6 +1,7 @@
     <script>
     var data_file = 'data/d3codes_summary.csv';
-    var category_names = ["Code Type",
+    var category_names = ["Overview",
+			  "Code Type",
 			  "Research Area",
 			  "Programming Language",
 			  "Licence Type"];
@@ -28,19 +29,34 @@
     </style>
     <div class="btn-group" data-toggle="buttons" style="display: none">
       <label class="btn btn-danger" id=0>
-        <input type="radio" name="options"> Overview
+        <input type="radio" name="options">
+        <script>
+	document.write(category_names[0]);
+        </script>
       </label>
       <label class="btn btn-danger" id=1>
-        <input type="radio" name="options"> Code Type
+        <input type="radio" name="options">
+        <script>
+	document.write(category_names[1]);
+        </script>
       </label>
       <label class="btn btn-danger" id=2>
-        <input type="radio" name="options"> Research Area
+        <input type="radio" name="options">
+        <script>
+	document.write(category_names[2]);
+        </script>
       </label>
       <label class="btn btn-danger" id=3>
-        <input type="radio" name="options"> Programming Language
+        <input type="radio" name="options">
+        <script>
+	document.write(category_names[3]);
+        </script>
       </label>
       <label class="btn btn-danger" id=4>
-        <input type="radio" name="options"> Licence Type
+        <input type="radio" name="options">
+        <script>
+	document.write(category_names[4]);
+        </script>
       </label>
     </div>
     <div id="chart"></div>
