@@ -10,6 +10,7 @@
 		      "ResArea",
 		      "ProgLang",
 		      "LicType"];
+    var legend_text = "Number of Users";
      </script>
 
     <style>
@@ -214,7 +215,7 @@
         lsvg.append("text")
               .attr("x", width - legRectSize*userCat.length - 115)
               .attr("y", legRectSize + legSpace)
-              .text("Number of Users");
+              .text(legend_text);
         
 
         // Draw the initial layout (uncategorised)
