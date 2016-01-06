@@ -1,19 +1,19 @@
-    <style type="text/css">
+    <style>
         @import url("css/bootstrap_min.css");
-        body {
-          background-color: white;
-          padding-left: 50px;
-        }
         circle {
           stroke: #333333;
           stroke-width: 2px;
         }
         .label {
-           fill: black;
-           font-size: 12px;
+          fill: black;
+          font-size: 12px;
+        }
+        #chart {
+           display: block;
+           padding-left: 20px;
         }
     </style>
-    <div class="btn-group" data-toggle="buttons" style="margin-right: auto; margin-left: auto;">
+    <div class="btn-group" data-toggle="buttons" style="display: none">
       <label class="btn btn-danger" id="none">
         <input type="radio" name="options"> Overview
       </label>
@@ -27,7 +27,7 @@
         <input type="radio" name="options"> Programming Language
       </label>
       <label class="btn btn-danger" id="LicType">
-        <input type="radio" name="options"> License Type
+        <input type="radio" name="options"> Licence Type
       </label>
     </div>
     <div id="chart"></div>
@@ -45,30 +45,31 @@
         var radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_usage]).range([2, 50]);
 
         // Define the size of the chart box
-        var width = 700, height = 800;
+        var width = 700, height = 700;
 
         var userCat = [
-                 { label: "Less than 5 users", count: 5 },
-                 { label: "5-10 users", count: 10 },
-                 { label: "10-20 users", count: 20 },
-                 { label: "20-50 users", count: 50 },
-                 { label: "50-100 users", count: 100 },
-                 { label: "More than 100 users", count: 5000 }
+                       { label: "Less than 5 users", count: 5, fill: "#fee5d9" },
+                       { label: "5-10 users", count: 10, fill: "#fcbba1" },
+                       { label: "10-20 users", count: 20, fill: "#fc9272" },
+                       { label: "20-50 users", count: 50, fill: "#fb6a4a" },
+                       { label: "50-100 users", count: 100, fill: "#de2d26" },
+                       { label: "More than 100 users", count: 5000, fill: "#a50f15" }
         ];
 
         // Define a custom colour scale
         var fill = d3.scale.ordinal().range([
-                                       "#a50f15",
-                                       "#de2d26",
-                                       "#fc9272",
-                                       "#fb6a4a",
-                                       "#fcbba1",
-                                       "#fee5d9"
-                                    ]);
+                                             "#a50f15",
+                                             "#de2d26",
+                                             "#fb6a4a",
+                                             "#fc9272",
+                                             "#fcbba1",
+                                             "#fee5d9"
+                                          ]);
+        
 
-        // Setup the SVG chart area
+        // Setup the SVG area
         var svg = d3.select("#chart").append("svg")
-            .attr("class", "vis")
+        	.attr("class", "vis")
             .attr("width", width)
             .attr("height", height);
 
@@ -88,17 +89,17 @@
              // Create category for number of users
              nuser = parseInt(data[j].Users);
              if (nuser < 5) {
-                data[j].UserLevel = userCat[0].label;
+                data[j].UserLevel = userCat[0].fill;
              } else if (nuser < 10) {
-                data[j].UserLevel = userCat[1].label;
+                data[j].UserLevel = userCat[1].fill;
              } else if (nuser < 20) {
-                data[j].UserLevel = userCat[2].label;
+                data[j].UserLevel = userCat[2].fill;
              } else if (nuser < 50) {
-                data[j].UserLevel = userCat[3].label;
+                data[j].UserLevel = userCat[3].fill;
              } else if (nuser < 100) {
-                data[j].UserLevel = userCat[4].label;
+                data[j].UserLevel = userCat[4].fill;
              } else {
-                data[j].UserLevel = userCat[5].label;
+                data[j].UserLevel = userCat[5].fill;
              }
           }
         }
@@ -134,11 +135,19 @@
           .attr("cx", function (d) { return d.x; })
           .attr("cy", function (d) { return d.y; })
           .attr("r", function (d) { return d.radius; })
-          .style("fill", function (d) { return d3.rgb(fill(d.UserLevel)); })
+          .attr("data-legend", function (d) { return d.Code; })
+          .style("fill", function (d) { return d.UserLevel; })
+          .style("stroke", "#333")
+          .style("stroke-width", "2px")
           .on("mouseover", function (d) { showPopover.call(this, d); })
           .on("mouseout", function (d) { removePopovers(); })
 
         var force = d3.layout.force();
+
+        d3.select(".visdesc")
+           .style("display", "block");
+        d3.select(".btn-group")
+           .style("display", "block");
 
         // Setup legend
         var lwidth = width;
@@ -168,8 +177,8 @@
         legend.append("rect")
               .attr("width", legRectSize)
               .attr("height", legRectSize)
-              .style("fill",  function (d) { return d3.rgb(fill(d.label)); })
-              .style("stroke",  function (d) { return fill(d.label); })
+              .style("fill",  function (d) { return d3.rgb(d.fill); })
+              .style("stroke",  function (d) { d.fill; })
               .on("mouseover", function (d) { showLegPopover.call(this, d); })
               .on("mouseout", function (d) { removePopovers(); })
 
@@ -177,7 +186,7 @@
               .attr("x", width - legRectSize*userCat.length - 115)
               .attr("y", legRectSize + legSpace)
               .text("Number of Users");
-             
+        
 
         // Draw the initial layout (uncategorised)
         draw();
@@ -224,8 +233,10 @@
           .attr("class", "label")
           .text(function (d) { return d.name })
           .attr("transform", function (d) {
-            return "translate(" + (d.x + (d.dx / 3)) + ", " + (d.y + 20) + ")";
-          });
+            return "translate(" + (d.x + (d.dx / 6)) + ", " + (d.y + 20) + ")";
+          })
+          .style("fill", "black")
+          .style("font-size", "12px");
         }
 
         function removePopovers () {
@@ -242,22 +253,22 @@
             trigger: 'manual',
             html : true,
             content: function() { 
-              return "Name: " + d.Code + "<br/>Usage / Nh: " + d.Usage + "<br/>Jobs: " + d.Jobs +
-                     "<br/>Rank: " + d.Rank + "<br/>Users: " + d.Users; }
+              return "Name: " + d.Code + "<br/>Usage: " + d.Usage + " node hours<br/>Jobs: " + d.Jobs +
+                     "<br/>Usage Rank: " + d.Rank + "<br/>Users: " + d.Users; }
           });
           $(this).popover('show')
         }
         function showLegPopover (d) {
-          $(this).popover({
-            placement: 'auto bottom',
-            container: 'body',
-            trigger: 'manual',
-            html : true,
-            content: function() { 
-              return d.label; }
-          });
-          $(this).popover('show')
-        }
+            $(this).popover({
+              placement: 'auto bottom',
+              container: 'body',
+              trigger: 'manual',
+              html : true,
+              content: function() { 
+                return d.label; }
+            });
+            $(this).popover('show')
+          }
 
         // This function ensures that bubbles do not overlap (it computes the 
         // pairwise repulsion). alpha sets the level of repulsion.
