@@ -1,3 +1,16 @@
+    <script>
+    var data_file = 'data/d3codes_summary.csv';
+    var category_names = ["Code Type",
+			  "Research Area",
+			  "Programming Language",
+			  "Licence Type"];
+    var categories = ["none",
+		      "CodeType",
+		      "ResArea",
+		      "ProgLang",
+		      "LicType"];
+     </script>
+
     <style>
         @import url("css/bootstrap_min.css");
         circle {
@@ -14,19 +27,19 @@
         }
     </style>
     <div class="btn-group" data-toggle="buttons" style="display: none">
-      <label class="btn btn-danger" id="none">
+      <label class="btn btn-danger" id=0>
         <input type="radio" name="options"> Overview
       </label>
-      <label class="btn btn-danger" id="CodeType">
+      <label class="btn btn-danger" id=1>
         <input type="radio" name="options"> Code Type
       </label>
-      <label class="btn btn-danger" id="ResArea">
+      <label class="btn btn-danger" id=2>
         <input type="radio" name="options"> Research Area
       </label>
-      <label class="btn btn-danger" id="ProgLang">
+      <label class="btn btn-danger" id=3>
         <input type="radio" name="options"> Programming Language
       </label>
-      <label class="btn btn-danger" id="LicType">
+      <label class="btn btn-danger" id=4>
         <input type="radio" name="options"> Licence Type
       </label>
     </div>
@@ -37,7 +50,7 @@
     <script src="js/underscore.js"></script>
     <script>
       // Load the data and set up the visualisation
-      d3.csv('data/d3codes_summary.csv', function (error, data) {
+      d3.csv(data_file, function (error, data) {
 
         // Get the max usage in the data
         var max_usage = d3.max(data, function(d) { return parseInt(d.Usage, 10); } );
@@ -193,7 +206,7 @@
 
         // Attach the listerners to the buttons
         $( ".btn" ).click(function() {
-          draw(this.id);
+	    draw(categories[this.id]);
         });
 
         // Overarching function called by clicking on a button - redraw the
