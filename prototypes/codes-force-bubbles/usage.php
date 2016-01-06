@@ -11,7 +11,12 @@
 		      "ProgLang",
 		      "LicType"];
     var legend_text = "Number of Users";
-     </script>
+
+    function blob_caption(d) { 
+      return "Name: " + d.Code + "<br/>Usage: " + d.Usage + " node hours<br/>Jobs: " + d.Jobs +
+      "<br/>Usage Rank: " + d.Rank + "<br/>Users: " + d.Users;
+    }
+    </script>
 
     <style>
         @import url("css/bootstrap_min.css");
@@ -282,9 +287,7 @@
             container: 'body',
             trigger: 'manual',
             html : true,
-            content: function() { 
-              return "Name: " + d.Code + "<br/>Usage: " + d.Usage + " node hours<br/>Jobs: " + d.Jobs +
-                     "<br/>Usage Rank: " + d.Rank + "<br/>Users: " + d.Users; }
+            content: blob_caption(d)
           });
           $(this).popover('show')
         }
