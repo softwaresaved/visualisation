@@ -75,7 +75,7 @@
       d3.csv(data_file, function (error, data) {
 
         // Get the max usage in the data
-        var max_usage = d3.max(data, function(d) { return parseInt(d.Usage, 10); } );
+        var max_usage = d3.max(data, function(d) { return parseFloat(d.Usage); } );
         // Map the range of values to a custom scale to produce nice radii
         var radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_usage]).range([2, 50]);
 
@@ -110,7 +110,7 @@
 
         // Loop over data setting radii and centres 
         for (var j = 0; j < data.length; j++) {
-          if (parseInt(data[j].Usage) < 10) {
+          if (parseFloat(data[j].Usage) < 10) {
              // If we have very low usage cull from the data
              console.log("Splicing " + data[j].Code);
              data.splice(j, 1);
@@ -118,11 +118,11 @@
              j--;
           } else {
              // Get radius from custom mapped range we defined
-             data[j].radius = radius_scale(parseInt(data[j].Usage, 10));
+             data[j].radius = radius_scale(parseFloat(data[j].Usage));
              data[j].x = Math.random() * width;
              data[j].y = Math.random() * height;
              // Create category for number of users
-             nuser = parseInt(data[j].Users);
+             nuser = parseFloat(data[j].Users);
              if (nuser < 5) {
                 data[j].UserLevel = userCat[0].fill;
              } else if (nuser < 10) {
