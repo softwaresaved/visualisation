@@ -11,7 +11,9 @@
 		      "ProgLang",
 		      "LicType"];
     var legend_text = "Number of Users";
-
+    var name_column = "Code"
+    var scaling_column = "Usage"
+    var level_column = "Users"
     function blob_caption(d) { 
       return "Name: " + d.Code + "<br/>Usage: " + d.Usage + " node hours<br/>Jobs: " + d.Jobs +
       "<br/>Usage Rank: " + d.Rank + "<br/>Users: " + d.Users;
@@ -75,9 +77,9 @@
       d3.csv(data_file, function (error, data) {
 
         // Get the max usage in the data
-        var max_usage = d3.max(data, function(d) { return parseFloat(d.Usage); } );
+        var max_scale = d3.max(data, function(d) { return parseFloat(d[scaling_column]); } );
         // Map the range of values to a custom scale to produce nice radii
-        var radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_usage]).range([2, 50]);
+        var radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_scale]).range([2, 50]);
 
         // Define the size of the chart box
         var width = 700, height = 700;
@@ -110,31 +112,31 @@
 
         // Loop over data setting radii and centres 
         for (var j = 0; j < data.length; j++) {
-          if (parseFloat(data[j].Usage) < 10) {
+          if (parseFloat(data[j][scaling_column]) < 10) {
              // If we have very low usage cull from the data
-             console.log("Splicing " + data[j].Code);
+             console.log("Splicing " + data[j][name_column]);
              data.splice(j, 1);
              // Indexing has chaged, make sure we don't miss any elements
              j--;
           } else {
              // Get radius from custom mapped range we defined
-             data[j].radius = radius_scale(parseFloat(data[j].Usage));
+             data[j].radius = radius_scale(parseFloat(data[j][scaling_column]));
              data[j].x = Math.random() * width;
              data[j].y = Math.random() * height;
              // Create category for number of users
-             nuser = parseFloat(data[j].Users);
+             nuser = parseFloat(data[j][level_column]);
              if (nuser < 5) {
-                data[j].UserLevel = userCat[0].fill;
+                data[j].Level = userCat[0].fill;
              } else if (nuser < 10) {
-                data[j].UserLevel = userCat[1].fill;
+                data[j].Level = userCat[1].fill;
              } else if (nuser < 20) {
-                data[j].UserLevel = userCat[2].fill;
+                data[j].Level = userCat[2].fill;
              } else if (nuser < 50) {
-                data[j].UserLevel = userCat[3].fill;
+                data[j].Level = userCat[3].fill;
              } else if (nuser < 100) {
-                data[j].UserLevel = userCat[4].fill;
+                data[j].Level = userCat[4].fill;
              } else {
-                data[j].UserLevel = userCat[5].fill;
+                data[j].Level = userCat[5].fill;
              }
           }
         }
@@ -171,7 +173,7 @@
           .attr("cy", function (d) { return d.y; })
           .attr("r", function (d) { return d.radius; })
           .attr("data-legend", function (d) { return d.Code; })
-          .style("fill", function (d) { return d.UserLevel; })
+          .style("fill", function (d) { return d.Level; })
           .style("stroke", "#333")
           .style("stroke-width", "2px")
           .on("mouseover", function (d) { showPopover.call(this, d); })
