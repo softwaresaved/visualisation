@@ -101,19 +101,12 @@
              data[j].y = Math.random() * height;
              // Create category for number of users
              level = parseFloat(data[j][level_column]);
-             if (level < 5) {
-                data[j].Level = scale_bins[0].fill;
-             } else if (level < 10) {
-                data[j].Level = scale_bins[1].fill;
-             } else if (level < 20) {
-                data[j].Level = scale_bins[2].fill;
-             } else if (level < 50) {
-                data[j].Level = scale_bins[3].fill;
-             } else if (level < 100) {
-                data[j].Level = scale_bins[4].fill;
-             } else {
-                data[j].Level = scale_bins[5].fill;
-             }
+	     for (var k = 0; k < scale_bins.length; k++) {
+	       if (level < scale_bins[k].count) {
+		 data[j].Level = scale_bins[k].fill;
+		 break;
+	       }
+	     }
           }
         }
 
