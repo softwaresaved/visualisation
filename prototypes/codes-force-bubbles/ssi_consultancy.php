@@ -53,6 +53,6 @@ function bubble_caption(d) {
 }
 </script>
 
-   <?php include 'usage.php'; ?>
+   <?php include 'graph_bubbles.php'; ?>
   </body>
 </html>
