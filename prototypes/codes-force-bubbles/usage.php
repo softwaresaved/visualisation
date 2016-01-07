@@ -100,16 +100,16 @@
              data[j].x = Math.random() * width;
              data[j].y = Math.random() * height;
              // Create category for number of users
-             nuser = parseFloat(data[j][level_column]);
-             if (nuser < 5) {
+             level = parseFloat(data[j][level_column]);
+             if (level < 5) {
                 data[j].Level = scale_bins[0].fill;
-             } else if (nuser < 10) {
+             } else if (level < 10) {
                 data[j].Level = scale_bins[1].fill;
-             } else if (nuser < 20) {
+             } else if (level < 20) {
                 data[j].Level = scale_bins[2].fill;
-             } else if (nuser < 50) {
+             } else if (level < 50) {
                 data[j].Level = scale_bins[3].fill;
-             } else if (nuser < 100) {
+             } else if (level < 100) {
                 data[j].Level = scale_bins[4].fill;
              } else {
                 data[j].Level = scale_bins[5].fill;
