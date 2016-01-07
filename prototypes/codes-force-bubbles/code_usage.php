@@ -15,12 +15,12 @@ var data_file = 'data/d3codes_summary.csv';
 // corresponding labels buttons to select these columns.
 // A "none" entry provides a default view with the data ungrouped.
 var columns = [
-	       { name: "none", label: "Overview" },
-	       { name: "CodeType", label: "Code Type" },
-	       { name: "ResArea", label: "Research Area" },		  
-	       { name: "ProgLang", label: "Programming Language" },
-	       { name: "LicType", label: "Licence Type" },
-	       ];
+               { name: "none", label: "Overview" },
+               { name: "CodeType", label: "Code Type" },
+               { name: "ResArea", label: "Research Area" },
+               { name: "ProgLang", label: "Programming Language" },
+               { name: "LicType", label: "Licence Type" },
+               ];
 // Name of column in CSV data used to label console log info.
 var name_column = "Code";
 // Name of column in CSV data used to calculate bubble radii.
@@ -33,20 +33,20 @@ var colour_column = "Users";
 // Ranges of values used to map colour_column values to colours, and
 // also to create the legend.
 var colour_bins = [
-		  { label: "Less than 5 users", bound: 5, fill: "#fee5d9" },
-		  { label: "5-10 users", bound: 10, fill: "#fcbba1" },
-		  { label: "10-20 users", bound: 20, fill: "#fc9272" },
-		  { label: "20-50 users", bound: 50, fill: "#fb6a4a" },
-		  { label: "50-100 users", bound: 100, fill: "#de2d26" },
-		  { label: "More than 100 users", bound: Number.MAX_VALUE, fill: "#a50f15" }
-		  ];
+                  { label: "Less than 5 users", bound: 5, fill: "#fee5d9" },
+                  { label: "5-10 users", bound: 10, fill: "#fcbba1" },
+                  { label: "10-20 users", bound: 20, fill: "#fc9272" },
+                  { label: "20-50 users", bound: 50, fill: "#fb6a4a" },
+                  { label: "50-100 users", bound: 100, fill: "#de2d26" },
+                  { label: "More than 100 users", bound: Number.MAX_VALUE, fill: "#a50f15" }
+                   ];
 // Label for legend showing the ranges of values of colour_column.
 var legend_label = "Number of Users";
 
 function bubble_caption(d) {
-  return "Name: " + d.Code + "<br/>Usage: " + d.Usage + " node hours" + 
-    "<br/>Jobs: " + d.Jobs + 
-    "<br/>Usage Rank: " + d.Rank + 
+  return "Name: " + d.Code + "<br/>Usage: " + d.Usage + " node hours" +
+    "<br/>Jobs: " + d.Jobs +
+    "<br/>Usage Rank: " + d.Rank +
     "<br/>Users: " + d.Users;
 }
 </script>

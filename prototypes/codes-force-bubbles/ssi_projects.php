@@ -15,12 +15,12 @@ var data_file = 'data/SSIConsultancyProjects.csv';
 // corresponding labels buttons to select these columns.
 // A "none" entry provides a default view with the data ungrouped.
 var columns = [
-	       { name: "none", label: "Overview" },
-	       { name: "Funder" , label: "Funder" },
-	       { name: "Institution", label: "Institution" },
-	       { name: "Type", label: "Type" },
-	       { name: "Research Field", label: "Research Field" }
-	       ];
+               { name: "none", label: "Overview" },
+               { name: "Funder" , label: "Funder" },
+               { name: "Institution", label: "Institution" },
+               { name: "Type", label: "Type" },
+               { name: "Research Field", label: "Research Field" }
+               ];
 // Name of column in CSV data used to label console log info.
 var name_column = "Project Name";
 // Name of column in CSV data used to calculate bubble radii.
@@ -33,13 +33,13 @@ var colour_column = "Effort";
 // Ranges of values used to map colour_column values to colours, and
 // also to create the legend.
 var colour_bins = [
-		  { label: "Less than 0.25 months", bound: 0.25, fill: "#fee5d9" },
-		  { label: "0.25-0.5 months", bound: 0.5, fill: "#fcbba1" },
-		  { label: "0.5-1 months", bound: 1, fill: "#fc9272" },
-		  { label: "1-2 months", bound: 2, fill: "#fb6a4a" },
-		  { label: "2-3 months", bound: 3, fill: "#de2d26" },
-		  { label: "More than 3 months", bound: 5000, fill: "#a50f15" }
-		  ];
+                  { label: "Less than 0.25 months", bound: 0.25, fill: "#fee5d9" },
+                  { label: "0.25-0.5 months", bound: 0.5, fill: "#fcbba1" },
+                  { label: "0.5-1 months", bound: 1, fill: "#fc9272" },
+                  { label: "1-2 months", bound: 2, fill: "#fb6a4a" },
+                  { label: "2-3 months", bound: 3, fill: "#de2d26" },
+                  { label: "More than 3 months", bound: 5000, fill: "#a50f15" }
+                  ];
 // Label for legend showing the ranges of values of colour_column.
 var legend_label = "Staff Effort";
 
@@ -52,7 +52,7 @@ function bubble_caption(d) {
     "<br/>Effort: " + d["Effort"] + " staff months";
 }
 </script>
- 
+
    <?php include 'usage.php'; ?>
   </body>
 </html>
