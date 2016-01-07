@@ -59,18 +59,25 @@
 
         // Loop over data setting radii and centres
         for (var j = 0; j < data.length; j++) {
-          if (parseFloat(data[j][radius_column]) < radius_threshold) {
+          var data_radius = parseFloat(data[j][radius_column]);
+          if (data_radius < radius_threshold) {
             // If we have very low value cull from the data
             console.log("Culling " + data[j][name_column] + " as " +
-                        radius_column + " " +
-                        parseFloat(data[j][radius_column]) +
+                        radius_column + " " + data_radius +
                         " < threshold " + radius_threshold);
+            data.splice(j, 1);
+            // Indexing has chaged, make sure we don't miss any elements
+            j--;
+          } else if (isNaN(data_radius)) {
+            // If we have very low value cull from the data
+            console.log("Culling " + data[j][name_column] + " as " +
+                        radius_column + " is " + data_radius);
             data.splice(j, 1);
             // Indexing has chaged, make sure we don't miss any elements
             j--;
           } else {
             // Get radius from custom mapped range we defined
-            data[j].radius = radius_scale(parseFloat(data[j][radius_column]));
+            data[j].radius = radius_scale(data_radius);
             data[j].x = Math.random() * width;
             data[j].y = Math.random() * height;
             // Use colour_column to get bubble fill colour from colour_bins
