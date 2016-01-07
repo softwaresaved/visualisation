@@ -122,7 +122,7 @@
           .attr("cx", function (d) { return d.x; })
           .attr("cy", function (d) { return d.y; })
           .attr("r", function (d) { return d.radius; })
-          .attr("data-legend", function (d) { return d.Code; })
+          .attr("data-legend", function (d) { return d[name_column]; })
           .style("fill", function (d) { return d.Level; })
           .style("stroke", "#333")
           .style("stroke-width", "2px")
