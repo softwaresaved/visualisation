@@ -15,12 +15,12 @@
 </style>
 <div class="btn-group" data-toggle="buttons" style="display: none">
     <script>
-    for (var j = 0; j < categories.length; j++) {
+    for (var j = 0; j < columns.length; j++) {
       document.write('<label class="btn btn-danger" id=');
       document.write(j);
       document.write('>');
       document.write('<input type="radio" name="options">');
-      document.write(categories[j].label);
+      document.write(columns[j].label);
       document.write('</label>');
     }
     </script>
@@ -34,19 +34,19 @@
     // Load the data and set up the visualisation
     d3.csv(data_file, function (error, data) {
 
-        // Get the maximum scale for the data using the scaling column
-        var max_scale = d3.max(data, function (d) { return parseFloat(d[scaling_column]); } );
+        // Get the maximum scale for the data using radius_column
+        var max_scale = d3.max(data, function (d) { return parseFloat(d[radius_column]); } );
         // Map the range of values to a custom scale to produce nice radii
         var radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_scale]).range([2, 50]);
 
         // Define the size of the chart box
         var width = 700, height = 700;
-
-	// Get colours from sample_bins and reverse order for drawing custom
+        
+	// Get colours from colour_bins and reverse order for drawing custom
 	// colour scale
         var colours = [];
-        for (var j = 0; j < scale_bins.length; j++) {
-	  colours[scale_bins.length - j - 1] = scale_bins[j].fill;
+        for (var j = 0; j < colour_bins.length; j++) {
+	  colours[colour_bins.length - j - 1] = colour_bins[j].fill;
 	}
         // Define a custom colour scale
         var fill = d3.scale.ordinal().range(colours);
@@ -59,25 +59,25 @@
 
         // Loop over data setting radii and centres 
         for (var j = 0; j < data.length; j++) {
-          if (parseFloat(data[j][scaling_column]) < cull_threshold) {
+          if (parseFloat(data[j][radius_column]) < radius_threshold) {
 	    // If we have very low value cull from the data
 	    console.log("Culling " + data[j][name_column] + " as " +
-			scaling_column + " " +
-			parseFloat(data[j][scaling_column]) + 
-			" < threshold " + cull_threshold);
+			radius_column + " " +
+			parseFloat(data[j][radius_column]) + 
+			" < threshold " + radius_threshold);
 	    data.splice(j, 1);
 	    // Indexing has chaged, make sure we don't miss any elements
 	    j--;
           } else {
 	    // Get radius from custom mapped range we defined
-	    data[j].radius = radius_scale(parseFloat(data[j][scaling_column]));
+	    data[j].radius = radius_scale(parseFloat(data[j][radius_column]));
 	    data[j].x = Math.random() * width;
 	    data[j].y = Math.random() * height;
-	    // Use level_column to get bubble fill colour from scale_bins
-	    level = parseFloat(data[j][level_column]);
-	    for (var k = 0; k < scale_bins.length; k++) {
-	      if (level < scale_bins[k].count) {
-		data[j].Level = scale_bins[k].fill;
+	    // Use colour_column to get bubble fill colour from colour_bins
+	    colour_value = parseFloat(data[j][colour_column]);
+	    for (var k = 0; k < colour_bins.length; k++) {
+	      if (colour_value < colour_bins[k].bound) {
+		data[j].Level = colour_bins[k].fill;
 		break;
 	      }
 	    }
@@ -141,7 +141,7 @@
 	  .attr("height", lheight);
 
         var legend = lsvg.selectAll(".legend")
-	  .data(scale_bins)
+	  .data(colour_bins)
 	  .enter()
 	  .append("g")
 	  .attr("class", "legend")
@@ -161,16 +161,16 @@
 	  .on("mouseout", function (d) { removePopovers(); })
 	  
 	lsvg.append("text")
-	  .attr("x", width - legRectSize*scale_bins.length - 115)
+	  .attr("x", width - legRectSize*colour_bins.length - 115)
 	  .attr("y", legRectSize + legSpace)
-	  .text(legend_text);
+	  .text(legend_label);
 
         // Draw the initial layout (uncategorised)
         draw();
 
         // Attach the listerners to the buttons
         $( ".btn" ).click(function () {
-	    draw(categories[this.id].name);
+	    draw(columns[this.id].name);
 	  });
 
         // Overarching function called by clicking on a button -
