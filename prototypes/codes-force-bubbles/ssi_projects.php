@@ -34,7 +34,7 @@ var scale_bins = [
 		  { label: "More than 3 months", count: 5000, fill: "#a50f15" }
 		  ];
 
-function blob_caption(d) {
+function bubble_caption(d) {
   return "Name: " + d["Project Name"] +
     "<br/>Funder: " + d["Funder"] +
     "<br/>Institution: " + d["Institution"] +

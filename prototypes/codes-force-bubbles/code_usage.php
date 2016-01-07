@@ -34,7 +34,7 @@ var scale_bins = [
 		  { label: "More than 100 users", count: 5000, fill: "#a50f15" }
 		  ];
 
-function blob_caption(d) {
+function bubble_caption(d) {
   return "Name: " + d.Code + "<br/>Usage: " + d.Usage + " node hours<br/>Jobs: " + d.Jobs +
     "<br/>Usage Rank: " + d.Rank + "<br/>Users: " + d.Users;
 }
