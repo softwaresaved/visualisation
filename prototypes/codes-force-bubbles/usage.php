@@ -64,7 +64,7 @@
         // Define the size of the chart box
         var width = 700, height = 700;
 
-        var userCat = [
+        var scale_bins = [
                        { label: "Less than 5 users", count: 5, fill: "#fee5d9" },
                        { label: "5-10 users", count: 10, fill: "#fcbba1" },
                        { label: "10-20 users", count: 20, fill: "#fc9272" },
@@ -74,8 +74,8 @@
         ];
 
         var colours = [];
-        for (var j = 0; j < userCat.length; j++) {
-	  colours[userCat.length - j - 1] = userCat[j].fill;
+        for (var j = 0; j < scale_bins.length; j++) {
+	  colours[scale_bins.length - j - 1] = scale_bins[j].fill;
 	}
         // Define a custom colour scale
         var fill = d3.scale.ordinal().range(colours);
@@ -102,17 +102,17 @@
              // Create category for number of users
              nuser = parseFloat(data[j][level_column]);
              if (nuser < 5) {
-                data[j].Level = userCat[0].fill;
+                data[j].Level = scale_bins[0].fill;
              } else if (nuser < 10) {
-                data[j].Level = userCat[1].fill;
+                data[j].Level = scale_bins[1].fill;
              } else if (nuser < 20) {
-                data[j].Level = userCat[2].fill;
+                data[j].Level = scale_bins[2].fill;
              } else if (nuser < 50) {
-                data[j].Level = userCat[3].fill;
+                data[j].Level = scale_bins[3].fill;
              } else if (nuser < 100) {
-                data[j].Level = userCat[4].fill;
+                data[j].Level = scale_bins[4].fill;
              } else {
-                data[j].Level = userCat[5].fill;
+                data[j].Level = scale_bins[5].fill;
              }
           }
         }
@@ -175,7 +175,7 @@
             .attr("height", lheight);
 
         var legend = lsvg.selectAll(".legend")
-               .data(userCat)
+               .data(scale_bins)
                .enter()
                .append("g")
                .attr("class", "legend")
@@ -196,7 +196,7 @@
               .on("mouseout", function (d) { removePopovers(); })
 
         lsvg.append("text")
-              .attr("x", width - legRectSize*userCat.length - 115)
+              .attr("x", width - legRectSize*scale_bins.length - 115)
               .attr("y", legRectSize + legSpace)
               .text(legend_text);
         
