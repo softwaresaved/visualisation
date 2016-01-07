@@ -10,13 +10,13 @@
 
 <script>
 // CSV data file.
-var data_file = 'data/SSIConsultancyProjects.csv';
+var data_file = 'data/ssi-consultancy.csv';
 // Names of columns in CSV data by which data can be grouped, and
 // corresponding labels buttons to select these columns.
 // A "none" entry provides a default view with the data ungrouped.
 var columns = [
                { name: "none", label: "Overview" },
-               { name: "Funder" , label: "Funder" },
+               { name: "Funder(s)" , label: "Funder" },
                { name: "Institution", label: "Institution" },
                { name: "Type", label: "Type" },
                { name: "Research Field", label: "Research Field" }
@@ -24,12 +24,12 @@ var columns = [
 // Name of column in CSV data used to label console log info.
 var name_column = "Project Name";
 // Name of column in CSV data used to calculate bubble radii.
-var radius_column = "Effort";
+var radius_column = "PMs";
 // Rows of data with values of radius_column below this threshold are
 // not drawn.
 var radius_threshold = 0.1;
 // Name of column in CSV data used to calculate bubble colour.
-var colour_column = "Effort";
+var colour_column = "PMs";
 // Ranges of values used to map colour_column values to colours, and
 // also to create the legend.
 var colour_bins = [
@@ -45,11 +45,11 @@ var legend_label = "Staff Effort";
 
 function bubble_caption(d) {
   return "Name: " + d["Project Name"] +
-    "<br/>Funder: " + d["Funder"] +
+    "<br/>Funder: " + d["Funder(s)"] +
     "<br/>Institution: " + d["Institution"] +
     "<br/>Field: " + d["Research Field"] +
     "<br/>Type: " + d["Type"] +
-    "<br/>Effort: " + d["Effort"] + " staff months";
+    "<br/>Effort: " + d["PMs"] + " staff months";
 }
 </script>
 
