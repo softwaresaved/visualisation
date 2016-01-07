@@ -36,36 +36,16 @@
         }
     </style>
     <div class="btn-group" data-toggle="buttons" style="display: none">
-      <label class="btn btn-danger" id=0>
-        <input type="radio" name="options">
-        <script>
-	document.write(category_names[0]);
-        </script>
-      </label>
-      <label class="btn btn-danger" id=1>
-        <input type="radio" name="options">
-        <script>
-	document.write(category_names[1]);
-        </script>
-      </label>
-      <label class="btn btn-danger" id=2>
-        <input type="radio" name="options">
-        <script>
-	document.write(category_names[2]);
-        </script>
-      </label>
-      <label class="btn btn-danger" id=3>
-        <input type="radio" name="options">
-        <script>
-	document.write(category_names[3]);
-        </script>
-      </label>
-      <label class="btn btn-danger" id=4>
-        <input type="radio" name="options">
-        <script>
-	document.write(category_names[4]);
-        </script>
-      </label>
+      <script>
+        for (var j = 0; j < categories.length; j++) {
+          document.write('<label class="btn btn-danger" id=');
+          document.write(j);
+          document.write('>');
+          document.write('<input type="radio" name="options">');
+	  document.write(category_names[j]);
+          document.write('</label>');
+	}
+      </script>
     </div>
     <div id="chart"></div>
     <script src="js/d3.min.js"></script>
