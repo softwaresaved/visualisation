@@ -73,16 +73,12 @@
                        { label: "More than 100 users", count: 5000, fill: "#a50f15" }
         ];
 
+        var colours = [];
+        for (var j = 0; j < userCat.length; j++) {
+	  colours[userCat.length - j - 1] = userCat[j].fill;
+	}
         // Define a custom colour scale
-        var fill = d3.scale.ordinal().range([
-                                             "#a50f15",
-                                             "#de2d26",
-                                             "#fb6a4a",
-                                             "#fc9272",
-                                             "#fcbba1",
-                                             "#fee5d9"
-                                          ]);
-        
+        var fill = d3.scale.ordinal().range(colours);
 
         // Setup the SVG area
         var svg = d3.select("#chart").append("svg")
