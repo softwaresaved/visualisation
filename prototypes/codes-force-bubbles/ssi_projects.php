@@ -38,7 +38,7 @@ var colour_bins = [
                   { label: "0.5-1 months", bound: 1, fill: "#fc9272" },
                   { label: "1-2 months", bound: 2, fill: "#fb6a4a" },
                   { label: "2-3 months", bound: 3, fill: "#de2d26" },
-                  { label: "More than 3 months", bound: 5000, fill: "#a50f15" }
+                  { label: "More than 3 months", bound: Number.MAX_VALUE, fill: "#a50f15" }
                   ];
 // Label for legend showing the ranges of values of colour_column.
 var legend_label = "Staff Effort";
