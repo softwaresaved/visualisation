@@ -10,16 +10,13 @@
 
 <script>
 var data_file = 'data/d3codes_summary.csv';
-var category_names = ["Overview",
-		      "Code Type",
-		      "Research Area",
-		      "Programming Language",
-		      "Licence Type"];
-var categories = ["none",
-		  "CodeType",
-		  "ResArea",
-		  "ProgLang",
-		  "LicType"];
+var categories = [
+		  { name: "none", label: "Overview"},
+		  { name: "CodeType", label: "Code Type"},
+		  { name: "ResArea", label: "Research Area"},		  
+		  { name: "ProgLang", label: "Programming Language"},
+		  { name: "LicType", label: "Licence Type"},
+		  ];
 var legend_text = "Number of Users";
 var name_column = "Code";
 var scaling_column = "Usage";

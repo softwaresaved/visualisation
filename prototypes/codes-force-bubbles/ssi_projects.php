@@ -10,16 +10,13 @@
 
 <script>
 var data_file = 'data/SSIConsultancyProjects.csv';
-var category_names = ["Overview",
-		      "Funder",
-		      "Institution",
-		      "Type",
-		      "Research Field"];
-var categories = ["none",
-		  "Funder",
-		  "Institution",
-		  "Type",
-		  "Research Field"];
+var categories = [
+		  { name: "none", label: "Overview"},
+		  { name: "Funder" , label: "Funder"},
+		  { name: "Institution", label: "Institution"},
+		  { name: "Type", label: "Type"},
+		  { name: "Research Field", label: "Research Field"}
+		  ];
 var legend_text = "Effort";
 var name_column = "Project Name";
 var scaling_column = "Effort";

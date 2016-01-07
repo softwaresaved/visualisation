@@ -20,7 +20,7 @@
       document.write(j);
       document.write('>');
       document.write('<input type="radio" name="options">');
-      document.write(category_names[j]);
+      document.write(categories[j].label);
       document.write('</label>');
     }
     </script>
@@ -170,7 +170,7 @@
 
         // Attach the listerners to the buttons
         $( ".btn" ).click(function () {
-	    draw(categories[this.id]);
+	    draw(categories[this.id].name);
 	  });
 
         // Overarching function called by clicking on a button -
