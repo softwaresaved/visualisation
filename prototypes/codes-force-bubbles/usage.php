@@ -11,13 +11,63 @@
 		      "ProgLang",
 		      "LicType"];
     var legend_text = "Number of Users";
-    var name_column = "Code"
-    var scaling_column = "Usage"
-    var level_column = "Users"
-    function blob_caption(d) { 
+    var name_column = "Code";
+    var scaling_column = "Usage";
+    var level_column = "Users";
+    var cull_threshold = 10;
+    var scale_bins = [
+		  { label: "Less than 5 users", count: 5, fill: "#fee5d9" },
+		  { label: "5-10 users", count: 10, fill: "#fcbba1" },
+		  { label: "10-20 users", count: 20, fill: "#fc9272" },
+		  { label: "20-50 users", count: 50, fill: "#fb6a4a" },
+		  { label: "50-100 users", count: 100, fill: "#de2d26" },
+		  { label: "More than 100 users", count: 5000, fill: "#a50f15" }
+		      ];
+
+    function blob_caption(d) {
       return "Name: " + d.Code + "<br/>Usage: " + d.Usage + " node hours<br/>Jobs: " + d.Jobs +
       "<br/>Usage Rank: " + d.Rank + "<br/>Users: " + d.Users;
     }
+
+/**
+    data_file = 'data/SSIConsultancyProjects.csv';
+    category_names = ["Overview",
+			  "Funder",
+			  "Institution",
+			  "Type",
+			  "Research Field"];
+    categories = ["none",
+		      "Funder",
+		      "Institution",
+		      "Type",
+		      "Research Field"];
+    legend_text = "Effort";
+    name_column = "Project Name";
+    scaling_column = "Effort";
+    level_column = "Effort";
+    cull_threshold = 0.25;
+    scale_bins = [
+		  { label: "Less than 0.25 months", count: 0.25, fill: "#fee5d9" },
+		  { label: "0.25-0.5 months", count: 0.5, fill: "#fcbba1" },
+		  { label: "0.5-1 months", count: 1, fill: "#fc9272" },
+		  { label: "1-2 months", count: 2, fill: "#fb6a4a" },
+		  { label: "2-3 months", count: 3, fill: "#de2d26" },
+		  { label: "More than 3 months", count: 5000, fill: "#a50f15" }
+		  ];
+
+    function blob_caption(d) {
+      return "Name: " + d["Project Name"] +
+	"<br/>Funder: " + d["Funder"] +
+	"<br/>Institution: " + d["Institution"] +
+	"<br/>Field: " + d["Research Field"] +
+	"<br/>Type: " + d["Type"] +
+	"<br/>Effort: " + d["Effort"] + " staff months";
+    }
+*/
+
+
+
+
     </script>
 
     <style>
@@ -64,15 +114,6 @@
         // Define the size of the chart box
         var width = 700, height = 700;
 
-        var scale_bins = [
-                       { label: "Less than 5 users", count: 5, fill: "#fee5d9" },
-                       { label: "5-10 users", count: 10, fill: "#fcbba1" },
-                       { label: "10-20 users", count: 20, fill: "#fc9272" },
-                       { label: "20-50 users", count: 50, fill: "#fb6a4a" },
-                       { label: "50-100 users", count: 100, fill: "#de2d26" },
-                       { label: "More than 100 users", count: 5000, fill: "#a50f15" }
-        ];
-
         var colours = [];
         for (var j = 0; j < scale_bins.length; j++) {
 	  colours[scale_bins.length - j - 1] = scale_bins[j].fill;
@@ -88,7 +129,7 @@
 
         // Loop over data setting radii and centres 
         for (var j = 0; j < data.length; j++) {
-          if (parseFloat(data[j][scaling_column]) < 10) {
+          if (parseFloat(data[j][scaling_column]) < cull_threshold) {
              // If we have very low usage cull from the data
              console.log("Splicing " + data[j][name_column]);
              data.splice(j, 1);
