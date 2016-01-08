@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../common/delimited-favicon-v4.ico">
   </head>
   <body>
+    <h1>Software Sustainability Institute Consultancy</h1>
 
 <script>
 // CSV data file.

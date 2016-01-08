@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../common/delimited-favicon-v4.ico">
   </head>
   <body>
+    <h1>ARCHER application usage</h1>
 
 <script>
 // CSV data file.
