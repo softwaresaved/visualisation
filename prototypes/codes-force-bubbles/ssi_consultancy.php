@@ -7,11 +7,11 @@
     <link rel="shortcut icon" href="../common/delimited-favicon-v4.ico">
   </head>
   <body>
-   <h1>Software Sustainability Institute Consultancy (filtered)</h1>
+   <h1>Software Sustainability Institute Consultancy</h1>
 
 <script>
 // CSV data file.
-var data_file = 'data/ssi-consultancy-filtered.csv';
+var data_file = 'data/ssi-consultancy.csv';
 // Names of columns in CSV data by which data can be grouped, and
 // corresponding labels buttons to select these columns.
 // A "none" entry provides a default view with the data ungrouped.
