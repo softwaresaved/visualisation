@@ -66,3 +66,20 @@ Underscore 1.5.2
 ```
 prototypes/codes-force-bubbles/js/underscore.js
 ```
+
+---
+
+## Use with SSI consultancy data
+
+Assumes schema:
+
+```
+Project Name,SSI Contact,Other SSI Staff,Funder(s),Group(s),Institution,Contact,Type,Start,End,Days,Months,P-days,PMs,FTE,Research Field,#Blog posts,Trac Ticket,Notes,Blog post links and papers,,,,,,,,Email
+```
+
+Get data and filter data:
+
+```
+
+$ ./get_consultancy_data.sh SSI_CONSULTANCY_SPREADSHEET_ID/export?gid=0&format=csv' data/ssi-consultancy.csv
+```
