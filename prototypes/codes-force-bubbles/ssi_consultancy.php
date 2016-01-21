@@ -7,17 +7,17 @@
     <link rel="shortcut icon" href="../common/delimited-favicon-v4.ico">
   </head>
   <body>
-    <h1>Software Sustainability Institute Consultancy</h1>
+   <h1>Software Sustainability Institute Consultancy (filtered)</h1>
 
 <script>
 // CSV data file.
-var data_file = 'data/ssi-consultancy.csv';
+var data_file = 'data/ssi-consultancy-filtered.csv';
 // Names of columns in CSV data by which data can be grouped, and
 // corresponding labels buttons to select these columns.
 // A "none" entry provides a default view with the data ungrouped.
 var columns = [
                { name: "none", label: "Overview" },
-               { name: "Funder(s)" , label: "Funder" },
+               { name: "Primary Funder" , label: "Funder" },
                { name: "Institution", label: "Institution" },
                { name: "Type", label: "Type" },
                { name: "Research Field", label: "Research Field" }
@@ -46,7 +46,8 @@ var legend_label = "Staff Effort";
 
 function bubble_caption(d) {
   return "Name: " + d["Project Name"] +
-    "<br/>Funder: " + d["Funder(s)"] +
+    "<br/>Primary funder: " + d["Primary Funder"] +
+    "<br/>Other funders: " + d["Other Funders"] +
     "<br/>Institution: " + d["Institution"] +
     "<br/>Field: " + d["Research Field"] +
     "<br/>Type: " + d["Type"] +
