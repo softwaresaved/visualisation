@@ -18,8 +18,7 @@ var data_file = 'data/ssi-consultancy.csv';
 var columns = [
                { name: "none", label: "Overview" },
                { name: "Primary Funder" , label: "Funder" },
-               { name: "Institution", label: "Institution" },
-               { name: "Type", label: "Type" },
+               { name: "Type", label: "Via"},
                { name: "Research Field", label: "Research Field" }
                ];
 // Name of column in CSV data used to label console log info.
@@ -50,7 +49,7 @@ function bubble_caption(d) {
     "<br/>Other funders: " + d["Other Funders"] +
     "<br/>Institution: " + d["Institution"] +
     "<br/>Field: " + d["Research Field"] +
-    "<br/>Type: " + d["Type"] +
+    "<br/>Via: " + d["Type"] +
     "<br/>Effort: " + d["PMs"] + " staff months";
 }
 </script>
