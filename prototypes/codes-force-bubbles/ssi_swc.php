@@ -32,11 +32,11 @@ var colour_column = "Attendees";
 // Ranges of values used to map colour_column values to colours, and
 // also to create the legend.
 var colour_bins = [
-                   { label: "Less than 10", bound: 10, fill: "#fcbba1" },
-                   { label: "10-20", bound: 20, fill: "#fc9272" },
-                   { label: "20-30", bound: 30, fill: "#fb6a4a" },
-                   { label: "30-40", bound: 40, fill: "#de2d26" },
-                   { label: "More than 40", bound: Number.MAX_VALUE, fill: "#a50f15" }
+                   { label: "Less than 10", bound: 10, fill: "#e0e2fe" },
+                   { label: "10-20", bound: 20, fill: "#c5c9fd" },
+                   { label: "20-30", bound: 30, fill: "#a6acff" },
+                   { label: "30-40", bound: 40, fill: "#515cfd" },
+                   { label: "More than 40", bound: Number.MAX_VALUE, fill: "#0000ff" }
                    ];
 // Label for legend showing the ranges of values of colour_column.
 var legend_label = "Attendees";
