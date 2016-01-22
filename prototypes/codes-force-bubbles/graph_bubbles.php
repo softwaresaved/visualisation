@@ -81,9 +81,8 @@
             data[j].x = Math.random() * width;
             data[j].y = Math.random() * height;
             // Use colour_column to get bubble fill colour from colour_bins
-            colour_value = parseFloat(data[j][colour_column]);
             for (var k = 0; k < colour_bins.length; k++) {
-              if (colour_value < colour_bins[k].bound) {
+	      if (assign_colour_bin(data[j][colour_column], k)) {
                 data[j].Level = colour_bins[k].fill;
                 break;
               }

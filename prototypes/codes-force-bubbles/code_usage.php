@@ -44,6 +44,11 @@ var colour_bins = [
 // Label for legend showing the ranges of values of colour_column.
 var legend_label = "Number of Users";
 
+function assign_colour_bin(field, bin) {
+  value = parseFloat(field);
+  return value < colour_bins[bin].bound;
+}
+
 function bubble_caption(d) {
   return "Name: " + d.Code + "<br/>Usage: " + d.Usage + " node hours" +
     "<br/>Jobs: " + d.Jobs +

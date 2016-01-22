@@ -41,6 +41,11 @@ var colour_bins = [
 // Label for legend showing the ranges of values of colour_column.
 var legend_label = "Attendees";
 
+function assign_colour_bin(field, bin) {
+  value = parseFloat(field);
+  return value < colour_bins[bin].bound;
+}
+
 function bubble_caption(d) {
   return "Date: " + d["Date"] +
     "<br/>Department: " + d["Department"] +
