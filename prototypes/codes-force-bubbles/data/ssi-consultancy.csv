@@ -6,7 +6,6 @@ JiscRDS,Jisc,,Jisc,,Externally Funded,0.60,Research Data
 ProvToolSuite,EPSRC,,Electronics and Computer Science,University of Southampton,Open Call:5,2.11,"Provenance, Linked Data, Standards"
 RTI-VIPS,AHRC,,Electronics and Computer Science,University of Southampton,Open Call:5,1.50,Humanities
 APEL,EU,STFC,,STFC,Open Call:5,1.50,Software Infrastructure
-Cadabra,Unknown,,Mathematical Sciences,Durham University,Open Call:5,0.90,Physics
 sameas-lite,-,,Electronics and Computer Science,"University of Southampton, Seme4 Ltd",Open Call:5,0.95,Software Infrastructure
 BigDataSensing,EPSRC,,,University College London ,Externally Funded,,Software Infrastructure
 MarineTech,EPSRC,,,Imperial College London,Externally Funded,,Environmental Science
@@ -19,7 +18,6 @@ APES,EPSRC,NSF,Chemistry,Washington University in Saint Louis,Externally Funded,
 Libhpc-2,EPSRC,,"London e-Science Centre, Dept. of Aeronautics",Imperial College London,Externally Funded,0.25,Software Infrastructure
 INQUIRE,BBSRC,,Centre for Computational Chemistry,University of Bristol,Externally Funded,0.25,Chemistry
 TPLS,EPSRC,,"Institute of Materials and Processes, School of Engineering",University of Edinburgh,Open Call:3,2.43,Physics
-Recomputation.org,Unknown,,School of Computer Science,University of St. Andrews,Engagement,3.65,Software Infrastructure
 BioJS,BBSRC,,,The Genome Analysis Centre ,Open Call:3,1.61,Bioscience
 ParaFEM,EPSRC,"STFC,NERC,BBSRC","High Performance Computing, Research Computing Services",University of Manchester,Open Call:3,2.00,Physics
 BASIL/FABBER,EPSRC,"MRC,Wellcome Trust",FMRIB Centre,University of Oxford,Open Call:2,1.61,Medicine
@@ -54,4 +52,3 @@ VRIC,JISC,,Electronics and Computer Science,University of Southampton,Engagement
 LifeGuide,ESRC,,Electronics and Computer Science,University of Southampton,Engagement,0.25,Medicine
 JournalTOCS,JISC,," ICBL, School of Mathematical and Computer Sciences",Heriot-Watt University,Engagement,0.50,Social Science
 <Identification of Genetic Loci>,BBRSC,,,"Roslin Institute, University of Edinburgh",Engagement,3.50,
-<Studying Online Communities with Big Data>,Unknown,,,London School of Economics,Engagement,0.50,
