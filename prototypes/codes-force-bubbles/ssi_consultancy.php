@@ -41,7 +41,7 @@ var colour_bins = [
                   { label: "More than 3 months", bound: Number.MAX_VALUE, fill: "#a50f15" }
                   ];
 // Label for legend showing the ranges of values of colour_column.
-var legend_label = "Staff Effort";
+var legend_label = "Staff Effort (months)";
 
 function bubble_caption(d) {
   return "Name: " + d["Project Name"] +

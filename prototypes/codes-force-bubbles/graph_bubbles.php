@@ -37,7 +37,7 @@
         // Get the maximum scale for the data using radius_column
         var max_scale = d3.max(data, function (d) { return parseFloat(d[radius_column]); } );
         // Map the range of values to a custom scale to produce nice radii
-        var radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_scale]).range([2, 50]);
+        var radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_scale]).range([1,40]);
 
         // Define the size of the chart box
         var width = 700, height = 700;
@@ -167,7 +167,8 @@
           .on("mouseout", function (d) { removePopovers(); });
 
         lsvg.append("text")
-          .attr("x", width - legRectSize*colour_bins.length - 115)
+          .attr("x", (width - legRectSize*colour_bins.length) - 
+		(legend_label.length * 8))
           .attr("y", legRectSize + legSpace)
           .text(legend_label);
 
