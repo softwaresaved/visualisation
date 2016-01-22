@@ -4,7 +4,9 @@ Usage::
 
    $ python transform_consultancy_data.py IN_FILE OUT_FILE
 
-For IN_FILE and OUT_FILE, see definition of filter.
+For IN_FILE and OUT_FILE, see definition of filter. IN_FILE's
+first three lines are assumed to be blank and so are 
+stripped out by remove_lines.
 """
 
 # Copyright (c) 2016 The University of Edinburgh
