@@ -11,53 +11,24 @@
 }
 </style>
 <body>
+<h1>Number of consultancy projects per funder</h1>
 <script src="js/d3.min.js"></script>
 <script>
-var width = 960,
-    height = 500,
-    radius = Math.min(width, height) / 2;
 
-var color3 = d3.scale.ordinal()
-    .range(["#98abc5", 
-"#8a89a6", 
-"#7b6888", 
-"#6b486b", 
-"#a05d56", 
-"#d0743c", 
-"#ff8c00"]);
+var category_column = "Primary Funder";
+var data_file = "data/ssi-consultancy.csv";
 
-
-
-
-
+var width = 960;
+var height = 500;
+var radius = Math.min(width, height) / 2;
 
 var colour_bins = [
-                   { label: "Less than 10", bound: 1, fill: "#e0e2fe" },
-                   { label: "10-20", bound: 2, fill: "#c5c9fd" },
-                   { label: "20-30", bound: 5, fill: "#a6acff" },
-                   { label: "30-40", bound: 10, fill: "#515cfd" },
-                   { label: "More than 40", bound: Number.MAX_VALUE, fill: "#0000ff" }
-                   ];
-
-function get_colour(value) {
-  for (var k = 0; k < colour_bins.length; k++) {
-      value = parseInt(value);
-      if (value < colour_bins[k].bound)
-      {
-        return colour_bins[k].fill;
-      }
-  }
-  return colour_bins[4].fill;
-}
-
-var color = d3.scale.ordinal()
-    .range([
-"#0000ff",            
-"#515cfd",
-"#a6acff",
-"#c5c9fd",
-"#e0e2fe"]);
-
+    { label: "1", bound: 1, fill: "#e0e2fe" },
+    { label: "2", bound: 2, fill: "#c5c9fd" },
+    { label: "3-5", bound: 5, fill: "#a6acff" },
+    { label: "6-10", bound: 10, fill: "#515cfd" },
+    { label: "Over 10", bound: Number.MAX_VALUE, fill: "#0000ff" }
+];
 
 var arc = d3.svg.arc()
     .outerRadius(radius - 10)
@@ -77,51 +48,52 @@ var svg = d3.select("body").append("svg")
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-//Project Name,Primary Funder,Other Funders,Group(s),Institution,Type,PMs,Research Field
-// ReproPhylo,NERC,,"School of Biological, Biomedical and Environmental Sciences",University of Hull,Open Call:6,,Biology
-// GLOMAP,NERC,,Institute of Climate and Atmospheric Science,University of Leeds,Open Call:6,,Meteorology
-
-var category_column = "Primary Funder";
-
-d3.csv("data/ssi-consultancy.csv", type, function(error, raw_data) {
-  if (error) throw error;
-  console.log("Number of records: " + raw_data.length);
-  var categories = {};
-  raw_data.forEach(function(row) {
-    if (!categories[row[category_column]]) {
-        categories[row[category_column]] = 0;
-    }
-    categories[row[category_column]]++;
-  });
-  var data = [];
-  Object.keys(categories).forEach(function(key) {
-    data.push({
-        category: key,
-        count: categories[key]
+d3.csv(data_file, type, function(error, raw_data) {
+    if (error) throw error;
+    console.log("Number of records: " + raw_data.length);
+    var categories = {};
+    raw_data.forEach(function(row) {
+      if (!categories[row[category_column]]) {
+          categories[row[category_column]] = 0;
+      }
+      categories[row[category_column]]++;
     });
-  });
+    var data = [];
+    Object.keys(categories).forEach(function(key) {
+        data.push({
+            category: key,
+            count: categories[key]
+        });
+    });
 
-  var g = svg.selectAll(".arc")
-    .data(pie(data))
-    .enter().append("g")
-    .attr("class", "arc");
+    var g = svg.selectAll(".arc")
+        .data(pie(data))
+        .enter().append("g")
+        .attr("class", "arc");
 
-  g.append("path")
+    g.append("path")
       .attr("d", arc)
-//      .style("fill", function(d) { return color(d.data.category); });
       .style("fill", function(d) { return get_colour(d.data.count); });
 
-// TODO - how to map count to categories factoring in min and max
-// TODO - add to README.md origin https://bl.ocks.org/mbostock/3887235
-
-  g.append("text")
+    g.append("text")
       .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
       .attr("dy", ".35em")
       .text(function(d) { return d.data.category; });
 });
 
 function type(d) {
-  d.count =+ d.count;
-  return d;
+    d.count =+ d.count;
+    return d;
+}
+
+function get_colour(value) {
+    for (var k = 0; k < colour_bins.length; k++) {
+        value = parseInt(value);
+        if (value <= colour_bins[k].bound)
+        {
+            return colour_bins[k].fill;
+        }
+    }
+    return colour_bins[4].fill;
 }
 </script>
