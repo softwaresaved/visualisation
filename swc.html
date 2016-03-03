@@ -3,11 +3,36 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Software Sustainability Institute and Software Carpentry</title>
+    <title>Software Sustainability Institute Software Carpentry</title>
     <link rel="shortcut icon" href="../common/delimited-favicon-v4.ico">
   </head>
   <body>
-    <h1>Software Sustainability Institute and Software Carpentry</h1>
+   <h1>Software Sustainability Institute Software Carpentry</h1>
+   <p>
+     <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
+   </p>
+
+<!-- graph_bubbles.js styles -->
+<style>
+    @import url("css/bootstrap_min.css");
+    circle {
+      stroke: #333333;
+      stroke-width: 2px;
+    }
+    .label {
+      fill: black;
+      font-size: 12px;
+     }
+    #chart {
+      display: block;
+    padding-left: 20px;
+  }
+</style>
+<script src="js/d3.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/graph_bubbles.js"></script>
 
 <script>
 // CSV data file.
@@ -54,9 +79,33 @@ function bubble_caption(d) {
     "<br/>Field: " + d["Domain"] +
     "<br/>Attendees: " + d["Attendees"];
 }
+
+draw_bubbles(
+    data_file,
+    "#bubblechart",
+    columns,
+    name_column,
+    radius_column,
+    radius_threshold,
+    colour_column,
+    colour_bins,
+    legend_label,
+    assign_colour_bin,
+    bubble_caption);
 </script>
 
-   <?php include 'prototype.php'; ?>
-   <?php include 'graph_bubbles.php'; ?>
+    <div class="btn-group" data-toggle="buttons" style="display: none">
+<script>
+for (var j = 0; j < columns.length; j++) {
+    document.write('<label class="btn btn-danger" id=');
+    document.write(j);
+    document.write('>');
+    document.write('<input type="radio" name="options">');
+    document.write(columns[j].label);
+    document.write('</label>');
+}
+</script>
+    </div>
+    <div id="bubblechart"></div>
   </body>
 </html>
