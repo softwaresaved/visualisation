@@ -68,7 +68,21 @@ var width = 400;
 var height = 500;
 </script>
 
+<style>
+.arc text {
+  font: 14px sans-serif;
+  text-anchor: middle;
+}
+
+.arc path {
+  stroke: #fff;
+}
+</style>
+<script src="js/pie.js"></script>
+
+<!--
     <?php include 'ssi_consultancy_pie.php'; ?>
+-->
 
     <h1>Consultancy effort by funder</h1>
     <div id="pieX"></div>
@@ -77,7 +91,7 @@ function pie_countX(row) {
    return row["Effort"];
 };
 function typeX(d) {
-    d.count =+ d.count;
+    d.value =+ d.value;
     return d;
 };
 var colour_bins_pieX = [
@@ -87,7 +101,7 @@ var colour_bins_pieX = [
     { label: "20", bound: 20, fill: "#515cfd" },
     { label: "Over 20", bound: Number.MAX_VALUE, fill: "#0000ff" }
 ];
-show_pie("data/funders_effort.csv", "#pieX", "Funder", typeX, pie_countX, colour_bins_pieX);
+draw_pie("data/funders_effort.csv", "#pieX", "Funder", typeX, pie_countX, colour_bins_pieX);
 </script>
 
     <h1>Consultancy projects by funder</h1>
@@ -97,7 +111,7 @@ function pie_countY(row) {
    return 1;
 };
 function typeY(d) {
-    d.count =+ d.count;
+    d.value =+ d.value;
     return d;
 };
 var colour_bins_pieY = [
@@ -107,7 +121,7 @@ var colour_bins_pieY = [
     { label: "6-10", bound: 10, fill: "#515cfd" },
     { label: "Over 10", bound: Number.MAX_VALUE, fill: "#0000ff" }
 ];
-show_pie("data/ssi-consultancy.csv", "#pieY", "Primary Funder", typeY, pie_countY, colour_bins_pieY);
+draw_pie("data/ssi-consultancy.csv", "#pieY", "Primary Funder", typeY, pie_countY, colour_bins_pieY);
 </script>
 
     <?php include 'projectsfunder_barchart.php'; ?>
