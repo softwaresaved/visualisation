@@ -12,7 +12,6 @@
 //   is drawn (e.g. "#pie").
 // - category_column - each unique value in this column will have its
 //   own wedge in the pie chart.
-// - type - TODO
 // - pie_count - callback function which, for a specific row, returns
 //   a value which is added to the total value computed for the
 //   category_column value for that row.
@@ -24,11 +23,15 @@
 function draw_pie(data_file, 
                   location_tag, 
                   category_column, 
-                  type, 
                   pie_count, 
                   colour_bins,
                   area_width = 400,
                   area_height = 500) {
+
+    function type(d) {
+        d.value =+ d.value;
+        return d;
+    };
 
     d3.csv(data_file, type, function(error, raw_data) {
         if (error) {
