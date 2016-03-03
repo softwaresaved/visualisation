@@ -1,10 +1,7 @@
 # Software Sustainability Institute web-based data visualisation
 
 
-Visualising [The Software Sustainability Institute](http://www.software.ac.uk) data:
- 
-* [Consultancy](https://ssi-dev.epcc.ed.ac.uk/viz/prototypes/codes-force-bubbles/ssi_consultancy.php)
-* [Software Carpentry](https://ssi-dev.epcc.ed.ac.uk/viz/prototypes/codes-force-bubbles/ssi_swc.php)
+Visualising [The Software Sustainability Institute](http://www.software.ac.uk) data.
 
 ---
 
@@ -69,7 +66,7 @@ Andrew Turner's ARCHER usage visualisation scripts:
 * https://github.com/aturner-epcc/usage-visualisation
 * Copyright 2015, The University of Edinburgh.
 * Licence: [GPL 2](./LICENSE]).
-* `graph_bubbles.php` was abstracted out from `prototypes/codes-force-bubbles/code_usage.html` (commit [b5749bb7](https://github.com/mikej888/usage-visualisation/commit/b5749bb711045246abc3edeec4e98b18a28d2c53)).
+* `js/graph_bubbles.js` was abstracted out from `prototypes/codes-force-bubbles/code_usage.html` (commit [b5749bb7](https://github.com/mikej888/usage-visualisation/commit/b5749bb711045246abc3edeec4e98b18a28d2c53)).
 
 ---
 
