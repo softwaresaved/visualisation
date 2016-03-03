@@ -1,5 +1,4 @@
 <style>
-
 .bar {
   fill: steelblue;
 }
@@ -22,9 +21,11 @@
 .x.axis path {
   display: none;
 }
-
 </style>
 <script>
+function show_chart(data_file, chart_location, category_column, type, chart_count)
+{
+
   d3.csv("data/ssi-consultancy.csv", type, function(error, raw_data) {
     if (error) throw error;
 
@@ -61,7 +62,7 @@ var category_column="Primary Funder";
       if (!categories[row[category_column]]) {
           categories[row[category_column]] = 0;
       }
-      categories[row[category_column]]++;
+      categories[row[category_column]] += chart_count(row);
     });
 
     var data = [];
@@ -114,6 +115,6 @@ function type(d) {
   return d;
 }
 });
-
+};
 
 </script>

@@ -22,6 +22,9 @@
 //var width = 400;
 //var height = 500;
 
+function show_pie(data_file, pie_location, category_column, type, pie_count, colour_bins_pie)
+{
+
 d3.csv(data_file, type, function(error, raw_data) {
     if (error) throw error;
 
@@ -81,10 +84,6 @@ console.log("Drawing area: " + pie_location);
       .attr("dy", ".35em")
       .text(function(d) { return d.data.category; });
 
-function type(d) {
-    d.count =+ d.count;
-    return d;
-};
 
 function get_pie_colour(value) {
     for (var k = 0; k < colour_bins_pie.length; k++) {
@@ -99,5 +98,6 @@ function get_pie_colour(value) {
 
 });
 
+};
 
 </script>

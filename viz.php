@@ -63,68 +63,67 @@ function bubble_caption(d) {
    <?php include 'prototype.php'; ?>
    <?php include 'graph_bubbles.php'; ?>
 
-
 <script>
-var category_column = "Primary Funder";
-var data_file = "data/ssi-consultancy.csv";
-
 var width = 400;
 var height = 500;
+</script>
 
-var colour_bins_pie = [
+    <?php include 'ssi_consultancy_pie.php'; ?>
+
+    <h1>Consultancy effort by funder</h1>
+    <div id="pieX"></div>
+<script>
+function pie_countX(row) {
+   return row["Effort"];
+};
+function typeX(d) {
+    d.count =+ d.count;
+    return d;
+};
+var colour_bins_pieX = [
+    { label: "1", bound: 1, fill: "#e0e2fe" },
+    { label: "5", bound: 5, fill: "#c5c9fd" },
+    { label: "10", bound: 10, fill: "#a6acff" },
+    { label: "20", bound: 20, fill: "#515cfd" },
+    { label: "Over 20", bound: Number.MAX_VALUE, fill: "#0000ff" }
+];
+show_pie("data/funders_effort.csv", "#pieX", "Funder", typeX, pie_countX, colour_bins_pieX);
+</script>
+
+    <h1>Consultancy projects by funder</h1>
+    <div id="pieY"></div>
+<script>
+function pie_countY(row) {
+   return 1;
+};
+function typeY(d) {
+    d.count =+ d.count;
+    return d;
+};
+var colour_bins_pieY = [
     { label: "1", bound: 1, fill: "#e0e2fe" },
     { label: "2", bound: 2, fill: "#c5c9fd" },
     { label: "3-5", bound: 5, fill: "#a6acff" },
     { label: "6-10", bound: 10, fill: "#515cfd" },
     { label: "Over 10", bound: Number.MAX_VALUE, fill: "#0000ff" }
 ];
+show_pie("data/ssi-consultancy.csv", "#pieY", "Primary Funder", typeY, pie_countY, colour_bins_pieY);
 </script>
 
-<!--
-     <h1>Number of consultancy projects per funder</h1>
-<div id="pieone"></div>
+    <?php include 'projectsfunder_barchart.php'; ?>
+    <h1>Number of consultancy projects per funder</h1>
+    <div id="chartX"></div>
 <script>
-// TODO clarify role of type() function!!!!!
-var pie_location="#pieone";
-function type(d) {
-    d.count =+ d.count;
-    return d;
+var chart_location="#chartX";
+function chart_countX(row) {
+   return 1;
 };
-function pie_count(row){
-    console.log("1");
-    return 1;
-};
-</script>
-     <?php include 'ssi_consultancy_pie.php'; ?>
--->
-
-
-     <h1>Consultancy effort by funder</h1>
-<div id="pietwo"></div>
-<script>
-category_column = "Funder";
-data_file = "data/funders_effort.csv";
-pie_location="#pietwo";
-function pie_count(row){
-   console.log("2");
-   return row["Effort"];
-};
-function type(d) {
-    d.count =+ d.count;
-    return d;
-};
-</script>
-     <?php include 'ssi_consultancy_pie.php'; ?>
-
-     <h1>Number of consultancy projects per funder</h1>
-<div id="chartone"></div>
-<script>
-var chart_location="#chartone";
-function type(d) {
+function typeZ(d) {
     d.Projects =+ d.Projects;
     return d;
 };
+show_chart("data/ssi-consultancy.csv", "#chartX", "Primary Funder", typeZ, chart_countX);
 </script>
-     <?php include 'projectsfunder_barchart.php'; ?>
+
   </body>
 </html>
