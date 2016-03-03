@@ -18,8 +18,8 @@
 //   category_column value for that row.
 // - colour_bins - ordered list of dictionaries each with a numerical
 //   "bound" value and a "fill" colour. 
-// - width - drawing area width.
-// - height - drawing area height.
+// - area_width - drawing area width.
+// - area_height - drawing area height.
 
 function draw_pie(data_file, 
                   location_tag, 
@@ -27,8 +27,8 @@ function draw_pie(data_file,
                   type, 
                   pie_count, 
                   colour_bins,
-                  width = 400,
-                  height = 500) {
+                  area_width = 400,
+                  area_height = 500) {
 
     d3.csv(data_file, type, function(error, raw_data) {
         if (error) {
@@ -36,9 +36,9 @@ function draw_pie(data_file,
         }
 
         console.log("Pie chart location tag: " + location_tag);
-        console.log("Number of records: " + raw_data.length);
+        console.log("Number of rows: " + raw_data.length);
 
-        var radius = Math.min(width, height) / 2;
+        var radius = Math.min(area_width, area_height) / 2;
 
         var arc = d3.svg.arc()
             .outerRadius(radius - 10)
@@ -53,10 +53,10 @@ function draw_pie(data_file,
             .value(function(d) { return d.value; });
 
         var svg = d3.select(location_tag).append("svg")
-            .attr("width", width)
-            .attr("height", height)
+            .attr("width", area_width)
+            .attr("height", area_height)
             .append("g")
-            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+            .attr("transform", "translate(" + area_width / 2 + "," + area_height / 2 + ")");
 
         // Iterate through raw_data. For each distinct value in
         // category_column, compute a value based upon the
