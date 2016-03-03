@@ -70,7 +70,6 @@ var data_file = "data/ssi-consultancy.csv";
 
 var width = 400;
 var height = 500;
-//var radius = Math.min(width, height) / 2;
 
 var colour_bins_pie = [
     { label: "1", bound: 1, fill: "#e0e2fe" },
@@ -80,6 +79,7 @@ var colour_bins_pie = [
     { label: "Over 10", bound: Number.MAX_VALUE, fill: "#0000ff" }
 ];
 </script>
+<!--
      <h1>Number of consultancy projects per funder</h1>
 <div id="pieone"/>
 <script>
@@ -92,14 +92,23 @@ return d;
 </script>
      <?php include 'ssi_consultancy_pie.php'; ?>
 </div>
+-->
+     <h1>Consultancy effort by funder</h1>
+<p/>
+
 <div id="pietwo"/>
 <script>
-// TODO clarify role of type() function!!!!!
-var pie_location="#pietwo";
+category_column = "Funder";
+data_file = "data/funders_effort.csv";
+pie_location="#pietwo";
+function pie_count(row){
+console.log("1");
+    return 1;
+};
 function type(d) {
 d.count =+ d.count;
 return d;
-}
+};
 </script>
      <?php include 'ssi_consultancy_pie.php'; ?>
 </div>
@@ -108,10 +117,14 @@ return d;
 <div id="chartone"/>
 <script>
 var chart_location="#chartone";
+function pie_count(row){
+console.log("2");
+   return row["Effort"];
+};
 function type(d) {
 d.Projects =+ d.Projects;
 return d;
-}
+};
 </script>
 <div>
      <?php include 'projectsfunder_barchart.php'; ?>

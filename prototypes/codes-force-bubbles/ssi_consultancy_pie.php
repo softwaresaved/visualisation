@@ -55,7 +55,8 @@ console.log("Drawing area: " + pie_location);
       if (!categories[row[category_column]]) {
           categories[row[category_column]] = 0;
       }
-      categories[row[category_column]]++;
+//      categories[row[category_column]]++;
+      categories[row[category_column]] += pie_count(row);
     });
 
     var data = [];
@@ -93,7 +94,7 @@ function get_pie_colour(value) {
             return colour_bins_pie[k].fill;
         }
     }
-    return colour_bins_pie[colour_bins.pie.length - 1].fill;
+    return colour_bins_pie[colour_bins_pie.length - 1].fill;
 };
 
 });
