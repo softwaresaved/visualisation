@@ -1,6 +1,3 @@
-
-<!DOCTYPE html>
-<meta charset="utf-8">
 <style>
 
 .bar {
@@ -27,9 +24,9 @@
 }
 
 </style>
-<body>
-<script src="//d3js.org/d3.v3.min.js"></script>
 <script>
+  d3.csv("data/ssi-consultancy.csv", type, function(error, raw_data) {
+    if (error) throw error;
 
   var margin = {top: 20, right: 20, bottom: 100, left: 40},
       width = 400 - margin.left - margin.right,
@@ -50,14 +47,32 @@
       .orient("left")
       .tickSize(1,5);
 
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select(chart_location).append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  d3.csv("funders.csv", type, function(error, data) {
-    if (error) throw error;
+
+var category_column="Primary Funder";
+
+    var categories = {};
+    raw_data.forEach(function(row) {
+      if (!categories[row[category_column]]) {
+          categories[row[category_column]] = 0;
+      }
+      categories[row[category_column]]++;
+    });
+
+    var data = [];
+    Object.keys(categories).forEach(function(key) {
+        data.push({
+            Funder: key,
+            Projects: categories[key]
+        });
+    });
+
+//TODO SORT DATA
 
     x.domain(data.map(function(d) { return d.Funder; }));
     y.domain([0, d3.max(data, function(d) { return d.Projects; })]);
@@ -94,11 +109,11 @@
         .style("width", function(d) { return d.Projects * 10 + "px"; })
         .text(function(d) { return d.Projects; });
 
-});
-
 function type(d) {
   d.Projects = +d.Projects;
   return d;
 }
+});
+
 
 </script>
