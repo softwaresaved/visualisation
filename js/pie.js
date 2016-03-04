@@ -33,7 +33,7 @@
  * (CSV). 
  * @param {string} id_tag - ID of HTML tag in which the pie chart is
  * drawn. 
- * @param {string} wedge_column - ppie chart will have one wedge for
+ * @param {string} wedge_column - pie chart will have one wedge for
  * each uniquue value in this column. 
  * @param {function} aggregate - callback function called for each row
  * in turn. It is expected to return an integer or float. The function
