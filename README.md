@@ -2,12 +2,11 @@
 
 Visualising [The Software Sustainability Institute](http://www.software.ac.uk) data.
 
-
 ---
 
 ## Copyright and licence
 
-* Copyright 2016-2016, The University of Edinburgh except where identified below.
+* Copyright 2015-2016, The University of Edinburgh except where noted in Third-party code below.
 * Licence: [GPL 2](./LICENSE]).
 
 ---
@@ -43,7 +42,7 @@ jQuery 2.0.0
 
 * http://jquery.com/
 * Copyright 2005, 2013 jQuery Foundation, Inc. and other contributors
-* License: MIT license
+* Licence: MIT license
 * Local copies:
 
 ```
@@ -54,19 +53,33 @@ Underscore 1.5.2
 
 * http://underscorejs.org
 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-* License: MIT license
+* Licence: MIT license
 * Local copies:
 
 ```
 js/underscore.js
 ```
 
-Andrew Turner's ARCHER usage visualisation scripts:
+Usage visualisation scripts
 
 * https://github.com/aturner-epcc/usage-visualisation
 * Copyright 2015, The University of Edinburgh.
 * Licence: [GPL 2](./LICENSE]).
-* `js/graph_bubbles.js` was abstracted out from `prototypes/codes-force-bubbles/code_usage.html` (commit [b5749bb7](https://github.com/mikej888/usage-visualisation/commit/b5749bb711045246abc3edeec4e98b18a28d2c53)).
+* `js/graph_bubbles.js` is derived from `prototypes/codes-force-bubbles/code_usage.html` (commit [b5749bb7](https://github.com/mikej888/usage-visualisation/commit/b5749bb711045246abc3edeec4e98b18a28d2c53)).
+
+D3 pie chart
+
+* https://bl.ocks.org/mbostock/3887235
+* Copyright 2016, Mike Bostock
+* Licence: [GPL 3](https://opensource.org/licenses/GPL-3.0)
+* `js/pie.js` is derived from [index.html](https://bl.ocks.org/mbostock/3887235#index.html) downloaded on 02/03/2016.
+
+D3 bar chart
+
+* http://bl.ocks.org/mbostock/3885304
+* Copyright 2016, Mike Bostock
+* Licence: [GPL 3](https://opensource.org/licenses/GPL-3.0)
+* `js/pie.js` is derived from [index.html](https://bl.ocks.org/mbostock/3885304#index.html) downloaded on 02/03/2016.
 
 ---
 
@@ -94,15 +107,18 @@ See [transform_consultancy_data.py](./transform_consultancy_data.py) for informa
 
 ## JavaScript development
 
+Browser developer tools:
+
+* Google Chrome: CTRL+SHIFT+J opens Web Console and Debugger.
+* Mozilla Firefox: CTRL+SHIFT+K opens Web Console and Debugger.
+
+Comments:
+
+* [jsdoc](http://usejsdoc.org/) is used for commenting JavaScript.
+* [jsdoc on GitHub](https://github.com/jsdoc3/jsdoc)
+
 Logging:
 
-* console.log(...) outputs to browser console. 
-* CTRL+SHIFT+J opens console in Google Chrome.
+* console.log(...) outputs to browser console.
 
 ---
-
-## Possible enhancements
-
-* Add links from pop-up meta-data to open call web pages on web site. Requires adding this information to the CSV file.
-* Smaller text fonts
-* Alternative grid layouts e.g. 2 columns, multiple rows. See [Using d3js to draw a grid](http://knowledgestockpile.blogspot.co.uk/2012/01/using-d3js-to-draw-grid.html)
