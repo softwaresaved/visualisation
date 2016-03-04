@@ -72,14 +72,14 @@ D3 pie chart
 * https://bl.ocks.org/mbostock/3887235
 * Copyright 2016, Mike Bostock
 * Licence: [GPL 3](https://opensource.org/licenses/GPL-3.0)
-* `js/pie.js` is derived from [index.html](https://bl.ocks.org/mbostock/3887235#index.html) downloaded on 02/03/2016.
+* `js/pie.js` and `css/pie.css` are derived from [index.html](https://bl.ocks.org/mbostock/3887235#index.html) downloaded on 02/03/2016.
 
 D3 bar chart
 
 * http://bl.ocks.org/mbostock/3885304
 * Copyright 2016, Mike Bostock
 * Licence: [GPL 3](https://opensource.org/licenses/GPL-3.0)
-* `js/pie.js` is derived from [index.html](https://bl.ocks.org/mbostock/3885304#index.html) downloaded on 02/03/2016.
+* `js/pie.js` and `css/barchart.css` are derived from [index.html](https://bl.ocks.org/mbostock/3885304#index.html) downloaded on 02/03/2016.
 
 ---
 
