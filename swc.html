@@ -43,7 +43,7 @@ var data_file = 'data/swc.csv';
 var columns = [
                { name: "none", label: "Overview" },
                { name: "Country" , label: "Country" },
-               { name: "Domain", label: "Research Field" }
+               { name: "Domain", label: "Audience" }
                ];
 // Name of column in CSV data used to label console log info.
 var name_column = "Date";
@@ -76,7 +76,7 @@ function bubble_caption(d) {
     "<br/>Department: " + d["Department"] +
     "<br/>Institution: " + d["Institution"] +
     "<br/>Country: " + d["Country"] +
-    "<br/>Field: " + d["Domain"] +
+    "<br/>Audience: " + d["Domain"] +
     "<br/>Attendees: " + d["Attendees"];
 }
 
