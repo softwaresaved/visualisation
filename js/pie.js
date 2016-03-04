@@ -68,7 +68,7 @@ function draw_pie(data_file,
             if (!categories[row[category_column]]) {
                 categories[row[category_column]] = 0;
             }
-            categories[row[category_column]] += pie_count(row);
+            categories[row[category_column]] += parseFloat(pie_count(row));
         });
         // Create 2 column data with distinct category values
         // and the values computed above.

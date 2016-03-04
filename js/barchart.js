@@ -74,7 +74,7 @@ function draw_chart(data_file,
             if (!categories[row[category_column]]) {
                 categories[row[category_column]] = 0;
             }
-            categories[row[category_column]] += chart_count(row);
+            categories[row[category_column]] += parseFloat(chart_count(row));
         });
         // Create 2 column data with distinct category values
         // and the values computed above.        
@@ -85,7 +85,6 @@ function draw_chart(data_file,
                 value: categories[key]
             });
         });
-
         x.domain(data.map(function(d) { return d.category; }));
         y.domain([0, d3.max(data, function(d) { return d.value; })]);
         
