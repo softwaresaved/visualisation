@@ -83,7 +83,7 @@ D3 bar chart
 
 ---
 
-## How to configure for consultancy data
+## How update consultancy data
 
 Consultancy data is in a Google spreadsheet of comma-separated values:
 
@@ -95,7 +95,7 @@ Consultancy data is in a Google spreadsheet of comma-separated values:
 To download and transform the consultancy data:
 
 ```
-$ ./get_consultancy_data.sh CONSULTANCY_SPREADSHEET_ID data/ssi-consultancy.csv
+$ ./get_consultancy_data.sh CONSULTANCY_SPREADSHEET_ID
 ```
 
 where CONSULTANCY_SPREADSHEET_ID is the ID of the Google
