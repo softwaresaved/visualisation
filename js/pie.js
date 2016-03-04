@@ -29,7 +29,6 @@ function draw_pie(data_file,
                   area_height) {
 
     function type(d) {
-        d.value =+ d.value;
         return d;
     };
 
