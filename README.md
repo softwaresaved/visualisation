@@ -6,8 +6,8 @@ Visualising [The Software Sustainability Institute](http://www.software.ac.uk) d
 
 ## Copyright and licence
 
-* Copyright 2015-2016, The University of Edinburgh except where noted in Third-party code below.
-* Licence: [GPL 2](./LICENSE]).
+* Copyright 2015-2016, The University of Edinburgh and The University of Southampton except where noted in Third-party code below.
+* Licence: [GNU General Public License, version 2](,/LICENSE)
 
 ---
 
@@ -17,7 +17,7 @@ Bootstrap 3.0.3
 
 * http://getbootstrap.com/
 * Copyright 2011-2016 Twitter, Inc.
-* License: MIT license
+* License: Apache 2.0
 * Local copies:
 
 ```
@@ -64,22 +64,22 @@ Usage visualisation scripts
 
 * https://github.com/aturner-epcc/usage-visualisation
 * Copyright 2015, The University of Edinburgh.
-* Licence:  GNU General Public License, version 2.
-* `js/graph_bubbles.js` is derived from `prototypes/codes-force-bubbles/code_usage.html` (commit [b5749bb7](https://github.com/aturner-epcc/usage-visualisation/commit/b5749bb711045246abc3edeec4e98b18a28d2c53)).
+* Licence: [GNU General Public License, version 2](./licences/GPL-2.0.txt)
+* `js/graph_bubbles.js` is a modified version.
 
 D3 pie chart
 
 * https://bl.ocks.org/mbostock/3887235
 * Copyright 2016, Mike Bostock
-* Licence: [GNU General Public license, version 3](https://opensource.org/licenses/GPL-3.0)
-* `js/pie.js` and `css/pie.css` are derived from [index.html](https://bl.ocks.org/mbostock/3887235#index.html) downloaded on 02/03/2016.
+* Licence: [GNU General Public License, version 3](./licences/GPL-3.0.txt)
+* js/pie.js` and `css/pie.css` are modified versions.
 
 D3 bar chart
 
 * http://bl.ocks.org/mbostock/3885304
 * Copyright 2016, Mike Bostock
-* Licence: [GNU General Public license, version 3](https://opensource.org/licenses/GPL-3.0)
-* `js/pie.js` and `css/barchart.css` are derived from [index.html](https://bl.ocks.org/mbostock/3885304#index.html) downloaded on 02/03/2016.
+* Licence: [GNU General Public License, version 3](./licences/GPL-3.0.txt)
+* `js/pie.js` and `css/barchart.css` are modified versions.
 
 ---
 
