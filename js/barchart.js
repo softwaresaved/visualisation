@@ -26,8 +26,8 @@ function draw_chart(data_file,
                     location_tag, 
                     category_column, 
                     chart_count,
-                    area_width = 500,
-                    area_height = 400) {
+                    area_width,
+                    area_height) {
 
     function type(d) {
         d.value =+ d.value;

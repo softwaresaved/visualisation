@@ -67,7 +67,7 @@ var colour_bins_pieX = [
     { bound: 20, fill: "#515cfd" },
     { bound: Number.MAX_VALUE, fill: "#0000ff" }
 ];
-draw_pie("data/funders_effort.csv", "#pieX", "Funder", pie_countX, colour_bins_pieX);
+draw_pie("data/funders_effort.csv", "#pieX", "Funder", pie_countX, colour_bins_pieX, 500, 400);
 </script>
 
     <h1>Consultancy projects by funder</h1>
@@ -83,7 +83,7 @@ var colour_bins_pieY = [
     { bound: 10, fill: "#515cfd" },
     { bound: Number.MAX_VALUE, fill: "#0000ff" }
 ];
-draw_pie("data/ssi-consultancy.csv", "#pieY", "Primary Funder", pie_countY, colour_bins_pieY);
+draw_pie("data/ssi-consultancy.csv", "#pieY", "Primary Funder", pie_countY, colour_bins_pieY, 500, 400);
 </script>
 
     <div id="chartY"></div>
@@ -91,7 +91,7 @@ draw_pie("data/ssi-consultancy.csv", "#pieY", "Primary Funder", pie_countY, colo
 function chart_countY(row) {
    return 1;
 };
-draw_chart("data/ssi-consultancy.csv", "#chartY", "Primary Funder", chart_countY);
+draw_chart("data/ssi-consultancy.csv", "#chartY", "Primary Funder", chart_countY, 500, 400);
 </script>
 
   </body>

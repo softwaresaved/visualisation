@@ -25,8 +25,8 @@ function draw_pie(data_file,
                   category_column, 
                   pie_count, 
                   colour_bins,
-                  area_width = 400,
-                  area_height = 500) {
+                  area_width,
+                  area_height) {
 
     function type(d) {
         d.value =+ d.value;
