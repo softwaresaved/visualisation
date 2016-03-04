@@ -70,5 +70,29 @@ draw_pie("data/consultancy.csv", "#pieProjects", "Primary Funder", projects, col
 draw_chart("data/consultancy.csv", "#chartProjects", "Primary Funder", projects, 500, 400);
 </script>
 
+    <h1>Software Carpentry attendees by location</h1>
+    <table>
+      <tr>
+        <td id="pieSwcAttendees"></td>
+        <td id="chartSwcAttendees"></td>
+      </tr>
+    </table>
+
+<script>
+function attendees(row) {
+   return row["Attendees"];
+};
+var colour_bins_attendees = [
+    { bound: 25, fill: "#e0e2fe" },
+    { bound: 50, fill: "#c5c9fd" },
+    { bound: 75, fill: "#a6acff" },
+    { bound: 100, fill: "#515cfd" },
+    { bound: Number.MAX_VALUE, fill: "#0000ff" }
+];
+draw_pie("data/swc.csv", "#pieSwcAttendees", "Institution", attendees, colour_bins_attendees, 500, 400);
+
+draw_chart("data/swc.csv", "#chartSwcAttendees", "Institution", attendees, 500, 400);
+</script>
+
   </body>
 </html>
