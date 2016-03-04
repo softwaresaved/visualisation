@@ -1,31 +1,42 @@
-// Bar chart.
-// Based on D3 example at 
-// TODO
-// 
-// Requires styles for:
-// .bar text - bar labels
-// .bar:hover - bar mouse over colour
-// .axis - axis label
-// .axis path - axis lines
-// .axis line - axis lines
-// .x.axis path - X-axis lines
+/**
+ * D3 bar chart
+ *
+ * http://bl.ocks.org/mbostock/3885304
+ * Copyright 2016, Mike Bostock
+ * Licence: GNU General Public License, version 3, 
+ * https://opensource.org/licenses/GPL-3.0
+ * Derived from https://bl.ocks.org/mbostock/3885304#index.html downloaded on 02/03/2016.
+ *
+ * Requires styles for:
+ *
+ * .bar text - bar labels.
+ * .bar:hover - bar mouse over colour.
+ * .axis - axis label.
+ * .axis path - axis lines.
+ * .axis line - axis lines.
+ * .x.axis path - X-axis lines.
+ */
 
-// Draw bar chart
-// - data_file - name of file with comma-separated values.
-// - location_tag - ID of tag in HTML document in which the bar chart
-//   is drawn (e.g. "#pie").
-// - category_column - each unique value in this column will have its
-//   own bar in the bar chart.
-// - chart_count - callback function which, for a specific row, returns
-//   a value which is added to the total value computed for the
-//   category_column value for that row.
-// - width - drawing area width.
-// - height - drawing area height.
-
+/**
+ * Draws bar chart.
+ *
+ * @param {string} data_file - file with comma-separated values
+ * (CSV).
+ * @param {string} id_tag - ID of HTML tag in which the bar chart is
+ * drawn. 
+ * @param {string} bar_column - bar chart will have one X axis bar for
+ * each uniquue value in this column.
+ * @param {function} aggregate - callback function called for each row
+ * in turn. It is expected to return an integer or float. The function
+ * is used to calculate the totals for each unique bar_column value,
+ * and determines the size of the bars on the Y axis.
+ * @param {integer} width - drawing area width.
+ * @param {integer} height - drawing area height.
+ */
 function draw_chart(data_file, 
-                    location_tag, 
-                    category_column, 
-                    chart_count,
+                    id_tag, 
+                    bar_column, 
+                    aggregate,
                     area_width,
                     area_height) {
 
@@ -38,8 +49,9 @@ function draw_chart(data_file,
             throw error;
         }
         
-        console.log("Bar chart location tag: " + location_tag);
+        console.log("Bar chart location tag: " + id_tag);
         console.log("Number of rows: " + raw_data.length);
+	var id_tag_link="#" + id_tag;
 
         var margin = {top: 20, right: 20, bottom: 100, left: 40},
         width = area_width - margin.left - margin.right,
@@ -60,21 +72,21 @@ function draw_chart(data_file,
             .orient("left")
             .tickSize(1,5);
 
-        var svg = d3.select(location_tag).append("svg")
+        var svg = d3.select(id_tag_link).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         // Iterate through raw_data. For each distinct value in
-        // category_column, compute a value based upon the
+        // bar_column, compute a value based upon the
         // value returned by pie_count for each row.
         var categories = {};
         raw_data.forEach(function(row) {
-            if (!categories[row[category_column]]) {
-                categories[row[category_column]] = 0;
+            if (!categories[row[bar_column]]) {
+                categories[row[bar_column]] = 0;
             }
-            categories[row[category_column]] += parseFloat(chart_count(row));
+            categories[row[bar_column]] += parseFloat(aggregate(row));
         });
         // Create 2 column data with distinct category values
         // and the values computed above.        

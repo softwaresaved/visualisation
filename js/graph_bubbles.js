@@ -1,5 +1,14 @@
+/**
+ * Graph bubbles.
+ *
+ * https://github.com/aturner-epcc/usage-visualisation
+ * Copyright 2015, The University of Edinburgh.
+ * Licence: GNU General Public License, version 2.
+ * Derived from prototypes/codes-force-bubbles/code_usage.html, https://github.com/aturner-epcc/usage-visualisation/commit/b5749bb711045246abc3edeec4e98b18a28d2c53).
+ */
+
 function draw_bubbles(data_file,
-                      location_tag,
+                      id_tag,
                       columns,
                       name_column,
                       radius_column,
@@ -12,6 +21,12 @@ function draw_bubbles(data_file,
 
     // Load the data and set up the visualisation
     d3.csv(data_file, function (error, data) {
+
+        if (error) {
+            throw error;
+        }
+        console.log("Graph bubbles location tag: " + id_tag);
+        var id_tag_link = "#" + id_tag;
 
         // Get the maximum scale for the data using radius_column
         var max_scale = d3.max(data, function (d) { return parseFloat(d[radius_column]); } );
@@ -31,7 +46,7 @@ function draw_bubbles(data_file,
         var fill = d3.scale.ordinal().range(colours);
 
         // Setup the SVG area
-        var svg = d3.select(location_tag).append("svg")
+        var svg = d3.select(id_tag_link).append("svg")
             .attr("class", "vis")
             .attr("width", width)
             .attr("height", height);
@@ -119,7 +134,7 @@ function draw_bubbles(data_file,
         var legRectSize = 18;
         var legSpace = 4;
         
-        var lsvg = d3.select(location_tag).insert("svg", ".vis")
+        var lsvg = d3.select(id_tag_link).insert("svg", ".vis")
             .attr("class", "legend-box")
             .attr("width", lwidth)
             .attr("height", lheight);
