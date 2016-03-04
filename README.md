@@ -64,21 +64,21 @@ Usage visualisation scripts
 
 * https://github.com/aturner-epcc/usage-visualisation
 * Copyright 2015, The University of Edinburgh.
-* Licence: [GPL 2](./LICENSE]).
-* `js/graph_bubbles.js` is derived from `prototypes/codes-force-bubbles/code_usage.html` (commit [b5749bb7](https://github.com/mikej888/usage-visualisation/commit/b5749bb711045246abc3edeec4e98b18a28d2c53)).
+* Licence:  GNU General Public License, version 2.
+* `js/graph_bubbles.js` is derived from `prototypes/codes-force-bubbles/code_usage.html` (commit [b5749bb7](https://github.com/aturner-epcc/usage-visualisation/commit/b5749bb711045246abc3edeec4e98b18a28d2c53)).
 
 D3 pie chart
 
 * https://bl.ocks.org/mbostock/3887235
 * Copyright 2016, Mike Bostock
-* Licence: [GPL 3](https://opensource.org/licenses/GPL-3.0)
+* Licence: [GNU General Public license, version 3](https://opensource.org/licenses/GPL-3.0)
 * `js/pie.js` and `css/pie.css` are derived from [index.html](https://bl.ocks.org/mbostock/3887235#index.html) downloaded on 02/03/2016.
 
 D3 bar chart
 
 * http://bl.ocks.org/mbostock/3885304
 * Copyright 2016, Mike Bostock
-* Licence: [GPL 3](https://opensource.org/licenses/GPL-3.0)
+* Licence: [GNU General Public license, version 3](https://opensource.org/licenses/GPL-3.0)
 * `js/pie.js` and `css/barchart.css` are derived from [index.html](https://bl.ocks.org/mbostock/3885304#index.html) downloaded on 02/03/2016.
 
 ---
