@@ -21,10 +21,33 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+/** 
+ * Draws graph bubbles.
+ *
+ * @param {string} data_file - file with comma-separated values
+ * (CSV). 
+ * @param {string} id_tag - ID of HTML tag in which the pie chart is
+ * drawn. 
+ * @param {} columns - names of columns used to group bubbles by
+ * unique unique values in each of these columns. 
+ * @param {string} radius_column - name of column whose values are
+ * used to scale bubble radii.
+ * @param {float} radius_threshold - lower threshold for radius_column
+ * values. Bubbles are not drrawn for rows with a radius_coluumn
+ * value less than this threshoold.
+ * @param {string} colour_column - name of column whose values are
+ * used to select bubble colours.
+ * @param {} colour_bins - 
+ * @param {string} legend_label - legend label.
+ * @param {} assign_colour_bin - 
+ * @param {} bubble_caption - calllback function called if mouse is
+ * moved over a bubble. It is given the row corresponding to the
+ * bubble and is expected to retuurn a string with human-readable
+ * information about the row that will be displayed.
+ */
 function draw_bubbles(data_file,
                       id_tag,
                       columns,
-                      name_column,
                       radius_column,
                       radius_threshold,
                       colour_column,
@@ -40,6 +63,7 @@ function draw_bubbles(data_file,
             throw error;
         }
         console.log("Graph bubbles location tag: " + id_tag);
+        console.log("Number of rows: " + data.length);
         var id_tag_link = "#" + id_tag;
 
         // Get the maximum scale for the data using radius_column
@@ -70,16 +94,17 @@ function draw_bubbles(data_file,
             var data_radius = parseFloat(data[j][radius_column]);
             if (data_radius < radius_threshold) {
                 // If we have very low value cull from the data
-                console.log("Culling " + data[j][name_column] + " as " +
+                console.log("Culling row as " +
                             radius_column + " " + data_radius +
                             " < threshold " + radius_threshold);
+                console.log(data[j]);
                 data.splice(j, 1);
                 // Indexing has chaged, make sure we don't miss any elements
                 j--;
             } else if (isNaN(data_radius)) {
                 // If we have very low value cull from the data
-                console.log("Culling " + data[j][name_column] + " as " +
-                            radius_column + " is " + data_radius);
+                console.log("Culling row as " + radius_column + " is NaN");
+                console.log(data[j]);
                 data.splice(j, 1);
                 // Indexing has chaged, make sure we don't miss any elements
                 j--;
@@ -129,7 +154,6 @@ function draw_bubbles(data_file,
             .attr("cx", function (d) { return d.x; })
             .attr("cy", function (d) { return d.y; })
             .attr("r", function (d) { return d.radius; })
-            .attr("data-legend", function (d) { return d[name_column]; })
             .style("fill", function (d) { return d.Level; })
             .style("stroke", "#333")
             .style("stroke-width", "2px")
