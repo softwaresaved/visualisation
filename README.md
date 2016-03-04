@@ -1,6 +1,5 @@
 # Software Sustainability Institute web-based data visualisation
 
-
 Visualising [The Software Sustainability Institute](http://www.software.ac.uk) data.
 
 ---
