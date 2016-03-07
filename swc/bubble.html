@@ -11,60 +11,36 @@
      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
    </p>
 
-<!-- graph_bubbles.js styles -->
 <style>
-    @import url("../css/bootstrap.min.css");
-    circle {
-      stroke: #333333;
-      stroke-width: 2px;
-    }
-    .label {
-      fill: black;
-      font-size: 12px;
-     }
-    #chart {
-      display: block;
-    padding-left: 20px;
-  }
+    @import url("../css/graph_bubbles.css");
 </style>
 <script src="../js/d3.min.js"></script>
 <script src="../js/jquery.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/underscore.js"></script>
 <script src="../js/graph_bubbles.js"></script>
-
 <script>
-// Names of columns in CSV data by which data can be grouped, and
-// corresponding labels buttons to select these columns.
-// A "none" entry provides a default view with the data ungrouped.
 var columns = [
                { name: "none", label: "Overview" },
                { name: "Country" , label: "Country" },
                { name: "Domain", label: "Audience" }
                ];
 
-// Ranges of values used to map colour_column values to colours, and
-// also to create the legend.
 var colour_bins = [
-                   { label: "Less than 10", bound: 10, fill: "#e0e2fe" },
-                   { label: "10-20", bound: 20, fill: "#c5c9fd" },
-                   { label: "20-30", bound: 30, fill: "#a6acff" },
-                   { label: "30-40", bound: 40, fill: "#515cfd" },
-                   { label: "More than 40", bound: Number.MAX_VALUE, fill: "#0000ff" }
+                   { label: "<= 10", bound: 10, fill: "#e0e2fe" },
+                   { label: "11-20", bound: 20, fill: "#c5c9fd" },
+                   { label: "21-30", bound: 30, fill: "#a6acff" },
+                   { label: "31-40", bound: 40, fill: "#515cfd" },
+                   { label: "> 40", bound: Number.MAX_VALUE, fill: "#0000ff" }
                    ];
 
-function assign_colour_bin(field, bin) {
-  value = parseFloat(field);
-  return value < colour_bins[bin].bound;
-}
-
 function bubble_caption(d) {
-  return "Date: " + d["Date"] +
-    "<br/>Department: " + d["Department"] +
-    "<br/>Institution: " + d["Institution"] +
-    "<br/>Country: " + d["Country"] +
-    "<br/>Audience: " + d["Domain"] +
-    "<br/>Attendees: " + d["Attendees"];
+    return "Date: " + d["Date"] +
+        "<br/>Department: " + d["Department"] +
+        "<br/>Institution: " + d["Institution"] +
+        "<br/>Country: " + d["Country"] +
+        "<br/>Audience: " + d["Domain"] +
+        "<br/>Attendees: " + d["Attendees"];
 }
 
 draw_bubbles(
@@ -76,7 +52,6 @@ draw_bubbles(
     "Attendees",
     colour_bins,
     "Attendees",
-    assign_colour_bin,
     bubble_caption);
 </script>
 

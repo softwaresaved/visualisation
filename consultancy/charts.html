@@ -21,7 +21,7 @@
 </style>
 <script src="../js/barchart.js"></script>
 
-    <h1>Consultancy effort by funder</h1>
+    <h1>Effort (staff-months) by funder</h1>
     <table>
       <tr>
         <td id="pieEffort"></td>
@@ -33,6 +33,7 @@
 function effort(row) {
    return row["Effort"];
 };
+
 var colour_bins_effort = [
     { bound: 1, fill: "#e0e2fe" },
     { bound: 5, fill: "#c5c9fd" },
@@ -40,12 +41,13 @@ var colour_bins_effort = [
     { bound: 20, fill: "#515cfd" },
     { bound: Number.MAX_VALUE, fill: "#0000ff" }
 ];
+
 draw_pie("../data/funders_effort.csv", "pieEffort", "Funder", effort, colour_bins_effort, 500, 400);
 
 draw_chart("../data/funders_effort.csv", "chartEffort", "Funder", effort, 500, 400);
 </script>
 
-    <h1>Consultancy projects by funder</h1>
+    <h1>Number of consultancy projects by funder</h1>
     <table>
       <tr>
         <td id="pieProjects"></td>
@@ -57,6 +59,7 @@ draw_chart("../data/funders_effort.csv", "chartEffort", "Funder", effort, 500, 4
 function projects(row) {
    return 1;
 };
+
 var colour_bins_projects = [
     { bound: 1, fill: "#e0e2fe" },
     { bound: 2, fill: "#c5c9fd" },
@@ -64,6 +67,7 @@ var colour_bins_projects = [
     { bound: 10, fill: "#515cfd" },
     { bound: Number.MAX_VALUE, fill: "#0000ff" }
 ];
+
 draw_pie("../data/consultancy.csv", "pieProjects", "Primary Funder", projects, colour_bins_projects, 500, 400);
 
 draw_chart("../data/consultancy.csv", "chartProjects", "Primary Funder", projects, 500, 400);

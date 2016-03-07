@@ -26,30 +26,39 @@
  * .arc path - pie chart wedge dividers.
  */
 
+/**
+ * Callback function called for each row in turn, to calculate totals
+ * which determine the size of each wedge.
+ *
+ * @callback pieCallback
+ * @param {string[]} row - single row of data.
+ * @return {number} value - value derived from row.
+ */
+
 /** 
- * Draws pie chart. 
+ * Draws pie chart.
  *
  * @param {string} data_file - file with comma-separated values
  * (CSV). 
  * @param {string} id_tag - ID of HTML tag in which the pie chart is
  * drawn. 
  * @param {string} wedge_column - pie chart will have one wedge for
- * each uniquue value in this column. 
- * @param {function} aggregate - callback function called for each row
- * in turn. It is expected to return an integer or float. The function
- * is used to calculate the totals for each unique bar_column value,
- * and determines the size of the wedges.
-
- * - colour_bins - ordered list of dictionaries each with a numerical
- *   "bound" value and a "fill" colour. 
-
- * @param {integer} width - drawing area width. 
- * @param {integer} height - drawing area height. 
+ * each unique value in this column. 
+ * @param {pieCallback} aggregate - callback function called to
+ * get value for a row which is used to calculate the totals for each
+ * unique  wedge_column value, and determines the size of the wedges.
+ * @param {Object[]} colour_bins - colours for wedge. 
+ * @param {integer} colour_bins[].bound - if the total calculated for
+ * a wedge_column value is less than or equal to this value then the
+ * corresponding fill colour is used to colour the wedge.
+ * @param {string} colour_bins[].fill - a colour code (e.g. "#e0e2fe").
+ * @param {integer} area_width - drawing area width. 
+ * @param {integer} area_height - drawing area height. 
  */
 function draw_pie(data_file, 
                   id_tag, 
                   wedge_column, 
-                  pie_count, 
+                  aggregate, 
                   colour_bins,
                   area_width,
                   area_height) {
@@ -62,7 +71,6 @@ function draw_pie(data_file,
         if (error) {
             throw error;
         }
-
         console.log("Pie chart location tag: " + id_tag);
         console.log("Number of rows: " + raw_data.length);
         var id_tag_link = "#" + id_tag;
@@ -89,13 +97,13 @@ function draw_pie(data_file,
 
         // Iterate through raw_data. For each distinct value in
         // wedge_column, compute a value based upon the
-        // value returned by pie_count for each row.
+        // value returned by aggregate for each row.
         var categories = {};
         raw_data.forEach(function(row) {
             if (!categories[row[wedge_column]]) {
                 categories[row[wedge_column]] = 0;
             }
-            categories[row[wedge_column]] += parseFloat(pie_count(row));
+            categories[row[wedge_column]] += parseFloat(aggregate(row));
         });
         // Create 2 column data with distinct category values
         // and the values computed above.
@@ -125,10 +133,9 @@ function draw_pie(data_file,
             .attr("dy", ".35em")
             .text(function(d) { return d.data.category; });
 
-
         function get_slice_colour(value) {
             for (var k = 0; k < colour_bins.length; k++) {
-                value = parseInt(value);
+                value = parseFloat(value);
                 if (value <= colour_bins[k].bound)
                 {
                     return colour_bins[k].fill;

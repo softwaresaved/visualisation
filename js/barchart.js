@@ -32,6 +32,15 @@
  */
 
 /**
+ * Callback function called for each row in turn, to calculate totals
+ * which determine the size of each bar.
+ *
+ * @callback barCallback
+ * @param {string[]} row - single row of data.
+ * @return {number} value - value derived from row.
+ */
+
+/**
  * Draws bar chart.
  *
  * @param {string} data_file - file with comma-separated values
@@ -40,12 +49,11 @@
  * drawn. 
  * @param {string} bar_column - bar chart will have one X axis bar for
  * each uniquue value in this column.
- * @param {function} aggregate - callback function called for each row
- * in turn. It is expected to return an integer or float. The function
- * is used to calculate the totals for each unique bar_column value,
- * and determines the size of the bars on the Y axis.
- * @param {integer} width - drawing area width.
- * @param {integer} height - drawing area height.
+ * @param {barCallback} aggregate - callback function called to
+ * get value for a row which is used to calculate the totals for each
+ * unique bar_column value, and determines the size of the bars.
+ * @param {integer} area_width - drawing area width.
+ * @param {integer} area_height - drawing area height.
  */
 function draw_chart(data_file, 
                     id_tag, 
@@ -61,11 +69,10 @@ function draw_chart(data_file,
     d3.csv(data_file, type, function(error, raw_data) {
         if (error) {
             throw error;
-        }
-        
+        }        
         console.log("Bar chart location tag: " + id_tag);
         console.log("Number of rows: " + raw_data.length);
-	var id_tag_link="#" + id_tag;
+        var id_tag_link="#" + id_tag;
 
         var margin = {top: 20, right: 20, bottom: 100, left: 40},
         width = area_width - margin.left - margin.right,
@@ -94,7 +101,7 @@ function draw_chart(data_file,
 
         // Iterate through raw_data. For each distinct value in
         // bar_column, compute a value based upon the
-        // value returned by pie_count for each row.
+        // value returned by aggregate for each row.
         var categories = {};
         raw_data.forEach(function(row) {
             if (!categories[row[bar_column]]) {

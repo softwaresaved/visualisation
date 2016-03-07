@@ -21,6 +21,16 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+/**
+ * Callback function called when mouse moves over a bubble to get
+ * formatted data from the row corresponding to that bubble, which
+ * will be displayed.
+ *
+ * @callback bubbleCaptionCallback
+ * @param {string[]} row - single row of data.
+ * @return {string} value - formatted data from the row.
+ */
+
 /** 
  * Draws graph bubbles.
  *
@@ -28,22 +38,30 @@
  * (CSV). 
  * @param {string} id_tag - ID of HTML tag in which the pie chart is
  * drawn. 
- * @param {} columns - names of columns used to group bubbles by
- * unique unique values in each of these columns. 
+ * @param {Object[]} columns - names of columns used to group bubbles
+ * by unique values in each of these columns.
+ * @param {string} columns[].name - name of columns used to group
+ * bubbles by unique values in this column columns. A "none" entry
+ * provides a default view with the data ungrouped. 
+ * @param {string} columns[].label - label for button used to select
+ * this column.
  * @param {string} radius_column - name of column whose values are
  * used to scale bubble radii.
- * @param {float} radius_threshold - lower threshold for radius_column
- * values. Bubbles are not drrawn for rows with a radius_coluumn
- * value less than this threshoold.
+ * @param {number} radius_threshold - lower threshold for radius_column
+ * values. Bubbles are not drawn for rows with a radius_coluumn
+ * value less than this threshold.
  * @param {string} colour_column - name of column whose values are
  * used to select bubble colours.
- * @param {} colour_bins - 
+ * @param {Object[]} colour_bins - colours for bubbles.
+ * @param {integer} colour_bins[].bound - if the total calculated for
+ * a colour_column value is less than or equal to this value then the
+ * corresponding fill colour is used to colour the bubble.
+ * @param {string} colour_bins[].fill - a colour code (e.g. "#e0e2fe").
+ * @param {string} colour_bins[].label - a label for this colour in the
+ * legend.
  * @param {string} legend_label - legend label.
- * @param {} assign_colour_bin - 
- * @param {} bubble_caption - calllback function called if mouse is
- * moved over a bubble. It is given the row corresponding to the
- * bubble and is expected to retuurn a string with human-readable
- * information about the row that will be displayed.
+ * @param {bubbleCaptionCallback} bubble_caption - callback function
+ * called if mouse is moved over a bubble.
  */
 function draw_bubbles(data_file,
                       id_tag,
@@ -53,7 +71,6 @@ function draw_bubbles(data_file,
                       colour_column,
                       colour_bins,
                       legend_label,
-                      assign_colour_bin,
                       bubble_caption) {
 
     // Load the data and set up the visualisation
@@ -113,13 +130,7 @@ function draw_bubbles(data_file,
                 data[j].radius = radius_scale(data_radius);
                 data[j].x = Math.random() * width;
                 data[j].y = Math.random() * height;
-                // Use colour_column to get bubble fill colour from colour_bins
-                for (var k = 0; k < colour_bins.length; k++) {
-                    if (assign_colour_bin(data[j][colour_column], k)) {
-                        data[j].Level = colour_bins[k].fill;
-                        break;
-                    }
-                }
+                data[j].Level = get_bubble_colour(data[j][colour_column])
             }
         }
         
@@ -313,6 +324,17 @@ function draw_bubbles(data_file,
                     return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
                 });
             };
-        }
+        };
+
+        function get_bubble_colour(value) {
+            for (var k = 0; k < colour_bins.length; k++) {
+                value = parseFloat(value);
+                if (value <= colour_bins[k].bound)
+                {
+                    return colour_bins[k].fill;
+                }
+            }
+            return colour_bins[colour_bins.length - 1].fill;
+        };
     });
 };
