@@ -6,14 +6,14 @@
     <title>Software Sustainability Institute</title>
   </head>
   <body>
-   <h1>Software Sustainability Institute Software Carpentry</h1>
+   <h1>Consultancy Data Bubble Graph</h1>
    <p>
      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
    </p>
 
 <!-- graph_bubbles.js styles -->
 <style>
-    @import url("css/bootstrap_min.css");
+    @import url("../css/bootstrap_min.css");
     circle {
       stroke: #333333;
       stroke-width: 2px;
@@ -27,11 +27,11 @@
     padding-left: 20px;
   }
 </style>
-<script src="js/d3.min.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/underscore.js"></script>
-<script src="js/graph_bubbles.js"></script>
+<script src="../js/d3.min.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script src="../js/underscore.js"></script>
+<script src="../js/graph_bubbles.js"></script>
 
 <script>
 // Names of columns in CSV data by which data can be grouped, and
@@ -39,19 +39,21 @@
 // A "none" entry provides a default view with the data ungrouped.
 var columns = [
                { name: "none", label: "Overview" },
-               { name: "Country" , label: "Country" },
-               { name: "Domain", label: "Audience" }
+               { name: "Primary Funder" , label: "Funder" },
+               { name: "Type", label: "Via"},
+               { name: "Research Field", label: "Research Field" }
                ];
 
 // Ranges of values used to map colour_column values to colours, and
 // also to create the legend.
 var colour_bins = [
-                   { label: "Less than 10", bound: 10, fill: "#e0e2fe" },
-                   { label: "10-20", bound: 20, fill: "#c5c9fd" },
-                   { label: "20-30", bound: 30, fill: "#a6acff" },
-                   { label: "30-40", bound: 40, fill: "#515cfd" },
-                   { label: "More than 40", bound: Number.MAX_VALUE, fill: "#0000ff" }
-                   ];
+                  { label: "Less than 0.25 months", bound: 0.25, fill: "#fee5d9" },
+                  { label: "0.25-0.5 months", bound: 0.5, fill: "#fcbba1" },
+                  { label: "0.5-1 months", bound: 1, fill: "#fc9272" },
+                  { label: "1-2 months", bound: 2, fill: "#fb6a4a" },
+                  { label: "2-3 months", bound: 3, fill: "#de2d26" },
+                  { label: "More than 3 months", bound: Number.MAX_VALUE, fill: "#a50f15" }
+                  ];
 
 function assign_colour_bin(field, bin) {
   value = parseFloat(field);
@@ -59,23 +61,24 @@ function assign_colour_bin(field, bin) {
 }
 
 function bubble_caption(d) {
-  return "Date: " + d["Date"] +
-    "<br/>Department: " + d["Department"] +
-    "<br/>Institution: " + d["Institution"] +
-    "<br/>Country: " + d["Country"] +
-    "<br/>Audience: " + d["Domain"] +
-    "<br/>Attendees: " + d["Attendees"];
+    return "Name: " + d["Project Name"] +
+        "<br/>Primary funder: " + d["Primary Funder"] +
+        "<br/>Other funders: " + d["Other Funders"] +
+        "<br/>Institution: " + d["Institution"] +
+        "<br/>Field: " + d["Research Field"] +
+        "<br/>Via: " + d["Type"] +
+        "<br/>Effort: " + d["PMs"] + " staff months";
 }
 
 draw_bubbles(
-    'data/swc.csv',
+    "../data/consultancy.csv",
     "bubblechart",
     columns,
-    "Attendees",
-    0,
-    "Attendees",
+    "PMs",
+    0.1,
+    "PMs",
     colour_bins,
-    "Attendees",
+    "Staff Effort (months)",
     assign_colour_bin,
     bubble_caption);
 </script>

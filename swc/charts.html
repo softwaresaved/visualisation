@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Software Sustainability Institute</title>
+  </head>
+  <body>
+   <h1>Software Carpentry Data</h1>
+   <p>
+     <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
+   </p>
+
+<script src="../js/d3.min.js"></script>
+<style>
+@import url("../css/pie.css");
+</style>
+<script src="../js/pie.js"></script>
+<style>
+@import url("../css/barchart.css");
+</style>
+<script src="../js/barchart.js"></script>
+
+    <h1>Software Carpentry attendees by location</h1>
+    <p>Software Carpentry events from 2012-2014 at which the Institute administered, organised, taught at or helped at.</p>
+    <table>
+      <tr>
+        <td id="pieSwcAttendees"></td>
+        <td id="chartSwcAttendees"></td>
+      </tr>
+    </table>
+
+<script>
+function attendees(row) {
+   return row["Attendees"];
+};
+var colour_bins_attendees = [
+    { bound: 25, fill: "#e0e2fe" },
+    { bound: 50, fill: "#c5c9fd" },
+    { bound: 75, fill: "#a6acff" },
+    { bound: 100, fill: "#515cfd" },
+    { bound: Number.MAX_VALUE, fill: "#0000ff" }
+];
+draw_pie("../data/swc.csv", "pieSwcAttendees", "Institution", attendees, colour_bins_attendees, 500, 400);
+
+draw_chart("../data/swc.csv", "chartSwcAttendees", "Institution", attendees, 500, 400);
+</script>
+
+  </body>
+</html>
