@@ -48,6 +48,18 @@ draw_chart("../data/funders_effort.csv", "chartEffort", "Funder", effort, 500, 4
 </script>
 
     <h1>Number of consultancy projects by funder</h1>
+
+<!-- Override default styles -->
+<style>
+#chartProjects .bar {
+    fill: red;
+}
+
+#chartProjects .bar:hover {
+    fill: green;
+}
+</style>
+
     <table>
       <tr>
         <td id="pieProjects"></td>
@@ -61,11 +73,11 @@ function projects(row) {
 };
 
 var colour_bins_projects = [
-    { bound: 1, fill: "#e0e2fe" },
-    { bound: 2, fill: "#c5c9fd" },
-    { bound: 5, fill: "#a6acff" },
-    { bound: 10, fill: "#515cfd" },
-    { bound: Number.MAX_VALUE, fill: "#0000ff" }
+    { bound: 1, fill: "#fee5d9" },
+    { bound: 2, fill: "#fcbba1" },
+    { bound: 5, fill: "#fc9272" },
+    { bound: 10, fill: "#fb6a4a" },
+    { bound: Number.MAX_VALUE, fill: "#a50f15" }
 ];
 
 draw_pie("../data/consultancy.csv", "pieProjects", "Primary Funder", projects, colour_bins_projects, 500, 400);
