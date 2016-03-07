@@ -81,11 +81,9 @@ $ systemctl status httpd.service
 $ systemctl enable httpd.service
 $ systemctl status httpd.service
 httpd.service - The Apache HTTP Server
-   Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled)
-   Active: active (running) since Mon 2016-03-07 13:02:03 GMT; 4s ago
- Main PID: 14675 (httpd)
-   Status: "Processing requests..."
-   CGroup: /system.slice/httpd.service
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled)
+   Active: active (running) since Mon 2016-03-07 13:02:03 GMT; 19s ago
+n Main PID: 14675 (httpd)
 ```
 
 ### Clone this repository
