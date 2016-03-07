@@ -2,7 +2,7 @@
 
 Visualisations of [The Software Sustainability Institute](http://www.software.ac.uk) data.
 
-To view, visit http://mikej888.github.io/usage-visualisation.
+To view, visit http://softwaresaved.github.io/visualisation.
 
 ---
 
@@ -11,11 +11,12 @@ To view, visit http://mikej888.github.io/usage-visualisation.
 Fork and clone this repository
 
 * [Sign in](http://github.com/login) to GitHub.
-* [Fork](https://github.com/mikej888/usage-visualisation#fork-destination-box) this repository into your account.
+* [Fork](https://github.com/softwaresaved/visualisation#fork-destination-box) this repository into your account.
 * Clone your fork onto your computer:
 
 ```
-$ git clone http://USERNAME@github.com/USERNAME/usage-visualisation.git
+$ git clone http://USERNAME@github.com/USERNAME/visualisation.git
+$ git remote add ssi  http://USERNAME@github.com/softwaresaved/visualisation.git
 ```
 
 ---
@@ -24,7 +25,7 @@ $ git clone http://USERNAME@github.com/USERNAME/usage-visualisation.git
 
 [GitHub pages](https://pages.github.com/) renders web site content in `gh-pages` branches of repositories hosted on GitHub.
 
-When you push changes to the `gh-pages` branch of your cloned repository on GitHub, you can view the web site at http://USERNAME.github.io/usage-visualisation/
+When you push changes to the `gh-pages` branch of your cloned repository on GitHub, you can view the web site at http://USERNAME.github.io/visualisation/
 
 ---
 
@@ -92,7 +93,7 @@ Clone:
 
 ```
 $ cd /var/www/html
-$ git clone https://github.com/mikej888/usage-visualisation
+$ git clone https://github.com/softwaresaved/visualisation
 ```
 
 ### Set permissions
@@ -100,18 +101,18 @@ $ git clone https://github.com/mikej888/usage-visualisation
 * For Ubuntu:
 
 ```
-$ chown -R www-data:www-data usage-visualisation
+$ chown -R www-data:www-data visualisation
 ```
 
 * For Scientific Linux:
 
 ```
-$ chown -R apache:apache usage-visualisation
+$ chown -R apache:apache visualisation
 ```
 
 ### View visualisations
 
-Visit http://127.0.0.1/usage-visualisation/
+Visit http://127.0.0.1/visualisation/
 
 ---
 
