@@ -1,8 +1,8 @@
 # Software Sustainability Institute web-based data visualisation
 
-Visualising [The Software Sustainability Institute](http://www.software.ac.uk) data.
+Visualisations of [The Software Sustainability Institute](http://www.software.ac.uk) data.
 
-To view the web site, visit http://mikej888.github.io/usage-visualisation.
+To view, visit http://mikej888.github.io/usage-visualisation.
 
 ---
 
@@ -33,7 +33,6 @@ When you push changes to the `gh-pages` branch of your cloned repository on GitH
 [Apache](https://httpd.apache.org/) is a popular web server.
 
 * Note: These instructions assume the use of Apache 2.4 web server. Other versions of Apache 2, particularly Apache 2.2, differ in how they are installed, configured and managed. Consult the relevant documentation for your version of Apache 2.
-* Note: These instructions have been tested on Ubuntu 14.04.3 LTS Trusty Tahr.
 
 These instructions assume you have sudo access to install and configure software (or a local system administrator can do this for you):
 
@@ -41,7 +40,9 @@ These instructions assume you have sudo access to install and configure software
 $ sudo su -
 ```
 
-Install Apache 2:
+### Install Apache 2 on Ubuntu 14.04.3 LTS Trusty Tahr
+
+Install:
 
 ```
 $ apt-get install -y apache2 apache2-utils
@@ -52,13 +53,65 @@ $ service apache2 status
  * apache2 is running
 ```
 
-Visit http://127.0.0.1. You should see: "Apache2 Ubuntu Default Page".
+### Install Apache 2 on Scientific Linux 6.6 (Carbon)
+
+Install:
+
+```
+$ apt-get install -y httpd
+$ /usr/sbin/httpd -v
+Server version: Apache/2.2.15 (Unix)
+Server built:   Aug 24 2015 11:20:01
+$ chkconfig httpd on
+$ /etc/init.d/httpd status
+httpd (pid  18161) is running...
+```
+
+### Install Apache 2 on Scientific Linux 7.1 (Nitrogen)
+
+Install:
+
+```
+$ apt-get install -y httpd
+$ /usr/sbin/httpd -v
+Server version: Apache/2.4.6 (Scientific Linux)
+Server built:   Jul 23 2014 05:03:32
+$ systemctl restart httpd.service
+$ systemctl status httpd.service
+$ systemctl enable httpd.service
+$ systemctl status httpd.service
+httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; disabled)
+   Active: active (running) since Mon 2016-03-07 13:02:03 GMT; 4s ago
+ Main PID: 14675 (httpd)
+   Status: "Processing requests..."
+   CGroup: /system.slice/httpd.service
+```
+
+### Clone this repository
+
+Clone:
 
 ```
 $ cd /var/www/html
 $ git clone https://github.com/mikej888/usage-visualisation
+```
+
+### Set permissions
+
+* For Ubuntu:
+
+```
 $ chown -R www-data:www-data usage-visualisation
 ```
+
+* For Scientific Linux:
+
+```
+$ chown -R apache:apache usage-visualisation
+```
+
+### View visualisations
 
 Visit http://127.0.0.1/usage-visualisation/
 
