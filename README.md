@@ -17,69 +17,52 @@ Bootstrap 3.0.3
 
 * http://getbootstrap.com/
 * Copyright 2011-2016 Twitter, Inc.
-* License: Apache 2.0
-* Local copies:
-
-```
-css/bootstrap_min.css
-css/bootstrap.css
-js/bootstrap.js
-```
-
-* css/bootstrap_min.css changed to not disrupt ARCHER styles - A. Turner, Oct 2015.
+* Licence: [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE)
+* Local code: `css/bootstrap_min.css`, `css/bootstrap.css`, `js/bootstrap.js`
+  - css/bootstrap_min.css changed by Andy Turner October 2015, to not disrupt ARCHER styles.
 
 D3
 
 * http://d3js.org/
 * Copyright  2010-2016, Michael Bostock
-* License: BSD license
-
-```
-js/d3.min.js
-```
-
-jQuery 2.0.0
-
-* http://jquery.com/
-* Copyright 2005, 2013 jQuery Foundation, Inc. and other contributors
-* Licence: MIT license
-* Local copies:
-
-```
-js/jquery.js
-```
-
-Underscore 1.5.2
-
-* http://underscorejs.org
-* Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-* Licence: MIT license
-* Local copies:
-
-```
-js/underscore.js
-```
-
-Usage visualisation scripts
-
-* https://github.com/aturner-epcc/usage-visualisation
-* Copyright 2015, The University of Edinburgh.
-* Licence: [GNU General Public License, version 2](./licences/GPL-2.0.txt)
-* `js/graph_bubbles.js` is a modified version.
-
-D3 pie chart
-
-* https://bl.ocks.org/mbostock/3887235
-* Copyright 2016, Mike Bostock
-* Licence: [GNU General Public License, version 3](./licences/GPL-3.0.txt)
-* js/pie.js` and `css/pie.css` are modified versions.
+* Licence: [BSD-style license](https://github.com/mbostock/d3/blob/master/LICENSE)
+* Local code: `js/d3.min.js`
 
 D3 bar chart
 
 * http://bl.ocks.org/mbostock/3885304
 * Copyright 2016, Mike Bostock
-* Licence: [GNU General Public License, version 3](./licences/GPL-3.0.txt)
-* `js/pie.js` and `css/barchart.css` are modified versions.
+* Licence: [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
+* Local code: `js/pie.js` and `css/barchart.css` are modified versions.
+
+D3 pie chart
+
+* https://bl.ocks.org/mbostock/3887235
+* Copyright 2016, Mike Bostock
+* Licence: [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
+* Local code: js/pie.js` and `css/pie.css` are modified versions.
+
+jQuery 2.0.0
+
+* http://jquery.com/
+* Copyright 2005, 2013 jQuery Foundation, Inc. and other contributors
+* Licence: [MIT license](https://github.com/jquery/jquery/blob/master/LICENSE.txt)
+* Local code: `js/jquery.js`
+
+Underscore 1.5.2
+
+* http://underscorejs.org
+* Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+* Licence: (MIT license](https://github.com/jashkenas/underscore/blob/master/LICENSE)
+* Local code: `js/underscore.js`
+
+Usage visualisation
+
+* https://github.com/aturner-epcc/usage-visualisation
+* Copyright 2015, The University of Edinburgh.
+* Licence: [GNU General Public License version 2](https://github.com/aturner-epcc/usage-visualisation/blob/master/LICENSE)
+* Local code: `js/graph_bubbles.js` is a modified version.
+
 
 ---
 
