@@ -2,12 +2,109 @@
 
 Visualising [The Software Sustainability Institute](http://www.software.ac.uk) data.
 
+To view the web site, visit http://mikej888.github.io/usage-visualisation.
+
+---
+
+## Get source code
+
+Fork and clone this repository
+
+* [Sign in](http://github.com/login) to GitHub.
+* [Fork](https://github.com/mikej888/usage-visualisation#fork-destination-box) this repository into your account.
+* Clone your fork onto your computer:
+
+```
+$ git clone http://USERNAME@github.com/USERNAME/usage-visualisation.git
+```
+
+---
+
+## View within GitHub pages
+
+[GitHub pages](https://pages.github.com/) renders web site content in `gh-pages` branches of repositories hosted on GitHub.
+
+When you push changes to the `gh-pages` branch of your cloned repository on GitHub, you can view the web site at http://USERNAME.github.io/usage-visualisation/
+
+---
+
+## Deploy under Apache 2 web server
+
+[Apache](https://httpd.apache.org/) is a popular web server.
+
+* Note: These instructions assume the use of Apache 2.4 web server. Other versions of Apache 2, particularly Apache 2.2, differ in how they are installed, configured and managed. Consult the relevant documentation for your version of Apache 2.
+* Note: These instructions have been tested on Ubuntu 14.04.3 LTS Trusty Tahr.
+
+These instructions assume you have sudo access to install and configure software (or a local system administrator can do this for you):
+
+```
+$ sudo su -
+```
+
+Install Apache 2:
+
+```
+$ apt-get install -y apache2 apache2-utils
+$ apache2 -v
+Server version: Apache/2.4.7 (Ubuntu)
+Server built:   Jan 14 2016 17:45:23
+$ service apache2 status
+ * apache2 is running
+```
+
+Visit http://127.0.0.1. You should see: "Apache2 Ubuntu Default Page".
+
+```
+$ cd /var/www/html
+$ git clone https://github.com/mikej888/usage-visualisation
+$ chown -R www-data:www-data usage-visualisation
+```
+
+Visit http://127.0.0.1/usage-visualisation/
+
+---
+
+## Update Institute data
+
+To update consultancy data:
+
+```
+$ ./get_consultancy_data.sh SHEET_ID
+```
+
+where `SHEET_ID` is the ID of the consultancy GoogleSheet.
+
+To update consultancy data:
+
+```
+$ ./get_consultancy_data.sh SHEET_ID
+```
+
+where `SHEET_ID` is the ID of the Software Carpentry GoogleSheet.
+
+---
+
+## JavaScript development
+
+Browser developer tools:
+
+* Google Chrome: CTRL+SHIFT+J opens Web Console and Debugger.
+* Mozilla Firefox: CTRL+SHIFT+K opens Web Console and Debugger.
+
+Comments:
+
+* [jsdoc](http://usejsdoc.org/) is used for commenting JavaScript.
+
+Logging:
+
+* `console.log(...)` outputs to browser Web console.
+
 ---
 
 ## Copyright and licence
 
 * Copyright 2015-2016, The University of Edinburgh and The University of Southampton except where noted in Third-party code below.
-* Licence: [GNU General Public License, version 2](,/LICENSE)
+* Licence: [GNU General Public License version 2](./LICENSE)
 
 ---
 
@@ -19,7 +116,7 @@ Bootstrap 3.0.3
 * Copyright 2011-2016 Twitter, Inc.
 * Licence: [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE)
 * Local code: `css/bootstrap_min.css`, `css/bootstrap.css`, `js/bootstrap.js`
-  - css/bootstrap_min.css changed by Andy Turner October 2015, to not disrupt ARCHER styles.
+  - `css/bootstrap_min.css` changed by Andy Turner October 2015, to not disrupt ARCHER styles.
 
 D3
 
@@ -40,7 +137,7 @@ D3 pie chart
 * https://bl.ocks.org/mbostock/3887235
 * Copyright 2016, Mike Bostock
 * Licence: [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
-* Local code: js/pie.js` and `css/pie.css` are modified versions.
+* Local code: `js/pie.js` and `css/pie.css` are modified versions.
 
 jQuery 2.0.0
 
@@ -53,7 +150,7 @@ Underscore 1.5.2
 
 * http://underscorejs.org
 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-* Licence: (MIT license](https://github.com/jashkenas/underscore/blob/master/LICENSE)
+* Licence: [MIT license](https://github.com/jashkenas/underscore/blob/master/LICENSE)
 * Local code: `js/underscore.js`
 
 Usage visualisation
@@ -62,46 +159,5 @@ Usage visualisation
 * Copyright 2015, The University of Edinburgh.
 * Licence: [GNU General Public License version 2](https://github.com/aturner-epcc/usage-visualisation/blob/master/LICENSE)
 * Local code: `js/graph_bubbles.js` is a modified version.
-
-
----
-
-## How update consultancy data
-
-Consultancy data is in a Google spreadsheet of comma-separated values:
-
-* The first three lines are assumed to be blank.
-* The fourth, header, line is assumed to contain fields: "Project
-  Name", "Funder(s)", "Group(s)", "Institution", "Type", "PMs",
-  "Research Field"
-
-To download and transform the consultancy data:
-
-```
-$ ./get_consultancy_data.sh CONSULTANCY_SPREADSHEET_ID
-```
-
-where CONSULTANCY_SPREADSHEET_ID is the ID of the Google
-spreadsheet.
-
-See [transform_consultancy_data.py](./transform_consultancy_data.py) for information on how the data is transformed into a state for rendering.
-
----
-
-## JavaScript development
-
-Browser developer tools:
-
-* Google Chrome: CTRL+SHIFT+J opens Web Console and Debugger.
-* Mozilla Firefox: CTRL+SHIFT+K opens Web Console and Debugger.
-
-Comments:
-
-* [jsdoc](http://usejsdoc.org/) is used for commenting JavaScript.
-* [jsdoc on GitHub](https://github.com/jsdoc3/jsdoc)
-
-Logging:
-
-* console.log(...) outputs to browser console.
 
 ---
