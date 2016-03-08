@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>SSI - Demos - UK in High Resolution</title>
+    </head>
+    <style>
+/* Sea */
+svg {
+    background: cyan;
+}
+
+.country {
+    fill: red;
+    stroke-width: 2;
+    stroke: black;
+}
+    </style>
+
+    <body>
+        <h1>SSI - Demos - UK in High Resolution</h1>
+        <div id="map"></div>
+        <!-- You need to load D3. -->
+        <script src="node_modules/d3/d3.min.js" charset="utf-8"></script>
+        <!-- Is better to store the script in another document. -->
+        <script>
+// The size of the SVG.
+var width = 960,
+    height = 1160;
+
+// Define the projection that will be use.
+// You can find more projections at https://github.com/mbostock/d3/wiki/Geo-Projections.
+//
+// The values used will center the map on UK.
+var projection = d3.geo.conicEqualArea()
+    .center([0,55.4])  // Sets the projection’s center. [longitude, latitude]
+    .rotate([4.4,1])  //  Sets the projection’s three-axis rotation. [longitude, latitude and roll]
+    .scale(6000)  // Sets the projection’s scale factor
+    .translate([width / 2, height / 2]);  // Sets the projection’s translation offset.
+
+var path = d3.geo.path()  // New geographic path generator.
+    .projection(projection);  // Sets the projection used by the path generator.
+
+var svg = d3.select("#map")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+// Creates a request for the JSON file at the specified url with the mime type
+// "application/json". The callback is invoked with two arguments:
+// the error, if any, and the parsed JSON.
+// The parsed JSON is undefined if an error occurs.
+d3.json("uk-high.json", function(error, json_data) {
+    if (error) {
+        console.log(error);
+        return false;
+    }
+
+    // Keep the style separate.
+    svg.selectAll("path")  // We use select to have access to D3's loop.
+        .data(json_data.features)  // Joins the specified array of data with the current selection.
+        .enter()  // Returns the enter selection. Also see .exit().
+        .append("path")
+        .attr("d", path)  // Use path generator with the data.
+        .classed("country", true);
+});
+        </script>
+    </body>
+</html>
