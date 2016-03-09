@@ -43,6 +43,10 @@ The demos provide here are based on https://bost.ocks.org/mike/map/.
 
    Map of fellows' home institution.
 
+2. [travels.html](travels.html)
+
+   Map of fellows' home institution.
+
 ## How to add new maps
 
 1.   Install Geospatial Data Abstraction Library.
