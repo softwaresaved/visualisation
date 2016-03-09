@@ -14,7 +14,7 @@ The demos provide here are based on https://bost.ocks.org/mike/map/.
 2.   Run
 
      ~~~
-     $ sudo npm install topojson leaflet d3
+     $ npm install topojson leaflet d3 d3-tip
      ~~~
 
 3.   Run
@@ -29,10 +29,19 @@ The demos provide here are based on https://bost.ocks.org/mike/map/.
 
    Map of UK.
 
+   **Data source**: http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip
+
 2. [uk-high.html](uk-high.html)
 
    Map of UK in high resolution.
+   **The code is the same of the previous demo
+   but using a datasource with more details.**
 
+   **Data source:** http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip
+
+2. [fellows.html](fellows.html)
+
+   Map of fellows' home institution.
 
 ## How to add new maps
 
