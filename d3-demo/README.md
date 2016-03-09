@@ -39,13 +39,13 @@ The demos provide here are based on https://bost.ocks.org/mike/map/.
 
    **Data source:** http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip
 
-2. [fellows.html](fellows.html)
+3. [fellows.html](fellows.html)
 
-   Map of fellows' home institution.
+   Map of fellows' home institution. **Include tooltips!**
 
-2. [travels.html](travels.html)
+4. [travels.html](travels.html)
 
-   Map of fellows' home institution.
+   Map of fellows' travels.
 
 ## How to add new maps
 
