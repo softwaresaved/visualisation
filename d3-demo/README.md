@@ -51,6 +51,13 @@ The demos provide here are based on https://bost.ocks.org/mike/map/.
 
    Pie chart from JACS code.
 
+4. [jacs-with-tooltips.html](jacs.html)
+
+   Pie chart from JACS code **with tooltips**.
+
+   **Tooltips need improve.**
+
+
 ## How to add new maps
 
 1.   Install Geospatial Data Abstraction Library.
