@@ -14,7 +14,7 @@ The demos provide here are based on https://bost.ocks.org/mike/map/.
 2.   Run
 
      ~~~
-     $ npm install topojson leaflet d3 d3-tip
+     $ npm install topojson leaflet d3 d3-tip lodash
      ~~~
 
 3.   Run
@@ -46,6 +46,10 @@ The demos provide here are based on https://bost.ocks.org/mike/map/.
 4. [travels.html](travels.html)
 
    Map of fellows' travels.
+
+4. [jacs.html](jacs.html)
+
+   Pie chart from JACS code.
 
 ## How to add new maps
 
