@@ -44,6 +44,9 @@ def transform(in_file, out_file, column):
   :param out_file: Output file name
   :type out_file: str or unicode
   """
+
+  import operator
+
   entries = {}
   header = [column, "Count"]
   with open(in_file, 'r') as csv_file:
@@ -52,18 +55,24 @@ def transform(in_file, out_file, column):
                                 quotechar=QUOTE)
     for row in csv_reader:
       row[column] = row[column].rstrip().rstrip(",")
-      if row[column] not in entries:
-        entries[row[column]] = 1
-      else:
-        entries[row[column]] = entries[row[column]] + 1
+      names = row[column].split(",")
+      for name in names:
+        name = name.strip()
+        if name not in entries:
+          entries[name] = 1
+        else:
+          entries[name] = entries[name] + 1
+
+  sorted_entries = sorted(entries.items(), key=operator.itemgetter(1))
+  sorted_entries.reverse()
+
   with open(out_file, 'w') as csv_out_file:
     csv_writer = csv.writer(csv_out_file,
                             delimiter=DELIMITER,
                             quotechar=QUOTE)
     # Replace with 2.7 writeheaderr
     csv_writer.writerow(header)
-    for name in entries:
-      value = entries[name]
+    for (name, value) in sorted_entries:
       if (name == ""):
         name = "None"
       csv_writer.writerow([name, value])
