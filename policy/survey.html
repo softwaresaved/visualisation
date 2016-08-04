@@ -11,9 +11,6 @@
      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
    </p>
 
-<!--
-<script src="//d3js.org/d3.v3.min.js"></script>
--->
 <script src="../js/d3.min.js"></script>
 <style>
 @import url("../css/pie.css");
@@ -25,15 +22,15 @@
 <script src="../js/barchart_horiz.js"></script>
 
     <h1>Operating system</h1>
-    <p><svg id="chart" class="chart"></svg></p>
     <p><svg id="chartOs" class="chart"></svg></p>
+    <h1>Software</h1>
     <p><svg id="chartSw" class="chart"></svg></p>
 
 <script>
-draw_chart("../data/aaa.csv", "chart", "name", "value", 500, 400);
 var column = "Extra question 4: What is your preferred Operating System?";
 var count = "Count"
 draw_chart("../data/SoftwareSurvey2014OS.csv", "chartOs", column, count, 500, 400);
+
 column = "Question 11: Please provide the name(s) of the main research software you use.";
 draw_chart("../data/SoftwareSurvey2014Software.csv", "chartSw", column, count, 500, 400);
 </script>
