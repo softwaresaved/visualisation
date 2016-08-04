@@ -2,7 +2,6 @@
 # encoding: utf-8
 
 
-
 """
 General script to clean the different locations  -- home institution
 """
@@ -10,22 +9,22 @@ import csv
 
 from include.logger import logger
 from include.textClean import textClean
-from include.textProcess import textProcess
 
 
+logger = logger(name='cleanLocation', stream_level='INFO')
 
-INDATA = './data/'
-OUTDATA = '../data/'
+INDATA = './data/'  # Folder within this code location for the input data
+OUTDATA = '../data/'  # Where the visualisation script pull the data from
 
 
 def read_file(filename, datafolder='./', header=True):
     """
     """
-    infile = datafolder+filename
+    infile = datafolder + filename
     outlist = list()
     with open(infile, 'r') as f:
         # FIXME Need to check if value is T/F only
-        if header==True:
+        if header is True:
             csv_file = csv.DictReader(f)
             for l in csv_file:
                 outlist.append(l)
@@ -54,7 +53,7 @@ def clean_list(inlist, cleaner):
     outlist = list()
     for element in inlist:
         returndict = dict()
-        returndict['original']  = element
+        returndict['original'] = element
         cleaned = cleaner.run(element)
         second_clean = set()
         for i in cleaned:
@@ -81,30 +80,8 @@ def compare_set(list1, list2):
     return outlist
 
 
-def counting_per_institution(inlist):
-    """
-    """
-    final_result = dict()
-    for i in inlist:
-        if i['match'] is True:
-            final_result[i['good']] = final_result.get(i['good'], 0)+1
-
-    return final_result
-
-
-def write_csv(indict, data_folder):
-    """
-    """
-    print(indict)
-    infile = data_folder+'cleaned_result.csv'
-    with open(infile, 'w') as f:  # Just use 'w' mode in 3.x
-        for i in indict:
-            f.write(i)
-            f.write('\n')
-
-
 def write_list(indict, data_folder):
-    infile = data_folder+'cleaned_result.csv'
+    infile = data_folder + 'cleaned_result.csv'
     with open(infile, 'w') as f:  # Just use 'w' mode in 3.x
         for i in indict:
             try:
@@ -113,23 +90,46 @@ def write_list(indict, data_folder):
             except KeyError:
                 pass
 
+# def counting_per_institution(inlist):
+#     """
+#     """
+#     final_result = dict()
+#     for i in inlist:
+#         if i['match'] is True:
+#             final_result[i['good']] = final_result.get(i['good'], 0) +1
+#
+#     return final_result
+#
+#
+# def write_csv(indict, data_folder):
+#     """
+#     """
+#     print(indict)
+#     infile = data_folder + 'cleaned_result.csv'
+#     with open(infile, 'w') as f:  # Just use 'w' mode in 3.x
+#         for i in indict:
+#             f.write(i)
+#             f.write('\n')
+
 
 def main():
     """
     """
-    # load the list of UK university
+    # load the list of institutions that is already cleaned
     csv_university = read_file('list_universities.csv', INDATA, header=False)
+    # load the list of institutions to process
     csv_institutions = read_file('raw_institutions.csv', INDATA)
+
     list_institutions = institution_set(csv_institutions)
     clean_process = textClean()
     clean_university = clean_list(csv_university, clean_process)
     clean_institutions = clean_list(list_institutions, clean_process)
-    # for i in clean_university:
 
     result = compare_set(clean_institutions, clean_university)
+    write_list(result, OUTDATA)
     # final_result = counting_per_institution(result)
     # write_csv(result, OUTDATA)
-    write_list(result, OUTDATA)
+
 
 if __name__ == "__main__":
     main()
