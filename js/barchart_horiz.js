@@ -63,7 +63,7 @@ function draw_chart(data_file,
     height = area_height - margin.top - margin.bottom;
 
     var x = d3.scale.linear()
-        .range([0, width]);
+        .range([0, width - 200]); // - 200 space for label TODO clean
 
     var chart = d3.select(id_tag_link)
         .attr("width", width + margin.left + margin.right);
@@ -72,7 +72,12 @@ function draw_chart(data_file,
         if (error) {
             throw error;
         }        
-        x.domain([0, d3.max(data, function(d) { return d[bar_column]; })]);
+	var max = d3.max(data, function(d) { 
+	    return +d[bar_column]; });
+	// + above casts to numeric value
+	console.log("Max: " + max);
+        x.domain([0, max]);
+
 	chart.attr("height", barHeight * data.length);
 
 	var bar = chart.selectAll("g")
