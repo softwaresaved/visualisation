@@ -86,7 +86,7 @@ function draw_chart(data_file,
 
 	bar.append("text")
 	    .attr("x", function(d) { 
-		return x(d[bar_column]) - 3; 
+		return x(d[bar_column]) + 3; 
 	    })
 	    .attr("y", barHeight / 2)
 	    .attr("dy", ".35em")
