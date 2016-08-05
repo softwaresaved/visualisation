@@ -16,7 +16,10 @@ wget --no-check-certificate --output-document=consultancy_raw.csv "https://docs.
 # where Funder(s) values from the original data are split on the first
 # "," to derive the Primary Funder and Other Funders.
 
-python transform_consultancy_data.py consultancy_raw.csv data/consultancy.csv
+# Strip out first 3 messy rows so top row is header.
+tail -n+4 consultancy_raw.csv > consultancy_raw_sliced.csv
+
+python transform_consultancy_data.py consultancy_raw_sliced.csv data/consultancy.csv
 
 # Chart-FunderEffort tab
 # Header assumed to include:

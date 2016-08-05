@@ -4,9 +4,7 @@ Usage::
 
    $ python transform_consultancy_data.py IN_FILE OUT_FILE
 
-For IN_FILE and OUT_FILE, see definition of filter. IN_FILE's
-first three lines are assumed to be blank and so are 
-stripped out by remove_lines.
+For IN_FILE and OUT_FILE, see definition of filter.
 """
 
 # Copyright (c) 2016 The University of Edinburgh
@@ -27,7 +25,6 @@ def transform(in_file, out_file):
   Transform SSI consultancy spreadsheet. Read in the spreadsheet as
   comma-separated values. It is assumed that:
 
-  - The first three blank lines have been stripped out.
   - The spreadsheet has a header.
   - The header fields include: ["Project Name", "Funder(s)",
   - "Group(s)", "Institution", "Type", "PMs", "Research Field"]
@@ -81,29 +78,7 @@ def transform(in_file, out_file):
                   csv_writer.writerow(row)
 
 
-def remove_lines(in_file, out_file, lines=0):
-  """
-  Copy a file removing the first N lines from the file.
-
-  :param in_file: Input file name
-  :type in_file: str or unicode
-  :param out_file: Output file name
-  :type out_file: str or unicode
-  :param lines: Number of lines to remove
-  :type lines: int
-  """
-  with open(in_file, 'r') as input_file:
-      with open(out_file, 'w') as output_file:
-          for _ in xrange(lines):
-              next(input_file)
-          for line in input_file:
-              output_file.write(line)
-
-
 if __name__ == "__main__":
     in_file = sys.argv[1]
     out_file = sys.argv[2]
-    tmp = tempfile.mkstemp(suffix=".csv")[1]
-    remove_lines(in_file, tmp, 3)
-    transform(tmp, out_file)
-    os.remove(tmp)
+    transform(in_file, out_file)
