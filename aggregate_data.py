@@ -1,18 +1,18 @@
-"""Summarise spreadsheet data.
+"""Summarise CSV data.
 
 Usage::
 
-Read CSV file, count number of occurrences of unique values in COLUMN
-and output 2 column spreadsheet with values and counts. Column headers 
-are "COLUMN, Count".
+Read CSV file, count number of occurrences of unique values in KEY_COLUMN
+and output 2 column CSV file with values and counts. Column headers 
+are "OUT_KEY_COLUMN, OUT_COUNT_COLUMN".
 
-   $ python aggregate_data.py IN_FILE OUT_FILE COLUMN
+   $ python aggregate_data.py count IN_FILE KEY_COLUMN OUT_KEY_COLUMN OUT_COUNT_COLUMN OUT_FILE
 
 Read CSV file, sum together all values in VALUE_COLUMN whose rows
-have the same COLUMN value, and output 2 column spreadsheet with
-values and counts. Column headers are "COLUMN, Count".
+have the same KEY_COLUMN value, and output 2 column CSV file with
+values and counts. Column headers are "OUT_KEY_COLUMN, OUT_COUNT_COLUMN".
 
-   $ python aggregate_data.py IN_FILE OUT_FILE KEY_COLUMN VALUE_COLUMN
+   $ python aggregate_data.py sum IN_FILE KEY_COLUMN VALUE_COLUMN OUT_KEY_COLUMN OUT_COUNT_COLUMN OUT_FILE
 """
 
 # Copyright (c) 2016 The University of Edinburgh
