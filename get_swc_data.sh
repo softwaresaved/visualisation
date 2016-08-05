@@ -9,3 +9,4 @@ SHEET_ID=$1
 # Attendees, Admin?, Host?, Host (fellow)?, Instruct, 
 # Instruct (fellow), Help, Help (felllow) 
 wget --no-check-certificate --output-document=data/swc.csv "https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?gid=0&format=csv"
+bash filter_swc.sh
