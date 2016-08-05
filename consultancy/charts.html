@@ -30,9 +30,6 @@
     </table>
 
 <script>
-function effort(row) {
-   return row["Effort"];
-};
 
 var colour_bins_effort = [
     { bound: 1, fill: "#e0e2fe" },
@@ -42,8 +39,7 @@ var colour_bins_effort = [
     { bound: Number.MAX_VALUE, fill: "#0000ff" }
 ];
 
-draw_pie("../data/funders_effort.csv", "pieEffort", "Funder", effort, colour_bins_effort, 500, 400);
-
+draw_pie("../data/funders_effort.csv", "pieEffort", "Funder", "Effort", colour_bins_effort, 500, 400);
 draw_chart("../data/funders_effort.csv", "chartEffort", "Funder", "Effort", 500, 400);
 </script>
 
@@ -68,10 +64,6 @@ draw_chart("../data/funders_effort.csv", "chartEffort", "Funder", "Effort", 500,
     </table>
 
 <script>
-function projects(row) {
-   return 1;
-};
-
 var colour_bins_projects = [
     { bound: 1, fill: "#fee5d9" },
     { bound: 2, fill: "#fcbba1" },
@@ -80,8 +72,7 @@ var colour_bins_projects = [
     { bound: Number.MAX_VALUE, fill: "#a50f15" }
 ];
 
-draw_pie("../data/consultancy.csv", "pieProjects", "Primary Funder", projects, colour_bins_projects, 500, 400);
-
+draw_pie("../data/funders_project.csv", "pieProjects", "Funder", "Projects", colour_bins_projects, 500, 400);
 draw_chart("../data/funders_project.csv", "chartProjects", "Funder", "Projects", 500, 400);
 </script>
 

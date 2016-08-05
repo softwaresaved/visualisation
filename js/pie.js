@@ -2,7 +2,8 @@
  * D3 pie chart
  *
  * This version derived from original downloaded from
- * https://bl.ocks.org/mbostock/3887235#index.html on 02/03/2016.
+ * Pie Chart https://bl.ocks.org/mbostock/3887235#index.html
+ * on 05/08/2016.
  *
  * Copyright (C) 2016, Mike Bostock
  * Changes Copyright (C) 2016, The University of Edinburgh.
@@ -26,113 +27,106 @@
  * .arc path - pie chart wedge dividers.
  */
 
-/**
- * Callback function called for each row in turn, to calculate totals
- * which determine the size of each wedge.
- *
- * @callback pieCallback
- * @param {string[]} row - single row of data.
- * @return {number} value - value derived from row.
- */
-
 /** 
  * Draws pie chart.
  *
  * @param {string} data_file - file with comma-separated values
- * (CSV). 
- * @param {string} id_tag - ID of HTML tag in which the pie chart is
+ * (CSV).
+ * @param {string} id_tag - ID of HTML tag in which the bar chart is
  * drawn. 
- * @param {string} wedge_column - pie chart will have one wedge for
- * each unique value in this column. 
- * @param {pieCallback} aggregate - callback function called to
- * get value for a row which is used to calculate the totals for each
- * unique  wedge_column value, and determines the size of the wedges.
- * @param {Object[]} colour_bins - colours for wedge. 
- * @param {integer} colour_bins[].bound - if the total calculated for
- * a wedge_column value is less than or equal to this value then the
+ * @param {string} label_column - pie chart will have one wedge for
+ * each unique value in this column.
+ * @param {string} value_column - bar chart will have one wedge for
+ * each unique value in this column. Value determines size of wedge.
+ * @param {Object[]} colour_bins - colours for each wedge.
+ * @param {integer} colour_bins[].bound - if a value_column value is 
+ * less than or equal to this value then the
  * corresponding fill colour is used to colour the wedge.
  * @param {string} colour_bins[].fill - a colour code (e.g. "#e0e2fe").
- * @param {integer} area_width - drawing area width. 
- * @param {integer} area_height - drawing area height. 
+ * @param {integer} width - drawing area width. 
+ * @param {integer} height - drawing area height. 
  */
 function draw_pie(data_file, 
                   id_tag, 
-                  wedge_column, 
-                  aggregate, 
+                  label_column, 
+                  value_column, 
                   colour_bins,
-                  area_width,
-                  area_height) {
+                  width,
+                  height) {
 
+    // Changes from original code:
+    // Code in function so can draw multiple charts on same page.
+    // Hard-coded width and height replaced with parameters
+    // so can configure drawing area size.
+    // Replaced hard-coded colours array with colour_bins parameter
+    // so can configure pie chart colours.
+
+    // Changes from original code:
+    // Moved type within draw_chart so can draw multiple charts
+    // on same page.
+    // Replaced d.population with d[value_column] to allow data column
+    // to be configured via function argument, so can use different
+    // data sets.
     function type(d) {
+        d[value_column] = +d[value_column];
         return d;
-    };
+    }
 
-    d3.csv(data_file, type, function(error, raw_data) {
-        if (error) {
-            throw error;
-        }
-        console.log("Pie chart location tag: " + id_tag);
-        console.log("Number of rows: " + raw_data.length);
-        var id_tag_link = "#" + id_tag;
+    var radius = Math.min(width, height) / 2;
 
-        var radius = Math.min(area_width, area_height) / 2;
+    var arc = d3.svg.arc()
+        .outerRadius(radius - 10)
+        .innerRadius(0);
 
-        var arc = d3.svg.arc()
-            .outerRadius(radius - 10)
-            .innerRadius(0);
+    var labelArc = d3.svg.arc()
+        .outerRadius(radius - 40)
+        .innerRadius(radius - 40);
 
-        var labelArc = d3.svg.arc()
-            .outerRadius(radius - 40)
-            .innerRadius(radius - 40);
+    var pie = d3.layout.pie()
+        .sort(null)
+        .value(function(d) { return d[value_column]; });
 
-        var pie = d3.layout.pie()
-            .sort(null)
-            .value(function(d) { return d.value; });
+    // Changes from original code:
+    // Original replaced hard-coded "body" tag. Updated to specify
+    // tag to replace via its ID, provided as function argument,
+    // so can draw multiple charts on same page.
+    var id_tag_link = "#" + id_tag;
+    var svg = d3.select(id_tag_link).append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-        var svg = d3.select(id_tag_link).append("svg")
-            .attr("width", area_width)
-            .attr("height", area_height)
-            .append("g")
-            .attr("transform", "translate(" + area_width / 2 + "," + area_height / 2 + ")");
+    // Changes from original code:
+    // Replaced d3.tsv with d3.csv.
+    d3.csv(data_file, type, function(error, data) {
+        if (error) throw error;
 
-        // Iterate through raw_data. For each distinct value in
-        // wedge_column, compute a value based upon the
-        // value returned by aggregate for each row.
-        var categories = {};
-        raw_data.forEach(function(row) {
-            if (!categories[row[wedge_column]]) {
-                categories[row[wedge_column]] = 0;
-            }
-            categories[row[wedge_column]] += parseFloat(aggregate(row));
-        });
-        // Create 2 column data with distinct category values
-        // and the values computed above.
-        var data = [];
-        Object.keys(categories).forEach(function(key) {
-            data.push({
-                category: key,
-                value: categories[key]
-            });
-        });
-        
         var g = svg.selectAll(".arc")
             .data(pie(data))
             .enter().append("g")
             .attr("class", "arc");
 
+	// Changes from original code:
+	// Replaced hard-coded colours array with colour_bins parameter
+	// so can configure pie chart colours.
         g.append("path")
             .attr("d", arc)
-            .style("fill", function(d) { 
-                return get_slice_colour(d.data.value); 
-            });
-
+            .style("fill", function(d) { return get_slice_colour(d.data[value_column]); });
+    
+	// Changes from original code:
+	// Replaced d.data.age with d.data[value_column] to allow data column
+	// to be configured via function argument, so can use different
+	// data sets.
         g.append("text")
             .attr("transform", function(d) { 
                 return "translate(" + labelArc.centroid(d) + ")"; 
             })
             .attr("dy", ".35em")
-            .text(function(d) { return d.data.category; });
+            .text(function(d) { return d.data[label_column]; });
 
+	// Changes from original code:
+	// Added function to return colour bin values.
         function get_slice_colour(value) {
             for (var k = 0; k < colour_bins.length; k++) {
                 value = parseFloat(value);

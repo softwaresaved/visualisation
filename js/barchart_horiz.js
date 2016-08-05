@@ -53,7 +53,7 @@ function draw_chart(data_file,
     // Changes from original code:
     // Moved type within draw_chart so can draw multiple charts
     // on same page.
-    // Replaced d.frequency with d[value_column] to allow data column
+    // Replaced d.value with d[value_column] to allow data column
     // to be configured via function argument, so can use different
     // data sets.
     function type(d) {
@@ -104,14 +104,14 @@ function draw_chart(data_file,
 	    .attr("height", barHeight - 1);
 
 	// Changes from original code:
-	// Replaced d.letter with d[label_column] to allow data column
+	// Replaced d.value with d[label_column] to allow data column
 	// to be configured via function argument, so can use different
-	// data sets.
+	// data sets, and to label bar with label and not value.
 	// x function adds 3 so label is drawn after end of column.
 	bar.append("text")
 	    .attr("x", function(d) { return x(d[value_column]) + 3; })
 	    .attr("y", barHeight / 2)
 	    .attr("dy", ".35em")
-	    .text(function(d) { return d[label_column]; });
+	    .text(function(d) { return d[label_column] + " (" + d[value_column] + ")"; });
     });
 };

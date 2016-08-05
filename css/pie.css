@@ -2,7 +2,7 @@
  * D3 pie chart
  *
  * This version downloaded from
- * https://bl.ocks.org/mbostock/3887235#index.html on 02/03/2016.
+ * https://bl.ocks.org/mbostock/3887235#index.html on 05/08/2016.
  *
  * Copyright (C) 2016, Mike Bostock
  *
@@ -21,7 +21,7 @@
  */
 
 .arc text {
-    font: 14px sans-serif;
+    font: 10px sans-serif;
     text-anchor: middle;
 }
 
