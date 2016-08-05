@@ -1,7 +1,11 @@
 Project Name,Primary Funder,Other Funders,Group(s),Institution,Type,PMs,Research Field
-ReproPhylo,NERC,,"School of Biological, Biomedical and Environmental Sciences",University of Hull,Open Call:6,,Biology
-GLOMAP,NERC,,Institute of Climate and Atmospheric Science,University of Leeds,Open Call:6,,Meteorology
-MONC,NERC,EPSRC,EPCC,University of Edinburgh,Open Call:6,2.13,Meteorology
+Synote,-,,Electronics and Computer Science,University of Southampton,Open Call:7,1.50,Software Infrastructure
+iHUB,-,,Faculty of Science,University of Nottingham,Externally Funded,1.03,Biological sciences
+recipy,-,,Geography and Environment,University of Southampton,Engagement,1.08,All
+CGPACK,EPSRC,NERC,"Department of Mechanical Engineering, Solid Mechanics group",University of Bristol,Open Call:6,2.50,Physics
+ReproPhylo,NERC,,"School of Biological, Biomedical and Environmental Sciences",University of Hull,Open Call:6,1.05,Biology
+GLOMAP,NERC,,Institute of Climate and Atmospheric Science,University of Leeds,Open Call:6,0.00,Environmental Science
+MONC,NERC,EPSRC,"EPCC, Met Office","University of Edinburgh, Met Office",Open Call:6,1.90,Environmental Science
 JiscRDS,Jisc,,Jisc,,Externally Funded,0.60,Research Data
 ProvToolSuite,EPSRC,,Electronics and Computer Science,University of Southampton,Open Call:5,2.11,"Provenance, Linked Data, Standards"
 RTI-VIPS,AHRC,,Electronics and Computer Science,University of Southampton,Open Call:5,1.50,Humanities
