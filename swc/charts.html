@@ -31,10 +31,6 @@
     </table>
 
 <script>
-function attendees(row) {
-   return row["Attendees"];
-};
-
 var colour_bins_attendees = [
     { bound: 25, fill: "#e0e2fe" },
     { bound: 50, fill: "#c5c9fd" },
@@ -43,9 +39,9 @@ var colour_bins_attendees = [
     { bound: Number.MAX_VALUE, fill: "#0000ff" }
 ];
 
-draw_pie("../data/swc.csv", "pieSwcAttendees", "Institution", attendees, colour_bins_attendees, 500, 400);
+draw_pie("../data/swc_filtered.csv", "pieSwcAttendees", "Institution", "Attendees", colour_bins_attendees, 500, 400);
 
-draw_chart("../data/swc.csv", "chartSwcAttendees", "Institution", attendees, 500, 400);
+draw_chart("../data/swc_filtered.csv", "chartSwcAttendees", "Institution", "Attendees", 500, 400);
 </script>
 
   </body>

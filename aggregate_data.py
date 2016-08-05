@@ -1,16 +1,24 @@
-"""Transform spreadsheet.
+"""Summarise spreadsheet data.
 
 Usage::
 
-   $ python aggregate_data.py IN_FILE OUT_FILE COLUMN [VALUE_COLUMN]
-"""
+Read CSV file, count number of occurrences of unique values in COLUMN
+and output 2 column spreadsheet with values and counts. Column headers 
+are "COLUMN, Count".
 
-# TODO if VALUE_COLUMN is provided then sum the number of values
-# in this column (e.g. for SWC attendees by location)
+   $ python aggregate_data.py IN_FILE OUT_FILE COLUMN
+
+Read CSV file, sum together all values in VALUE_COLUMN whose rows
+have the same COLUMN value, and output 2 column spreadsheet with
+values and counts. Column headers are "COLUMN, Count".
+
+   $ python aggregate_data.py IN_FILE OUT_FILE KEY_COLUMN VALUE_COLUMN
+"""
 
 # Copyright (c) 2016 The University of Edinburgh
 
 import csv
+import operator
 import os
 import sys
 import tempfile
@@ -18,37 +26,20 @@ import tempfile
 DELIMITER = ','
 QUOTE = '"'
 
-def transform(in_file, out_file, column):
+def count_occurrences(in_file, column):
   """
-  Transform spreadsheet. Read in the spreadsheet as
-  comma-separated values. It is assumed that:
-
-  - The first three blank lines have been stripped out.
-  - The spreadsheet has a header.
-
-  Read this spreadsheet and output a new spreadsheet of
-  comma-separated values. This spreadsheet has:
-
-  - A header ["Project Name", "Primary Funder", "Other Funders",
-    "Group(s)", "Institution", "Type", "PMs", "Research Field"].
-  - Rows with the above columns, all copied from the original
-    spreadsheet.
-  - "Primary Funder" and "Other Funders" fields are formed by
-    splitting the "Funder(s)" column on its first comma
-    e.g. a "Funder(s)" value of "EPSRC,MRC,EU" is replaced by a
-    "Primary Funder" value of "EPSRC" and an "Other Funders" value of
-    "MRC,EU".
+  Read CSV file in_file and create count of occurrences of each unique
+  value in column. Values in column are split on "," and each
+  constituent treated as a unique value.
 
   :param in_file: Input file name
   :type in_file: str or unicode
-  :param out_file: Output file name
-  :type out_file: str or unicode
+  :param column: Column name
+  :type column: str or unicode
+  :return: unique column values and frequency counts
+  :rtype: dict
   """
-
-  import operator
-
-  entries = {}
-  header = [column, "Count"]
+  occurrences = {}
   with open(in_file, 'r') as csv_file:
     csv_reader = csv.DictReader(csv_file,
                                 delimiter=DELIMITER,
@@ -58,27 +49,88 @@ def transform(in_file, out_file, column):
       names = row[column].split(",")
       for name in names:
         name = name.strip()
-        if name not in entries:
-          entries[name] = 1
+        if name not in occurrences:
+          occurrences[name] = 1
         else:
-          entries[name] = entries[name] + 1
+          occurrences[name] = occurrences[name] + 1
+  sorted_occurrences = sorted(occurrences.items(), key=operator.itemgetter(1))
+  sorted_occurrences.reverse()
+  return sorted_occurrences
 
-  sorted_entries = sorted(entries.items(), key=operator.itemgetter(1))
-  sorted_entries.reverse()
 
+def sum_occurrences(in_file, key_column, value_column):
+  """
+  Read CSV file in_file and create sum of values in value_column for
+  each unique value in key_column.
+
+  :param in_file: Input file name
+  :type in_file: str or unicode
+  :param key_column: Column name
+  :type key_column: str or unicode
+  :param value_column: Column name
+  :type value_column: str or unicode
+  :return: unique column values and frequency counts
+  :rtype: dict
+  """
+  occurrences = {}
+  with open(in_file, 'r') as csv_file:
+    csv_reader = csv.DictReader(csv_file,
+                                delimiter=DELIMITER,
+                                quotechar=QUOTE)
+    for row in csv_reader:
+      row[key_column] = row[key_column].rstrip().rstrip(",")
+      if row[key_column] not in occurrences:
+          occurrences[row[key_column]] = float(row[value_column])
+      else:
+        occurrences[row[key_column]] = occurrences[row[key_column]] + float(row[value_column])
+
+  sorted_occurrences = sorted(occurrences.items(), key=operator.itemgetter(1))
+  sorted_occurrences.reverse()
+  return sorted_occurrences
+
+
+def save_csv(out_file, header, data):
+  """
+  Save data in two-column CSV file out_file.
+
+  :param out_file: Output file name
+  :type out_file: str or unicode
+  :param header: Header, with two values.
+  :type header: list of str or unicode
+  :param data: Data
+  :type data: dict
+  """
   with open(out_file, 'w') as csv_out_file:
     csv_writer = csv.writer(csv_out_file,
                             delimiter=DELIMITER,
                             quotechar=QUOTE)
     # Replace with 2.7 writeheaderr
     csv_writer.writerow(header)
-    for (name, value) in sorted_entries:
+    for (name, value) in data:
       if (name == ""):
         name = "None"
       csv_writer.writerow([name, value])
 
+
 if __name__ == "__main__":
-    in_file = sys.argv[1]
-    out_file = sys.argv[2]
-    column = sys.argv[3]
-    transform(in_file, out_file, column)
+    aggregate_type = sys.argv[1]
+    in_file = sys.argv[2]
+    key_column = sys.argv[3]
+    if (aggregate_type == "count"):
+      out_key_column = sys.argv[4]
+      out_count_column = sys.argv[5]
+      out_file = sys.argv[6]
+      data = count_occurrences(in_file, key_column)
+      header = [out_key_column, out_count_column]
+      save_csv(out_file, header, data)
+    elif (aggregate_type == "sum"):
+      value_column = sys.argv[4]
+      out_key_column = sys.argv[5]
+      out_count_column = sys.argv[6]
+      out_file = sys.argv[7]
+      data = sum_occurrences(in_file, key_column, value_column)
+      header = [out_key_column, out_count_column]
+    else:
+        print("Unrecognised command");
+        exit(1)
+    save_csv(out_file, header, data)

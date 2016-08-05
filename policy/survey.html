@@ -27,12 +27,9 @@
     <p><svg id="chartSw" class="chart"></svg></p>
 
 <script>
-var column = "Extra question 4: What is your preferred Operating System?";
-var count = "Count"
-draw_chart("../data/SoftwareSurvey2014OS.csv", "chartOs", column, count, 1000);
+draw_chart("../data/SoftwareSurvey2014OS.csv", "chartOs", "Operating System", "Count", 1000);
 
-column = "Question 11: Please provide the name(s) of the main research software you use.";
-draw_chart("../data/SoftwareSurvey2014Software.csv", "chartSw", column, count, 1000);
+draw_chart("../data/SoftwareSurvey2014Software.csv", "chartSw", "Research Software", "Count", 1000);
 </script>
   </body>
 </html>
