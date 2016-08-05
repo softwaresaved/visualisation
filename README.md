@@ -181,7 +181,14 @@ D3 bar chart
 * http://bl.ocks.org/mbostock/3885304
 * Copyright 2016, Mike Bostock
 * Licence: [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
-* Local code: `js/pie.js` and `css/barchart.css` are modified versions.
+* Local code: `js/barchart.js` and `css/barchart.css` are modified versions.
+
+D3 horizontal bar chart (bar chart IIc)
+
+* http://bl.ocks.org/mbostock/7341714
+* Copyright 2016, Mike Bostock
+* Licence: [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
+* Local code: `js/barchart_horiz.js` and `css/barchart_horiz.css` are modified versions.
 
 D3 pie chart
 

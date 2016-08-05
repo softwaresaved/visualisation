@@ -1,8 +1,9 @@
 /**
- * D3 bar chart
+ * D3 horizontal bar chart
  *
  * This version derived from original downloaded from
- * https://bl.ocks.org/mbostock/3885304#index.html on 02/03/2016.
+ * Bar Chart IIc http://bl.ocks.org/mbostock/7341714#index.html
+ * on 04/08/2016.
  *
  * Copyright (C) 2016, Mike Bostock
  * Changes Copyright (C) 2016, The University of Edinburgh and 
@@ -23,61 +24,74 @@
  *
  * Requires styles for:
  *
- * .bar text - bar labels.
- * .bar:hover - bar mouse over colour.
- * .axis - axis label.
- * .axis path - axis lines.
- * .axis line - axis lines.
- * .x.axis path - X-axis lines.
+ * .chart rect - bar colour.
+ * .chart text - bar label colour.
  */
 
 /**
- * Draws bar chart.
+ * Draws horizontal bar chart.
  *
  * @param {string} data_file - file with comma-separated values
  * (CSV).
  * @param {string} id_tag - ID of HTML tag in which the bar chart is
  * drawn. 
- * @param {string} bar_column - bar chart will have one X axis bar for
+ * @param {string} label_column - bar chart will have one Y axis bar for
  * each unique value in this column.
+ * @param {string} value_column - bar chart will have one Y axis bar for
+ * each unique value in this column. Value determines size of bar.
  * @param {integer} area_width - drawing area width.
- * @param {integer} area_height - drawing area height.
  */
 function draw_chart(data_file, 
                     id_tag, 
-		    bar_label_column,
-                    bar_column, 
-                    area_width,
-                    area_height) {
+		    label_column,
+                    value_column, 
+                    area_width) {
 
+    // Changes from original code:
+    // Code in function so can draw multiple charts on same page.
+
+    // Changes from original code:
+    // Moved type within draw_chart so can draw multiple charts
+    // on same page.
+    // Replaced d.frequency with d[value_column] to allow data column
+    // to be configured via function argument, so can use different
+    // data sets.
     function type(d) {
+        d[value_column] = +d[value_column];
         return d;
     }
 
-    var barHeight = 20; // TODO auto-calculate
+    // Changes from original code:
+    // 420 replaced with area_width and 500 so can configure drawing
+    // area size.
+    var width = area_width;
+    var barHeight = 20;
 
-    var id_tag_link = "#" + id_tag;
-
-    var margin = {top: 20, right: 20, bottom: 100, left: 40},
-    width = area_width - margin.left - margin.right,
-    height = area_height - margin.top - margin.bottom;
-
+    // Changes from original code:
+    // Width of bar area decremented by 200 to allow space for labels
+    // after bars.
     var x = d3.scale.linear()
-        .range([0, width - 200]); // - 200 space for label TODO clean
+        .range([0, width - 200]);
 
+    // Changes from original code:
+    // Original replaced hard-coded "body" tag. Updated to specify
+    // tag to replace via its ID, provided as function argument,
+    // so can draw multiple charts on same page.
+    var id_tag_link = "#" + id_tag;
     var chart = d3.select(id_tag_link)
-        .attr("width", width + margin.left + margin.right);
+        .attr("width", width);
 
+    // Changes from original code:
+    // Replaced d3.tsv with d3.csv.
     d3.csv(data_file, type, function(error, data) {
+	// Changes from original code:
+	// Added error handler.
         if (error) {
             throw error;
         }        
-	var max = d3.max(data, function(d) { 
-	    return +d[bar_column]; });
-	// + above casts to numeric value
-	console.log("Max: " + max);
-        x.domain([0, max]);
 
+        x.domain([0, d3.max(data, function(d) { return d[value_column]; })]);
+		 
 	chart.attr("height", barHeight * data.length);
 
 	var bar = chart.selectAll("g")
@@ -86,16 +100,18 @@ function draw_chart(data_file,
 	    .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
 
 	bar.append("rect")
-	    .attr("width", function(d) { return x(d[bar_column]); })
+	    .attr("width", function(d) { return x(d[value_column]); })
 	    .attr("height", barHeight - 1);
 
+	// Changes from original code:
+	// Replaced d.letter with d[label_column] to allow data column
+	// to be configured via function argument, so can use different
+	// data sets.
+	// x function adds 3 so label is drawn after end of column.
 	bar.append("text")
-	    .attr("x", function(d) { 
-		return x(d[bar_column]) + 3; 
-	    })
+	    .attr("x", function(d) { return x(d[value_column]) + 3; })
 	    .attr("y", barHeight / 2)
 	    .attr("dy", ".35em")
-	    .text(function(d) { 
-		return d[bar_label_column]; });
+	    .text(function(d) { return d[label_column]; });
     });
 };

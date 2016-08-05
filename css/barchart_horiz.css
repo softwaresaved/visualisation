@@ -1,8 +1,8 @@
 /**
- * D3 bar chart
+ * D3 horizontal bar chart
  *
  * This version downloaded from
- * https://bl.ocks.org/mbostock/3885304#index.html on 02/03/2016.
+ * http://bl.ocks.org/mbostock/7341714#index.html on 05/08/2016.
  *
  * Copyright (C) 2016, Mike Bostock
  *
@@ -24,6 +24,11 @@
   fill: steelblue;
 }
 
+/*
+ * Changes from original code:
+ * Changed fill: from white to black and removed text-anchor: end
+ * so labels appear after end of bar.
+ */
 .chart text {
   fill: black;
   font: 10px sans-serif;
