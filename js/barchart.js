@@ -75,19 +75,17 @@ function draw_chart(data_file,
     width = area_width - margin.left - margin.right,
     height = area_height - margin.top - margin.bottom;
 
-    var x = d3.scale.ordinal()
-        .rangeRoundBands([0, width], .1);
-
-    var y = d3.scale.linear()
+    var x = d3.scaleBand()
+        .range([0, width]);
+    
+    var y = d3.scaleLinear()
         .range([height, 0]);
 
-    var xAxis = d3.svg.axis()
-        .scale(x)
-        .orient("bottom");
+    var xAxis = d3.axisBottom()
+        .scale(x);
 
-    var yAxis = d3.svg.axis()
+    var yAxis = d3.axisLeft()
         .scale(y)
-        .orient("left")
         .tickSize(1,5);
 
     // Changes from original code:
@@ -143,7 +141,7 @@ function draw_chart(data_file,
 	    .enter().append("rect")
 	    .attr("class", "bar")
 	    .attr("x", function(d) { return x(d[label_column]); })
-	    .attr("width", x.rangeBand())
+	    .attr("width", x.bandwidth())
 	    .attr("y", function(d) { return y(d[value_column]); })
 	    .attr("height", function(d) { return height - y(d[value_column]); });
     });

@@ -74,15 +74,15 @@ function draw_pie(data_file,
 
     var radius = Math.min(width, height) / 2;
 
-    var arc = d3.svg.arc()
+    var arc = d3.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
 
-    var labelArc = d3.svg.arc()
+    var labelArc = d3.arc()
         .outerRadius(radius - 40)
         .innerRadius(radius - 40);
 
-    var pie = d3.layout.pie()
+    var pie = d3.pie()
         .sort(null)
         .value(function(d) { return d[value_column]; });
 

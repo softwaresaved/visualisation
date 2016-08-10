@@ -169,9 +169,10 @@ Bootstrap 3.3.6
 * Licence: [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE)
 * Local code: `css/bootstrapcss`, `css/bootstrap.min.css`, `js/bootstrap.js`, `js/bootstrap.min.js`
 
-D3 3.5.16
+D3 4.2.1
 
 * http://d3js.org/
+* [Download page](https://github.com/d3/d3/releases/tag/v4.2.1)
 * Copyright  2010-2016, Michael Bostock
 * Licence: [BSD-style license](https://github.com/mbostock/d3/blob/master/LICENSE)
 * Local code: `js/d3.js`,  `js/d3.min.js`
@@ -197,6 +198,13 @@ D3 pie chart
 * Licence: [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
 * Local code: `js/pie.js` and `css/pie.css` are modified versions.
 
+D3 circle packing
+
+* http://bl.ocks.org/mbostock/07ec62d9957a29a30e71cad962ff2efd
+* Copyright 2016, Mike Bostock
+* Licence: [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
+* Local code: `js/circle_packing.js` and `css/circle_packing.css` are modified versions.
+
 jQuery 2.2.1
 
 * http://jquery.com/
@@ -217,5 +225,3 @@ Usage visualisation
 * Copyright 2015, The University of Edinburgh.
 * Licence: [GNU General Public License version 2](https://github.com/aturner-epcc/usage-visualisation/blob/master/LICENSE)
 * Local code: `js/graph_bubbles.js` is a modified version.
-
----

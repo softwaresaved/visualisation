@@ -70,7 +70,7 @@ function draw_chart(data_file,
     // Changes from original code:
     // Width of bar area decremented by 200 to allow space for labels
     // after bars.
-    var x = d3.scale.linear()
+    var x = d3.scaleLinear()
         .range([0, width - 200]);
 
     // Changes from original code:
