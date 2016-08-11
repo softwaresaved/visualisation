@@ -20,7 +20,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.chart rect {
+/*
+ * Changes from original code:
+ * Renamed .chart to .barchart_horiz class
+ */
+.barchart_horiz rect {
   fill: steelblue;
 }
 
@@ -29,7 +33,7 @@
  * Changed fill: from white to black and removed text-anchor: end
  * so labels appear after end of bar.
  */
-.chart text {
+.barchart_horiz text {
   fill: black;
   font: 10px sans-serif;
 }

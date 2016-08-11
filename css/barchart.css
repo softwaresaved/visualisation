@@ -20,25 +20,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.bar {
+/*
+ * Changes from original code:
+ * Added .barchart class to each style.
+ */
+.barchart  .bar {
     fill: steelblue;
 }
 
-.bar:hover {
+.barchart .bar:hover {
     fill: brown;
 }
 
-.axis {
+.barchart .axis {
     font: 10px sans-serif;
 }
 
-.axis path,
-.axis line {
+.barchart .axis path, .axis line {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
 }
 
-.x.axis path {
+.barchart .x.axis path {
     display: none;
 }

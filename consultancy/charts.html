@@ -21,11 +21,11 @@
 </style>
 <script src="../js/barchart.js"></script>
 
-    <h1>Effort (staff-months) by funder</h1>
+    <h2>Effort (staff-months) by funder</h2>
     <table>
       <tr>
-        <td id="pieEffort"></td>
-        <td id="chartEffort"></td>
+        <td id="pieEffort" class="pie"></td>
+        <td id="chartEffort" class="barchart"></td>
       </tr>
     </table>
 
@@ -43,23 +43,12 @@ draw_pie("../data/funders_effort.csv", "pieEffort", "Funder", "Effort", colour_b
 draw_chart("../data/funders_effort.csv", "chartEffort", "Funder", "Effort", 500, 400);
 </script>
 
-    <h1>Number of consultancy projects by funder</h1>
-
-<!-- Override default styles -->
-<style>
-#chartProjects .bar {
-    fill: red;
-}
-
-#chartProjects .bar:hover {
-    fill: green;
-}
-</style>
+    <h2>Number of consultancy projects by funder</h2>
 
     <table>
       <tr>
-        <td id="pieProjects"></td>
-        <td id="chartProjects"></td>
+        <td id="pieProjects" class="pie"></td>
+        <td id="chartProjects" class="barchart"></td>
       </tr>
     </table>
 

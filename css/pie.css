@@ -20,11 +20,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.arc text {
+/*
+ * Changes from original code:
+ * Added .pie class to each style.
+ */
+
+.pie .arc text {
     font: 10px sans-serif;
     text-anchor: middle;
 }
 
-.arc path {
+.pie .arc path {
     stroke: #fff;
 }
