@@ -80,6 +80,7 @@ def sum_occurrences(in_file, key_column, value_column):
     for row in csv_reader:
       row[key_column] = row[key_column].rstrip().rstrip(",")
       if row[key_column] not in occurrences:
+        if (row[value_column] != ""):
           occurrences[row[key_column]] = float(row[value_column])
       else:
         occurrences[row[key_column]] = occurrences[row[key_column]] + float(row[value_column])
