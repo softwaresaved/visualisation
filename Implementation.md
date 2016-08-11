@@ -20,7 +20,7 @@ Static data set data/The use of software in research (Responses) Cleaned For All
 $ bash filter_software_survey.sh
 ```
 
-which runs aggregate_data.py and produces data/SoftwareSurvey2014OS.csv and data/SoftwareSurvey2014Software.csv which are rendered by policy/survey.html, js/barchart_horiz.js
+which runs aggregate_data.py and produces data/SoftwareSurvey2014OS.csv and data/SoftwareSurvey2014Software.csv which are rendered by policy/survey.html, js/barchart_horiz.js, js/circle_packing.js
 
 ## Bubble graph visualisations (to be deprecated)
 
