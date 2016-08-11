@@ -129,7 +129,7 @@ where `SHEET_ID` is the ID of the consultancy GoogleSheet.
 To update consultancy data:
 
 ```
-$ ./get_consultancy_data.sh SHEET_ID
+$ ./get_swc_data.sh SHEET_ID
 ```
 
 where `SHEET_ID` is the ID of the Software Carpentry GoogleSheet.
