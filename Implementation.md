@@ -6,7 +6,7 @@
 $ ./get_consultancy_data.sh SHEET_ID
 ```
 
-where SHEET_ID is the ID of the consultancy GoogleSheet, downloads data/funders_effort.csv and data/funders_project.csv which are rendered by consultancy/charts.html, js/barchart.js, js/pie.js
+where SHEET_ID is the ID of the consultancy GoogleSheet, downloads consultancy spreadsheet and runs aggregate_data.py to create data/project_effort.csv and also downloads data/funders_effort.csv and data/funders_project.csv which are rendered by consultancy/charts.html, js/barchart.js, js/pie.js, js/circle_packing
 
 ## Software carpentry data
 

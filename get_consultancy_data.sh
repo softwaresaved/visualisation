@@ -21,6 +21,8 @@ tail -n+4 consultancy_raw.csv > consultancy_raw_sliced.csv
 
 python transform_consultancy_data.py consultancy_raw_sliced.csv data/consultancy.csv
 
+python aggregate_data.py sum data/consultancy.csv "Project Name" "PMs" "Project" "PMs" data/project_effort.csv
+
 # Chart-FunderEffort tab
 # Header assumed to include:
 # Funder, Effort
