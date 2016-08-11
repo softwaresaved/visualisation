@@ -39,13 +39,12 @@ Mario:
 
 ## Look at alternative D3 visualisations
 
-Do an example using Circle Packing II, http://bl.ocks.org/mbostock/07ec62d9957a29a30e71cad962ff2efd, then remove existing bubbles examples.
-
 Do an example using [Population Pyramid](http://bl.ocks.org/mbostock/4062085) - stacked bars - to render effort per funder.
 
 ## Documentation
 
 Write guidance for theme leads on how data can be organised in CSV (GoogleSheet/Drupal-friendly formats) to make visualisation easier.
+
 Write guidance on how to add new visualisations.
 
 Add links from pop-up meta-data to web pages. Requires adding this information to the CSV file and extending D3 components to read and render this.
