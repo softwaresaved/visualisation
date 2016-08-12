@@ -8,5 +8,5 @@ SHEET_ID=$1
 # Code, Start, End, Department, Institution, Country, Domain,
 # Attendees, Admin?, Host?, Host (fellow)?, Instruct, 
 # Instruct (fellow), Help, Help (felllow) 
-wget --no-check-certificate --output-document=data/swc.csv "https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?gid=0&format=csv"
-bash filter_swc.sh
+wget --no-check-certificate --output-document=data/sheets/as-is/swc.csv "https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?gid=0&format=csv"
+bash filter_swc_data.sh

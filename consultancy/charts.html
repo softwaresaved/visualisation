@@ -43,8 +43,8 @@ var colour_bins_effort = [
     { bound: Number.MAX_VALUE, fill: "#0000ff" }
 ];
 
-draw_pie("../data/funders_effort.csv", "pieEffort", "Funder", "Effort", colour_bins_effort, 500, 400);
-draw_chart("../data/funders_effort.csv", "chartEffort", "Funder", "Effort", 500, 400);
+draw_pie("../data/sheets/as-is/funders_effort.csv", "pieEffort", "Funder", "Effort", colour_bins_effort, 500, 400);
+draw_chart("../data/sheets/as-is/funders_effort.csv", "chartEffort", "Funder", "Effort", 500, 400);
 </script>
 
     <h2>Number of consultancy projects by funder</h2>
@@ -65,15 +65,15 @@ var colour_bins_projects = [
     { bound: Number.MAX_VALUE, fill: "#a50f15" }
 ];
 
-draw_pie("../data/funders_project.csv", "pieProjects", "Funder", "Projects", colour_bins_projects, 500, 400);
-draw_chart("../data/funders_project.csv", "chartProjects", "Funder", "Projects", 500, 400);
+draw_pie("../data/sheets/as-is/funders_project.csv", "pieProjects", "Funder", "Projects", colour_bins_projects, 500, 400);
+draw_chart("../data/sheets/as-is/funders_project.csv", "chartProjects", "Funder", "Projects", 500, 400);
 </script>
 
     <h2>Effort by project</h2>
     <p><svg id="circleEffort" class="circles"><g transform="translate(1,1)"></g></svg></p>
 
 <script>
-draw_circle_chart("../data/project_effort.csv", "circleEffort", "Project", "PMs", 1000, 1000);
+draw_circle_chart("../data/sheets/filtered/project_effort.csv", "circleEffort", "Project", "PMs", 1000, 1000);
 </script>
   </body>
 </html>
