@@ -6,7 +6,7 @@
 $ ./get_consultancy_data.sh SHEET_ID
 ```
 
-where SHEET_ID is the ID of the consultancy GoogleSheet, downloads consultancy spreadsheet and runs aggregate_data.py to create data/sheets/filtered/project_effort.csv and also downloads data/sheets/as-is/funders_effort.csv and data/sheets/as-is/funders_project.csv which are rendered by consultancy/charts.html, js/barchart.js, js/pie.js, js/circle_packing
+where SHEET_ID is the ID of the consultancy GoogleSheet, downloads consultancy spreadsheet and runs aggregate_data.py to create data/sheets/filtered/project_effort.csv and also downloads data/sheets/as-is/funders_effort.csv and data/sheets/as-is/funders_project.csv which are rendered by consultancy/projects.html, js/barchart.js, js/pie.js, js/circle_packing
 
 ## Software carpentry data
 
@@ -14,7 +14,7 @@ where SHEET_ID is the ID of the consultancy GoogleSheet, downloads consultancy s
 $ ./get_swc_data.sh SHEET_ID
 ```
 
-where SHEET_ID is the ID of the Software Carpentry GoogleSheet, downloads data/sheets/as-is/swc.csv and runs filter_swc.sh which runs aggregate_data.py and produces data/sheets/filtered/swc_filtered.csv which is rendered by js/barchart.js, js/pie.js
+where SHEET_ID is the ID of the Software Carpentry GoogleSheet, downloads data/sheets/as-is/swc.csv and runs filter_swc.sh which runs aggregate_data.py and produces data/sheets/filtered/swc_filtered.csv which is rendered by training/swc.html, js/barchart.js, js/pie.js
 
 ## Software survey data
 
@@ -48,4 +48,4 @@ downloads  consultancy_raw.csv and runs transform_consultancy_data.py which prod
 $ ./get_swc_data.sh SHEET_ID
 ```
 
-downloads data/sheets/as-is/swc.csv and runs filter_swc.sh which runs aggregate_data.py and produces data/sheets/filtered/swc_filtered.csv which is rendered by swc/bubble.html and related JavaScript.
+downloads data/sheets/as-is/swc.csv and runs filter_swc.sh which runs aggregate_data.py and produces data/sheets/filtered/swc_filtered.csv which is rendered by training/bubble.html and related JavaScript.
