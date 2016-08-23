@@ -1,0 +1,54 @@
+<html>
+  <head>
+ <meta charset="UTF-8">
+<title>SSI - Demos - Map</title>
+ <link rel="stylesheet"
+       href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+  </head>
+  <style>
+    #map {
+    height: 600px;
+    width: 600px;
+    }
+</style>
+<body>
+<h1>SSI - Demos - Map</h1>
+<div id="map"></div>
+<script>
+  // Always create variables to store the values that you will use!!!
+  var lat, lng, zoom;
+
+  // You can get this information going to
+  // https://www.openstreetmap.org/ and select share.
+  lat = 54.355;
+  lng = -1.395;
+  zoom = 5;
+
+  // Set the center of the map.
+  var map = L.map('map').setView([lat, lng], zoom);
+
+  // You need map images! One good source is OpenStreetMap.
+  // Always set the attribution!
+  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+  maxZoom: 18,
+  }).addTo(map);
+
+  // You can add markers
+  //
+  // Using data from https://docs.google.com/spreadsheets/d/1LNm-7I2p7c78qlvTN2odIQAtvssXij7mYZA6OCjcgpA/edit#gid=1780013873
+  var fellows = [
+  {name: "Simon Choppin", latlng: [53.37,-1.46]},
+  {name: "Elisa Loza-Reyes", latlng: [51.80,-0.35]},
+  {name: "Vanesa Magar", latlng: [50.37,-4.13]}
+  ];
+
+  for (var fellow of fellows) {
+    console.log(fellow);
+    L.marker([fellow.latlng[0], fellow.latlng[1]]).addTo(map);
+  }
+</script>
+</body>
+</html>

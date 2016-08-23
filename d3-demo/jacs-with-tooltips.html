@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>SSI - Demos - JACS with toolstips</title>
+    </head>
+
+    <body>
+        <h1>SSI - Demos - JACS with toolstips </h1>
+        <div id="chart"></div>
+        <!-- You need to load D3. -->
+        <script src="node_modules/d3/d3.min.js" charset="utf-8"></script>
+        <!-- You need to load lodash. -->
+        <script src="node_modules/lodash/lodash.min.js" charset="utf-8"></script>
+        <!-- Need to include this library to have tooltip -->
+        <script src="node_modules/d3-tip/index.js" charset="utf-8"></script>
+        <!-- Is better to store the script in another document. -->
+        <script>
+// Raw data that we get from the spreadsheet.
+var rawData = [
+    "L391",
+    "F331",
+    "F845",
+    "I260",
+    "F846",
+    "L700",
+    "H690",
+    "I520",
+    "F682",
+    "F330",
+    "X342",
+    ];
+
+// We just want the first letter from the JACS code.
+var cleanData = rawData.map(function(value) {
+    return value[0];
+});
+
+// Lets count how often some letters show up.
+var countedData = _.countBy(cleanData);
+var data4pie = [];
+for (var key in countedData) {
+    data4pie.push({id: key, times: countedData[key]});
+}
+
+// The size of the SVG.
+var width = 960,
+    height = 1160,
+    radius = Math.min(width, height) / 2;
+
+var color = d3.scale.category20b();  // Define some colors.
+
+var svg = d3.select("#chart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append('g')
+    .attr('transform', 'translate(' + (width / 2) +  ',' + (height / 2) + ')'); // Center the g element it in the containing svg element.
+
+// Setup tooltip.
+var pieTip = d3.tip()
+    .attr("class", "d3-tip")  // You can't use `.classed("d3-tip")` here!
+    .html(function(d) {
+        return d.data.id;  // Need data because of pie!
+    });
+svg.call(pieTip);
+
+var arc = d3.svg.arc()
+    .outerRadius(radius);  // Set the arc of the pie.
+
+var pie = d3.layout.pie()
+    .value(function(value) { return value.times; })  // Define the data that will be used
+    .sort(null);  // Disable sorting.
+
+svg.selectAll('path')
+    .data(pie(data4pie))
+    .enter()
+    .append('path')
+    .attr('d', arc)
+    .attr('fill', function(value, i) {
+        return color(i);
+    })
+    .on("mouseover", pieTip.show)
+    .on("mouseout", pieTip.hide);
+        </script>
+    </body>
+</html>
