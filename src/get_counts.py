@@ -54,7 +54,7 @@ if __name__ == "__main__":
     out_value_column = sys.argv[3]
     out_count_column = sys.argv[4]
     out_file = sys.argv[5]
-    data = load_csv_file(in_file)
+    (_, data) = load_csv_file(in_file)
     filtered_data = count_unique_values(data, in_value_column)
     save_dict_as_csv_file(out_file,
                           out_value_column,

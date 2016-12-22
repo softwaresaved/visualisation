@@ -3,61 +3,67 @@
 ## Consultancy data
 
 ```
-$ bash get_consultancy_effort.sh SHEET
+$ python src/download_consultancy_funders_effort.py SHEET
 ```
 
-where SHEET is the ID of the consultancy GoogleSheet and downloads data/sheets/as-is/funders_effort.csv which is rendered by consultancy/projects.html, js/barchart.js, js/pie.js, js/circle_packing
+* SHEET is the ID of the consultancy Google Sheet
+* Download: consultancy projects sheet.FunderEffort tab
+* Write: data/sheets/as-is/funders_effort.csv
+* Rendered by: consultancy/projects.html, js/barchart.js, js/pie.js, js/circle_packing
 
 ```
-$ bash get_consultancy_projects.sh SHEET
+$ python src/download_consultancy_funders_projects.py SHEET
 ```
 
-where SHEET is the ID of the consultancy GoogleSheet and downloads data/sheets/as-is/funders_project.csv which is rendered by consultancy/projects.html, js/barchart.js, js/pie.js, js/circle_packing
+* SHEET is the ID of the consultancy Google Sheet
+* Download: consultancy projects sheet.Funding tab
+* Write: data/sheets/as-is/funders_project.csv
+* Rendered by: consultancy/projects.html, js/barchart.js, js/pie.js, js/circle_packing
 
 ```
-$ bash get_consultancy_data.sh SHEET
+$ python src/download_consultancy.py SHEET
 ```
 
-where SHEET is the ID of the consultancy GoogleSheet, downloads consultancy spreadsheet, slices top 4 redundant rows off, runs transform_consultancy_data.py to create data/sheets/filtered/consultancy.csv, then runs src/get_sums.py to create data/sheets/filtered/project_effort.csv which is rendered by consultancy/projects.html, js/barchart.js, js/pie.js, js/circle_packing
+* SHEET is the ID of the consultancy Google Sheet
+* Download: consultancy projects sheet.default tab
+* Write: data/sheets/filtered/consultancy.csv
+* Write: data/sheets/filtered/project_effort.csv
+* Rendered by: consultancy/projects.html, js/barchart.js, js/pie.js, js/circle_packing
 
 ## Software carpentry data
 
 ```
-$ bash get_swc_data.sh SHEET
+$ python src/download_swc.py SHEET
 ```
 
-where SHEET is the ID of the Software Carpentry GoogleSheet, downloads data/sheets/as-is/swc.csv and runs filter_swc.sh which runs src/get_sums.py and produces data/sheets/filtered/swc_filtered.csv which is rendered by training/swc.html, js/barchart.js, js/pie.js
+* SHEET is the ID of the Software Carpentry GoogleSheet
+* Download: data/sheets/as-is/swc.csv 
+* Write: data/sheets/filtered/swc_filtered.csv
+* Rendered by: training/swc.html, js/barchart.js, js/pie.js
 
 ## Software survey data
 
-Static data set data/raw/as-is/The use of software in research (Responses) Cleaned For All Hands Hack - Form Responses 1.csv can be processed with 
-
 ```
-$ bash filter_software_survey.sh
+$ python src/filter_software_survey.py
 ```
 
-which runs src/get_counts.py and produces data/raw/filtered/SoftwareSurvey2014OS.csv and data/raw/filtered/SoftwareSurvey2014Software.csv which is rendered by policy/survey.html, js/barchart_horiz.js, js/circle_packing.js
+* Read: Static data set data/raw/as-is/The use of software in research (Responses) Cleaned For All Hands Hack - Form Responses 1.csv
+* Write: data/raw/filtered/SoftwareSurvey2014OS.csv
+* Write: data/raw/filtered/SoftwareSurvey2014Software.csv
+* Rendered by: policy/survey.html, js/barchart_horiz.js, js/circle_packing.js
 
 ## Fellows data
 
-Static data set dataCleaning/data/raw_institutions.csv can be processed with
-
 ```
-$ bash filter_fellows.sh
+$ python src/filter_fellows.py
 ```
 
-which runs src/get_counts.py and produces data/static/filtered/fellows_institutions.csv which is which is rendered by community/fellows.html, js/circle_packing.js
+* Read: Static data set dataCleaning/data/raw_institutions.csv
+* Write: data/static/filtered/fellows_institutions.csv
+* Rendered by: community/fellows.html, js/circle_packing.js
 
 ## Bubble graph visualisations (to be deprecated)
 
-```
-$ bash get_consultancy_data.sh SHEET
-```
+consultancy/bubble.html and related JavaScript render data/sheets/filtered/consultancy.csv.
 
-where SHEET is the ID of the consultancy GoogleSheet, downloads consultancy spreadsheet, slices top 4 redundant rows off, runs transform_consultancy_data.py to create data/sheets/filtered/consultancy.csv which is rendered by consultancy/bubble.html and related JavaScript.
-
-```
-$ bash get_swc_data.sh SHEET
-```
-
-downloads data/sheets/as-is/swc.csv and runs filter_swc.sh which runs src/get_sums.py and produces data/sheets/filtered/swc_filtered.csv which is rendered by training/bubble.html and related JavaScript.
+training/bubble.html and related JavaScript render data/sheets/filtered/swc_filtered.csv.

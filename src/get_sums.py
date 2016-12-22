@@ -57,7 +57,7 @@ if __name__ == "__main__":
     out_key_column = sys.argv[4]
     out_sum_column = sys.argv[5]
     out_file = sys.argv[6]
-    data = load_csv_file(in_file)
+    (_, data) = load_csv_file(in_file)
     filtered_data = sum_unique_values(data, in_key_column, in_value_column)
     save_dict_as_csv_file(out_file,
                           out_key_column,

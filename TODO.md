@@ -2,8 +2,6 @@
 
 ## Refactoring
 
-Look at transform_consultancy_data.py and see if it can be generalised along the lines of src/get_sums.py, src/get_counts.py and src/csv_utils.py.
-
 Look at src/csv_utils.py (count_unique_values) challenges in handling data with spaces, newlines, semi-colons.
 
 Look at src/csv_utils.py (count_unique_values) in terms of ensuring equality of upper, lower and mixed case values that are the same.

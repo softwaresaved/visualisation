@@ -10,6 +10,7 @@ import operator
 DELIMITER = ','
 QUOTE = '"'
 EMPTY_STRING_VALUE = "None"
+UNKNOWN_STRING_VALUE = "Unknown"
 
 
 def count_unique_values(csv_data, column):
@@ -91,9 +92,51 @@ def sum_unique_values(csv_data, key_column, value_column):
     return sums
 
 
+def split_csv_column(columns, csv_data, column, column_a, column_b):
+    """
+    Read CSV data and, for a given column with comma-separated values,
+    split it into two columns, where the first column contains the first
+    comma-separated value and the second column contains the rest of
+    the comma-separated values. If the column has no values then the
+    two columns have values "Unknown".
+
+    :param columns: CSV column names
+    :type columns: list of str or unicode
+    :param csv_data: CSV data
+    :type csv_data: list of dict
+    :param column: Column name
+    :type column: str or unicode
+    :param column_a: Output column name
+    :type column_a: str or unicode
+    :param column_b: Output column name
+    :type column_b: str or unicode
+    :return: (column names, CSV rows)
+    :rtype: (list of str or unicode, list of dict from str or unicode)
+    """
+    filtered_csv_data = []
+    index = columns.index(column)
+    columns.remove(column)
+    columns.insert(index, column_b)
+    columns.insert(index, column_a)
+    for row in csv_data:
+        value = row[column]
+        del row[column]
+        values = value.split(",")
+        values = [value.strip() for value in values]
+        values[:] = (value for value in values if value != '')
+        if values == []:
+            row[column_a] = UNKNOWN_STRING_VALUE
+            row[column_b] = UNKNOWN_STRING_VALUE
+        else:
+            row[column_a] = values[0]
+            row[column_b] = ','.join(values[1:])
+        filtered_csv_data.append(row)
+    return (columns, filtered_csv_data)
+
+
 def load_csv_file(file_name):
     """
-    Load data from a CSV file. For example, given:
+    Load CSV data from a CSV file. For example, given:
 
         Tool   | Users
         ------ | -----
@@ -117,16 +160,38 @@ def load_csv_file(file_name):
 
     :param file_name: CSV file name
     :type file_name: str or unicode
-    :return: CSV rows
-    :rtype: list of dict from str or unicode
+    :return: (column names, CSV rows)
+    :rtype: (list of str or unicode, list of dict from str or unicode)
     """
-    rows = []
     with open(file_name, 'r') as csv_file:
         csv_reader = csv.DictReader(csv_file,
                                     delimiter=DELIMITER,
                                     quotechar=QUOTE)
+        columns = csv_reader.fieldnames
         rows = [row for row in csv_reader]
-    return rows
+    return (columns, rows)
+
+
+def save_csv_file(columns, csv_data, file_name):
+    """
+    Save CSV data to a CSV file.
+
+    :param columns: CSV column names
+    :type columns: list of str or unicode
+    :param csv_data: CSV rows
+    :type csv_data: list of dict from str or unicode
+    :param file_name: CSV file name
+    :type file_name: str or unicode
+    """
+    with open(file_name, 'w', newline="") as csv_file:
+        csv_writer = csv.DictWriter(csv_file,
+                                    fieldnames=columns,
+                                    extrasaction="ignore",
+                                    delimiter=DELIMITER,
+                                    quotechar=QUOTE)
+        csv_writer.writerow(dict(list(zip(columns, columns))))
+        for row in csv_data:
+            csv_writer.writerow(row)
 
 
 def save_dict_as_csv_file(file_name, key_header, value_header, data):

@@ -21,6 +21,12 @@ $ git remote add ssi  http://USERNAME@github.com/softwaresaved/visualisation.git
 
 ---
 
+## Get Python 3
+
+The [Anaconda](https://www.continuum.io/downloads) version of Python is recommended.
+
+---
+
 ## View within GitHub pages
 
 [GitHub pages](https://pages.github.com/) renders web site content in `gh-pages` branches of repositories hosted on GitHub.
@@ -136,9 +142,9 @@ Visit http://127.0.0.1/visualisation/
 To update consultancy data:
 
 ```
-$ bash get_consultancy_data.sh SHEET
-$ bash get_consultancy_effort.sh SHEET
-$ bash get_consultancy_project.sh SHEET
+$ python src/download_consultancy_data.py SHEET
+$ python src/download_consultancy_funders_effort.py SHEET
+$ python src/download_consultancy_funders_projects.py SHEET
 ```
 
 where `SHEET` is the ID of the consultancy Google Sheet.
@@ -146,7 +152,7 @@ where `SHEET` is the ID of the consultancy Google Sheet.
 To update Software Carpentry data:
 
 ```
-$ bash get_swc_data.sh SHEET
+$ python swc/download_swc.py SHEET
 ```
 
 where `SHEET` is the ID of the Software Carpentry Google Sheet.
