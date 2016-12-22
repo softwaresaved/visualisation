@@ -51,7 +51,7 @@ def transform(in_file, out_file):
       csv_reader = csv.DictReader(csv_file,
                                   delimiter=DELIMITER,
                                   quotechar=QUOTE)
-      with open(out_file, 'w') as out_file:
+      with open(out_file, 'w', newline="") as out_file:
           csv_writer = csv.DictWriter(out_file,
                                       fieldnames=OUT_HEADER,
                                       extrasaction="ignore",

@@ -136,18 +136,20 @@ Visit http://127.0.0.1/visualisation/
 To update consultancy data:
 
 ```
-$ ./get_consultancy_data.sh SHEET_ID
+$ bash get_consultancy_data.sh SHEET
+$ bash get_consultancy_effort.sh SHEET
+$ bash get_consultancy_project.sh SHEET
 ```
 
-where `SHEET_ID` is the ID of the consultancy GoogleSheet.
+where `SHEET` is the ID of the consultancy Google Sheet.
 
-To update consultancy data:
+To update Software Carpentry data:
 
 ```
-$ ./get_swc_data.sh SHEET_ID
+$ bash get_swc_data.sh SHEET
 ```
 
-where `SHEET_ID` is the ID of the Software Carpentry GoogleSheet.
+where `SHEET` is the ID of the Software Carpentry Google Sheet.
 
 ---
 
