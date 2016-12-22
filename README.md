@@ -29,6 +29,21 @@ When you push changes to the `gh-pages` branch of your cloned repository on GitH
 
 ---
 
+## View within Python web server
+
+Some browsers (e.g. Google Chrome) won't render JavaScript in HTML that is loaded into the browser via, for example, a file:// URL. 
+
+Python 3 has a simple web server you can use to serve the pages. To start the web server:
+
+```
+$ cd visualisation
+$ python -m http.server
+```
+
+Visit http://localhost:8000/ to see the visualisations index.html page.
+
+---
+
 ## Deploy under Apache 2 web server
 
 [Apache](https://httpd.apache.org/) is a popular web server.
