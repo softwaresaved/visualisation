@@ -45,7 +45,8 @@ would produce output.csv:
 
 
 import sys
-from csv_utils import save_csv_file
+from csv_utils import load_csv_file
+from csv_utils import save_dict_as_csv_file
 from csv_utils import sum_unique_values
 
 
@@ -56,6 +57,9 @@ if __name__ == "__main__":
     out_key_column = sys.argv[4]
     out_sum_column = sys.argv[5]
     out_file = sys.argv[6]
-    data = sum_unique_values(in_file, in_key_column, in_value_column)
-    header = [out_key_column, out_sum_column]
-    save_csv_file(out_file, header, data)
+    data = load_csv_file(in_file)
+    filtered_data = sum_unique_values(data, in_key_column, in_value_column)
+    save_dict_as_csv_file(out_file,
+                          out_key_column,
+                          out_sum_column,
+                          filtered_data)

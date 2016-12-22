@@ -44,7 +44,8 @@ would produce output.csv:
 
 import sys
 from csv_utils import count_unique_values
-from csv_utils import save_csv_file
+from csv_utils import load_csv_file
+from csv_utils import save_dict_as_csv_file
 
 
 if __name__ == "__main__":
@@ -53,6 +54,9 @@ if __name__ == "__main__":
     out_value_column = sys.argv[3]
     out_count_column = sys.argv[4]
     out_file = sys.argv[5]
-    data = count_unique_values(in_file, in_value_column)
-    header = [out_value_column, out_count_column]
-    save_csv_file(out_file, header, data)
+    data = load_csv_file(in_file)
+    filtered_data = count_unique_values(data, in_value_column)
+    save_dict_as_csv_file(out_file,
+                          out_value_column,
+                          out_count_column,
+                          filtered_data)
