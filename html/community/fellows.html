@@ -11,17 +11,17 @@
      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
    </p>
 
-<script src="../js/d3.min.js"></script>
+<script src="../../js/d3.min.js"></script>
 <style>
-@import url("../css/circle_packing.css");
+@import url("../../css/circle_packing.css");
 </style>
-<script src="../js/circle_packing.js"></script>
+<script src="../../js/circle_packing.js"></script>
 
     <h2>Institutions</h2>
     <p><svg id="circleFellows" class="circles"><g transform="translate(1,1)"></g></svg></p>
 
 <script>
-draw_circle_chart("../data/static/filtered/fellows_institutions.csv", "circleFellows", "Institution", "Count", 1000, 1000);
+draw_circle_chart("../../data/static/filtered/fellows_institutions.csv", "circleFellows", "Institution", "Count", 1000, 1000);
 </script>
   </body>
 </html>
