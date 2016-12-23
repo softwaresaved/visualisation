@@ -20,6 +20,8 @@ def get_url(url):
     :return: response
     :rtype: bytes
     """
+    print("HTTP GET:")
+    print(url)
     response = requests.get(url)
     # pylint: disable=E1103
     assert response.status_code == requests.codes.ok
@@ -43,7 +45,6 @@ def get_google_sheet(sheet,
     :rtype: bytes
     """
     sheet_url = GOOGLE_SHEET_URL % (sheet, tab, sheet_format)
-    print(sheet_url)
     return get_url(sheet_url)
 
 
@@ -63,4 +64,5 @@ def download_google_sheet(file_name, sheet, tab, sheet_format="csv"):
     :rtype: bytes
     """
     sheet_content = get_google_sheet(sheet, tab, sheet_format)
+    print("Saving:", file_name)
     open(file_name, 'wb').write(sheet_content)
