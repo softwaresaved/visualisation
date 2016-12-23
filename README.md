@@ -241,10 +241,3 @@ Underscore 1.8.3
 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 * Licence: [MIT license](https://github.com/jashkenas/underscore/blob/master/LICENSE)
 * Local code: `js/underscore.js`,  `js/underscore-min.js`
-
-Usage visualisation
-
-* https://github.com/aturner-epcc/usage-visualisation
-* Copyright 2015, The University of Edinburgh.
-* Licence: [GNU General Public License version 2](https://github.com/aturner-epcc/usage-visualisation/blob/master/LICENSE)
-* Local code: `js/graph_bubbles.js` is a modified version.

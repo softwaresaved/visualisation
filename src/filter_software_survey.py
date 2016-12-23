@@ -15,14 +15,14 @@ if __name__ == "__main__":
         data,
         "Question 11: Please provide the name(s) of the main research software you use.")
     save_dict_as_csv_file(
-        "data/static/filtered/SoftwareSurvey2014Software.csv",
+        "data/static/filtered/software_survey_2014_software.csv",
         "Research Software",
         "Count",
         sw_data)
     os_data = count_unique_values(
         data,
         "Extra question 4: What is your preferred Operating System?")
-    save_dict_as_csv_file("data/static/filtered/SoftwareSurvey2014OS.csv",
+    save_dict_as_csv_file("data/static/filtered/software_survey_2014_os.csv",
                           "Operating System",
                           "Count",
                           os_data)

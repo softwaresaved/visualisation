@@ -1,4 +1,4 @@
-"""Download Software Carpentry sheet.Workshops tab and filter to sum
+"""Download Software Carpentry sheet Workshops tab and filter to sum
 number of attendees by institution.
 """
 
@@ -19,7 +19,7 @@ if __name__ == "__main__":
     download_google_sheet(file_name, sheet, tab)
     _, data = load_csv_file(file_name)
     swc_data = sum_unique_values(data, "Institution", "Attendees")
-    save_dict_as_csv_file("data/sheets/filtered/swc_filtered.csv",
+    save_dict_as_csv_file("data/sheets/filtered/swc_attendees.csv",
                           "Institution",
                           "Attendees",
                           swc_data)

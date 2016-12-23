@@ -1,4 +1,4 @@
-"""Download Software Carpentry sheet.Workshops tab and filter to sum
+"""Download consultancy sheet Projects tab and filter to sum
 number of attendees by institution.
 """
 
