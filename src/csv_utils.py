@@ -221,3 +221,23 @@ def save_dict_as_csv_file(file_name, key_header, value_header, data):
             if name == "":
                 name = EMPTY_STRING_VALUE
             csv_writer.writerow([name, value])
+
+
+def tail(file_name, tail_file_name, num_lines):
+    """
+    Copy a file to another file, ignoring the first N lines.
+
+    :param file_name: file name
+    :type file_name: str or unicode
+    :param tail_file_name: file name
+    :type tail_file_name: str or unicode
+    :param num_lines: Number of lines to ignore
+    :type num_lines: int
+    """
+    print("Saving:", tail_file_name)
+    with open(file_name, 'r') as in_file:
+        with open(tail_file_name, 'w', newline="") as out_file:
+            for _ in range(num_lines):
+                next(in_file)
+            for line in in_file:
+                out_file.write(line)

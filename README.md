@@ -143,8 +143,6 @@ To update consultancy data:
 
 ```
 $ python src/download_consultancy_data.py SHEET
-$ python src/download_consultancy_funders_effort.py SHEET
-$ python src/download_consultancy_funders_projects.py SHEET
 ```
 
 where `SHEET` is the ID of the consultancy Google Sheet.

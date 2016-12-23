@@ -33,32 +33,27 @@ data/:
 ## Consultancy scripts and data
 
 ```
-$ python src/download_consultancy_funders_effort.py SHEET
-```
-
-* SHEET is the ID of the consultancy Google Sheet
-* Download: consultancy projects sheet FunderEffort tab
-* Write: data/sheets/as-is/funders_effort.csv
-* Rendered by: html/consultancy/projects.html, js/barchart.js, js/pie.js, js/circle_packing
-
-```
-$ python src/download_consultancy_funders_projects.py SHEET
-```
-
-* SHEET is the ID of the consultancy Google Sheet
-* Download: consultancy projects sheet Funding tab
-* Write: data/sheets/as-is/funders_projects.csv
-* Rendered by: html/consultancy/projects.html, js/barchart.js, js/pie.js, js/circle_packing
-
-```
 $ python src/download_consultancy.py SHEET
 ```
 
-* SHEET is the ID of the consultancy Google Sheet
-* Download: consultancy projects sheet Projects tab
-* Write: data/sheets/filtered/consultancy.csv
-* Write: data/sheets/filtered/project_effort.csv
-* Rendered by: html/consultancy/projects.html, js/barchart.js, js/pie.js, js/circle_packing
+* SHEET is the ID of the SSI Consultancy Projects Google Sheet
+* Download: SSI Consultancy Projects sheet tabs
+  - Chart-FunderEffort (1949517833)
+  - Chart-Funding (7)
+* Write:
+  - data/sheets/as-is/funders_effort.csv
+  - data/sheets/as-is/funders_projects.csv
+* Rendered by: html/consultancy/funders.html, js/barchart.js, js/pie.js
+* Download: SSI Consultancy Projects sheet tabs
+  - Chart-InstitutionEffort (9)
+  - Chart-InstitutionProjects (8)
+* Write:
+  - data/sheets/filtered/institution_effort.csv
+  - data/sheets/filtered/institution_projects.csv
+* Rendered by: html/consultancy/institutions.html, js/barchart.js, js/pie.js
+* Download: SSI Consultancy Projects sheet tab Chart-Effort (1)
+* Write: data/sheets/filtered/projects_effort.csv
+* Rendered by: html/consultancy/projects.html, js/circle_packing
 
 ## Software Carpentry scripts and data
 
@@ -66,8 +61,8 @@ $ python src/download_consultancy.py SHEET
 $ python src/download_swc.py SHEET
 ```
 
-* SHEET is the ID of the Software Carpentry Google Sheet
-* Download: Software Carpentry sheet Workshops tab
+* SHEET is the ID of the SSI SWC from 2012-04-30 to 2014-04-09 from Mike Google Sheet
+* Download: Software Carpentry sheet Workshops tab (1)
 * Write: data/sheets/as-is/swc.csv 
 * Write: data/sheets/filtered/swc_attendees.csv
 * Rendered by: html/training/swc.html, js/barchart.js, js/pie.js

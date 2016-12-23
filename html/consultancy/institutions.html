@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Software Sustainability Institute</title>
+  </head>
+  <body>
+   <h1>Consultancy Data - Institutions</h1>
+   <p>
+     <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
+   </p>
+
+<script src="../../js/d3.min.js"></script>
+<style>
+@import url("../../css/pie.css");
+</style>
+<script src="../../js/pie.js"></script>
+<style>
+@import url("../../css/barchart.css");
+</style>
+<script src="../../js/barchart.js"></script>
+
+    <h2>Effort (staff-months) by institution</h2>
+    <table>
+      <tr>
+        <td id="pieInstitutionEffort" class="pie"></td>
+        <td id="chartInstitutionEffort" class="barchart"></td>
+      </tr>
+    </table>
+
+<script>
+
+var colour_bins_effort = [
+    { bound: 1, fill: "#e0e2fe" },
+    { bound: 5, fill: "#c5c9fd" },
+    { bound: 10, fill: "#a6acff" },
+    { bound: 20, fill: "#515cfd" },
+    { bound: Number.MAX_VALUE, fill: "#0000ff" }
+];
+
+draw_pie("../../data/sheets/filtered/institution_effort.csv", "pieInstitutionEffort", "Project", "Total Effort (PMs)", colour_bins_effort, 500, 400);
+draw_chart("../../data/sheets/filtered/institution_effort.csv", "chartInstitutionEffort", "Project", "Total Effort (PMs)", 500, 400);
+</script>
+
+    <h2>Number of consultancy projects by institution</h2>
+
+    <table>
+      <tr>
+        <td id="pieInstitutionProjects" class="pie"></td>
+        <td id="chartInstitutionProjects" class="barchart"></td>
+      </tr>
+    </table>
+
+<script>
+var colour_bins_projects = [
+    { bound: 1, fill: "#fee5d9" },
+    { bound: 2, fill: "#fcbba1" },
+    { bound: 5, fill: "#fc9272" },
+    { bound: 10, fill: "#fb6a4a" },
+    { bound: Number.MAX_VALUE, fill: "#a50f15" }
+];
+
+draw_pie("../../data/sheets/filtered/institution_projects.csv", "pieInstitutionProjects", "Project", "Number", colour_bins_projects, 500, 400);
+draw_chart("../../data/sheets/filtered/institution_projects.csv", "chartInstitutionProjects", "Project", "Number", 500, 400);
+</script>
+
+  </body>
+</html>
