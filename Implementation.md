@@ -89,6 +89,6 @@ $ python src/filter_software_survey.py
 $ python src/filter_fellows.py
 ```
 
-* Read: dataCleaning/data/raw_institutions.csv
+* Read: data/static/raw/fellows_institutions.csv
 * Write: data/static/filtered/fellows_institutions.csv
 * Rendered by: html/community/fellows.html, js/circle_packing.js
