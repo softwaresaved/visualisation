@@ -70,6 +70,15 @@ $ python src/download_swc.py SHEET
 ## Policy scripts and data
 
 ```
+$ python src/download_policy.py SHEET
+```
+
+* SHEET is the ID of the Software Used In Research Combined Results Google Sheet
+* Download: Unique names for publication tab (2010786314)
+* Write: data/sheets/as-is/software.csv 
+* Rendered by: html/policy/software.html, js/barchart_horiz.js, js/circle_packing.js
+
+```
 $ python src/filter_software_survey.py
 ```
 

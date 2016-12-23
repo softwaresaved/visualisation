@@ -139,21 +139,23 @@ Visit http://127.0.0.1/visualisation/
 
 ## Update Institute data
 
-To update consultancy data:
-
 ```
 $ python src/download_consultancy_data.py SHEET
 ```
 
-where `SHEET` is the ID of the consultancy Google Sheet.
-
-To update Software Carpentry data:
+where `SHEET` is the ID of the SSI Consultancy Projects Google Sheet.
 
 ```
 $ python swc/download_swc.py SHEET
 ```
 
-where `SHEET` is the ID of the Software Carpentry Google Sheet.
+where `SHEET` is the ID of the SSI SWC from 2012-04-30 to 2014-04-09 from Mike  Google Sheet.
+
+```
+$ python swc/download_policy.py SHEET
+```
+
+where `SHEET` is the ID of the Software Used In Research Combined Results Google Sheet.
 
 ---
 

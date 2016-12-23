@@ -1,0 +1,1093 @@
+Unique names for counting,How many times reported?
+"python (inc NumPy, SciPy, Ipython)",193
+matlab,150
+R (including R studio),145
+git (inc. Github),91
+spss,90
+microsoft excel,87
+nvivo,41
+imagej,35
+stata,31
+fortran,27
+endnote,25
+labview,25
+origin,25
+bash,24
+latex,23
+linux,23
+mathematica,23
+eclipse,21
+graphpad prism,20
+emacs,17
+java,17
+arcgis,16
+C++,16
+visual studio,16
+vim,14
+minitab,13
+samtools,13
+sigmaplot,13
+perl,12
+prism,12
+matplotlib,11
+atom,10
+mendeley,10
+shell,10
+blast,9
+C,9
+compilers,9
+gcc,9
+idl,9
+microsoft office,9
+microsoft word,9
+gaussian,8
+ide,8
+paraview,8
+plink,8
+qgis,8
+text editor,8
+abaqus,7
+adobe photoshop,7
+castep,7
+flowjo,7
+sublime text,7
+bitbucket,6
+comsol,6
+javascript,6
+jupyter,6
+octave,6
+pymol,6
+root,6
+sas,6
+slack,6
+tophat,6
+trac,6
+antconc,5
+bwa,5
+chemdraw,5
+cuda,5
+docker,5
+galaxy,5
+gatk,5
+gimp,5
+google docs,5
+igor,5
+jenkins,5
+maple,5
+maven,5
+mestrenova,5
+mpi,5
+sage,5
+skype,5
+sql,5
+travis,5
+trello,5
+zotero,5
+access,4
+atlas.ti,4
+bioedit,4
+bowtie,4
+ccp4,4
+coreldraw,4
+cufflinks,4
+django,4
+fiji,4
+fortran compilers,4
+gap,4
+gfortran,4
+gnuplot,4
+igv,4
+intellij,4
+mercury,4
+microsoft powerpoint,4
+mlwin,4
+openfoam,4
+openrefine,4
+pandas,4
+profilers,4
+qualtrics,4
+solidworks,4
+svn,4
+version control,4
+volocity,4
+wikis,4
+adobe illustrator,3
+amos,3
+anaconda,3
+ansys,3
+ape,3
+arcmap,3
+aws,3
+bioconductor,3
+bowtie2,3
+bristol online survey,3
+C#,3
+clc genomics workbench,3
+coot,3
+crystaloptimizer,3
+dl_poly,3
+dmacrys,3
+dropbox,3
+elan,3
+fenics,3
+gitlab,3
+google earth,3
+gulp,3
+haskell,3
+inkscape,3
+jira,3
+kingdom,3
+lammps,3
+lasergene,3
+ledit,3
+meep,3
+mercurial,3
+microsoft access,3
+mongodb,3
+mysql,3
+notepad++,3
+nwchem,3
+petsc,3
+php,3
+picard,3
+postgresql,3
+praat,3
+presentation,3
+psychopy,3
+pycharm,3
+revman,3
+ruby,3
+sourceforge,3
+spm,3
+sql server,3
+subversion,3
+unix,3
+vasp,3
+vba,3
+vcftools,3
+vmware,3
+weka,3
+winbugs,3
+word,3
+xcode,3
+adobe acrobat,2
+adobe suite,2
+amber,2
+ansible,2
+answer,2
+auto,2
+awk,2
+bedtools,2
+C++ builder,2
+camcasp,2
+cbmc,2
+cellprofiler,2
+chimera,2
+chromeleon,2
+cmake,2
+collatex,2
+confluence,2
+conquest,2
+contiki,2
+copyfind,2
+cp2k,2
+cplex,2
+crystalpredictor,2
+cst microwave studio,2
+cutadapt,2
+cytoscape,2
+debuggers,2
+doxygen,2
+eagle pcb,2
+editors,2
+facsdiva,2
+fasta,2
+ferret,2
+fsl,2
+gams,2
+gdal,2
+gdb,2
+gdma,2
+geant4,2
+geany,2
+genepattern,2
+genie,2
+genstat,2
+gentle,2
+gmin,2
+google drive,2
+google scholar,2
+google sheets,2
+gpower,2
+graphpad,2
+gsea,2
+haploview,2
+hdf5,2
+heasarc tools,2
+html,2
+html/css/js,2
+htseq,2
+ibm spss,2
+idris,2
+ifort,2
+impute,2
+impute2,2
+inssider,2
+juxta,2
+kaleidagraph,2
+knime,2
+library,2
+libreoffice,2
+libreoffice calc,2
+limesurvey,2
+lumerical,2
+magma,2
+make,2
+maker,2
+materials studio,2
+mayavi,2
+mega,2
+mira,2
+molpro,2
+mplus,2
+mrbayes,2
+mrfast,2
+ndipv4,2
+netbeans,2
+netcdf,2
+networkx,2
+novoalign,2
+omero,2
+onetep,2
+open office,2
+opensim,2
+openwrt,2
+opus,2
+originlab,2
+originpro,2
+oxygenxml,2
+phenix,2
+postgres,2
+psyscope,2
+python interpreter,2
+qsr nvivo,2
+qt,2
+qtiplot,2
+quantumgis,2
+raxml,2
+rsoft,2
+rubymine,2
+saleae logic,2
+scikit-learn,2
+sed,2
+seqmonk,2
+simulink,2
+sketchup,2
+snptest,2
+ssh,2
+stanfordnlp,2
+survey monkey,2
+tablet,2
+terminal,2
+texniccenter,2
+textwrangler,2
+trimmomatic,2
+trinity,2
+ubuntu,2
+velvet,2
+vensim,2
+vi,2
+visio,2
+visual basic,2
+vmd,2
+wordpress,2
+xmgrace,2
+4peaks,1
+abi prism 7700,1
+abinit,1
+abyss,1
+accelyrs draw,1
+acd labs,1
+adobe audition,1
+adol-c,1
+afra,1
+agilen ads,1
+agilentchem station,1
+aiccu,1
+aim2000,1
+aimaii,1
+alberta-fem,1
+alpino,1
+alps,1
+altium,1
+ambertools,1
+anastasia,1
+android studio,1
+annovar,1
+apertium,1
+aquaria,1
+aracne,1
+aramine,1
+arduino ide,1
+argument mapping,1
+artemis,1
+ascent for multiskan ascent,1
+asp.net,1
+assemblathon,1
+assimptote,1
+astexviewer,1
+asurv,1
+athena,1
+atk,1
+atlas/blas,1
+autocad,1
+autodesk inventor,1
+awr microwave office,1
+axiovision,1
+badc,1
+bandsolve,1
+banxia,1
+baps,1
+basism (ice sheet model),1
+bbedit,1
+bd cellquest,1
+beagle,1
+beast,1
+berkeley-madonna,1
+berkley-madonna,1
+besa,1
+besa statistics,1
+biggs iceberg model,1
+bio-ontologies,1
+biodare,1
+biokanga,1
+biome4,1
+biomechanicstoolkit,1
+biomodels,1
+bionode,1
+bioperl,1
+biorad cfx manager,1
+birmingham cluster genetic algorithm,1
+bismark,1
+bissnp,1
+bitcurator,1
+blat,1
+blender,1
+bloomberg,1
+bluehill,1
+bonej,1
+bookends,1
+boolector,1
+bound,1
+brain voyager qx,1
+breakdancer,1
+bristol online survey (bos),1
+bsoft,1
+bugzilla,1
+cadence pspice,1
+caffe,1
+calchep,1
+camba,1
+cambridge crystallographic data centre programs,1
+campbell scientific,1
+canvas,1
+cape-open flowsheeting environment,1
+capture molecules,1
+cardiff teleform,1
+caris,1
+carsim,1
+casa,1
+casa xps,1
+cce,1
+ccpn,1
+cdo,1
+celldesigner,1
+cesm,1
+charmm,1
+chem office,1
+chem station,1
+chembio hub,1
+chembiodraw,1
+chemical modelling / drawing software:,1
+chemshell,1
+chorus analytics,1
+chromquest,1
+circos,1
+clam,1
+clan,1
+clang,1
+clc main,1
+clewin,1
+clojure,1
+clump,1
+clustalw,1
+cluster 3,1
+cmap,1
+code composer studio,1
+code editor,1
+coin-or,1
+colibri-core,1
+colibri-mt,1
+colibrita,1
+collate,1
+community software,1
+comparative analysis,1
+conceptdraw mindmap 5,1
+conda,1
+connectivity map,1
+consed,1
+copasi,1
+corel photopaint,1
+cosa,1
+coventorware,1
+coverity,1
+cpsuperh,1
+crafty,1
+creo,1
+cryomeas,1
+crystalclear,1
+crystals,1
+crystaltrak,1
+csh,1
+css,1
+cst,1
+cubempi,1
+cvc4,1
+cvode,1
+cygwin,1
+cython,1
+d-vams project portal,1
+dali,1
+dalliance,1
+dat,1
+datadesk,1
+datastream,1
+david,1
+davis,1
+dcmtk,1
+dco,1
+dedoose,1
+degust,1
+delphes,1
+delta plot,1
+dendroscope,1
+deseq2,1
+dgd2,1
+diamond light source control software,1
+diprobase,1
+discovery studio visualizer,1
+diurnal,1
+diva,1
+dlfind,1
+dnastar lasergene,1
+documents,1
+doflin-adjoint,1
+dotmatics,1
+dragon narurally speaking,1
+drupal,1
+ds9,1
+dspace,1
+e-survey creator,1
+easychair,1
+easypcb,1
+eclipse-java,1
+eddypro,1
+editseq,1
+edna,1
+eeglab,1
+egret,1
+emboss,1
+emim,1
+emmax,1
+engineering equation solver,1
+enterprise architect,1
+enthought canopy,1
+envi,1
+envi-met,1
+environment,1
+enzymex,1
+eprime,1
+eqs,1
+erlang,1
+espressomd,1
+espressopp,1
+et geowizards,1
+ethercalc,1
+etherpad,1
+evernote,1
+exmaralda,1
+exonerate,1
+factiva,1
+fast network,1
+fast-lmm,1
+fastqc,1
+fasttree,1
+fbat,1
+fcs express,1
+feedly,1
+fielmakerpro,1
+filezilla,1
+fimmwave,1
+firedrake,1
+flat,1
+fledermaus,1
+flex,1
+flir thermal imaging,1
+folia,1
+folker,1
+fontforge,1
+forge,1
+fowlt,1
+fraclac,1
+freeling,1
+freertos,1
+freesurfer,1
+frog,1
+fullwave,1
+funtools,1
+garand,1
+gatan digital micrograph,1
+gate,1
+gbrowse,1
+gcc compiler,1
+gcta,1
+gda,1
+gdc,1
+gds,1
+gemini,1
+genespring,1
+genome strip,1
+gensat,1
+gensim,1
+geochem,1
+geomagic control,1
+geospatial modelling,1
+geov,1
+gephi,1
+ggi_tlm,1
+ggplot2,1
+ghc,1
+ghostscript,1
+ghostview,1
+giza++,1
+glasstress,1
+glimmer,1
+global phasing,1
+globalmapper,1
+gmt,1
+gnu compiler,1
+gnu make,1
+gnu octave,1
+gnu parallel,1
+gnu r,1
+gnu scientific library,1
+gnu screen,1
+gnumeric,1
+go,1
+google analytics,1
+google earth engine,1
+google maps,1
+gp/pari,1
+gpaw,1
+gpde,1
+grace,1
+grads,1
+grams,1
+graphlab,1
+graphviz,1
+grasp2k,1
+grass gis,1
+grasshopper,1
+gromacs,1
+groovy,1
+gsea and mutsig,1
+gsnap,1
+gtool,1
+gudrun,1
+gummi,1
+gurobi,1
+gvim,1
+h5py,1
+hadoop ecosystem,1
+hapgen,1
+harvest suite,1
+hdecay,1
+heidelberg mctdh package,1
+hipstar,1
+hmmer,1
+horace,1
+htsjdk,1
+hudap,1
+hydra,1
+hydro codes,1
+hypermesh,1
+hypre,1
+ibm statistics analysis,1
+ies-ve,1
+illumina genomestudio,1
+image pro plus,1
+imagequant,1
+imaris,1
+imglib2,1
+in cell investigator,1
+infoworks,1
+ingenuity,1
+ingres db,1
+insite,1
+inspiration and mindmanager,1
+integrated genome browser,1
+intel fortran,1
+intellij idea,1
+interproscan,1
+ipa,1
+ipython/jupyter notebook,1
+irap-rms,1
+irc,1
+irfanview,1
+iridis,1
+it support,1
+itk,1
+jags,1
+jalview,1
+jasmin,1
+java se,1
+java tree view,1
+jbrowse,1
+jed,1
+jenna,1
+jetbrains webstorm,1
+json,1
+junit,1
+justbio,1
+jws online,1
+kate,1
+keepnote,1
+khmer,1
+kinect sdk,1
+knowitall,1
+kyma/capybara,1
+labchart,1
+labtest lms software,1
+lamp,1
+lamp stack,1
+lapack,1
+laravel,1
+layoutbeamer,1
+ldmap,1
+leda,1
+leica af,1
+leica geo office,1
+leica las af,1
+leica lf af,1
+leica lite,1
+lemon,1
+leveldb,1
+levelgraph,1
+libatoms/quip ; castep ; molpro,1
+libsvm,1
+licor software,1
+lingpipe,1
+lisp,1
+livecode,1
+llbmc,1
+locuszoom,1
+lofreq,1
+logview,1
+ls dyna,1
+lua,1
+lucence,1
+lux render,1
+lynx,1
+mach,1
+macs,1
+madgraph,1
+magnet,1
+mallet machine learning toolkit,1
+mantid,1
+mapinfo,1
+maplesoft,1
+mapqtl,1
+maq,1
+martini,1
+marvin,1
+marxan,1
+mason,1
+masurca,1
+mathcad,1
+mathsat,1
+mathworks,1
+maus,1
+maxchelator,1
+maxent,1
+maxqda,1
+mbt,1
+mcm mapper,1
+mctdh,1
+medcalc,1
+meeting,1
+meme,1
+mendel,1
+merlin,1
+mesquite,1
+metal,1
+metamorph,1
+metaphlan,1
+mg,1
+mgopt,1
+microsoft office suite,1
+microsoft visual studio,1
+miktex,1
+min3p,1
+minimac,1
+minisat,1
+minuit,1
+mistress,1
+mobaxterm,1
+mobile,1
+moe2013,1
+mogul,1
+molpak,1
+molscat,1
+more4abm,1
+moses,1
+motion capture suite,1
+mpb,1
+mrcanavar,1
+mrsfast,1
+ms-sql server,1
+msc-adams,1
+mturk,1
+multisim,1
+muscle,1
+mutsig,1
+mutt,1
+mxpro qpcr,1
+nanodrop spectrophotometer,1
+nasa software,1
+national instruments labview,1
+nco,1
+neighcrys,1
+nemrodw,1
+netdraw,1
+netlogo,1
+network,1
+neurodebian,1
+neut,1
+newbler,1
+newsgroups,1
+nifti,1
+niftk,1
+nltk,1
+nodejs,1
+nodexl,1
+nonmem,1
+novelseq,1
+nquery,1
+nu plasma mc-icp-ms,1
+numbers,1
+nusmv,1
+objectpascal,1
+ocaml,1
+oceandataview,1
+odbc database,1
+olex2,1
+oligonucleotide properties calculator,1
+open databases,1
+open exchange,1
+open journal system.,1
+open text exceed,1
+openbugs,1
+opencossan,1
+opengeo suite,1
+openimaj,1
+openjdk,1
+openmpi,1
+opennlp,1
+opensesame,1
+opentidalfarm,1
+optacore winmcvd,1
+opticall,1
+optim,1
+oracle plsql developer,1
+orcid,1
+orient,1
+osgeo4w,1
+osirix,1
+otdr instruments,1
+oxfors issis,1
+oxmetrics,1
+oxygen,1
+packmol,1
+packt books and videos,1
+pacs,1
+pajek,1
+pandoc,1
+panoply,1
+papers3,1
+pari,1
+parma,1
+parse,1
+passage,1
+past hammer,1
+pasw/spss,1
+path-o-gen,1
+pathsample,1
+paw,1
+pc,1
+pcr machine software,1
+pdraw,1
+peaksplitter,1
+pele,1
+penelope,1
+petrel,1
+petromod,1
+pgfplots,1
+pgi,1
+pgplot graphics library,1
+phonegap build,1
+photon design,1
+photon kinetics,1
+php/xslt,1
+phpmyadmin,1
+phpstorm,1
+phrap,1
+phred,1
+phreeqc,1
+phylip,1
+phylogenetics,1
+phyre,1
+pindel,1
+ping6,1
+piratepad,1
+plastimatch,1
+plato,1
+plink-seq,1
+plot,1
+plot digitizer,1
+pocketanalyzerpca,1
+polyphred,1
+poped,1
+powpoit,1
+prayer/goat sacrifice,1
+premim,1
+primer 6+,1
+primer3,1
+probabel,1
+probe for epma,1
+promax,1
+protege,1
+protein data bank,1
+protoms,1
+psmc,1
+pspp,1
+ptv vissim,1
+pubmed,1
+pure data,1
+pycortex,1
+pydy,1
+pymc,1
+pynlpl,1
+pyop2,1
+pyroot,1
+pysal,1
+pytables,1
+pythia,1
+qctool,1
+qiime,1
+qiqqa,1
+qlikview,1
+quantasoft,1
+quantisnp,1
+quantumespresso,1
+qub,1
+quicktest,1
+quincy,1
+radvd,1
+rasp,1
+ratip,1
+rdf3x,1
+recpack,1
+redcap survey system,1
+reference manager,1
+reflexw,1
+refman,1
+refprop,1
+repast,1
+repast simphony,1
+request,1
+rest2009,1
+rhinoceros 5,1
+rjungle,1
+rmcprofile,1
+rna folding predictions,1
+rnaseq software,1
+rokdoc,1
+ros,1
+rosetta,1
+rotorgene 6,1
+saha,1
+sam,1
+samstat,1
+sansview,1
+sap2011,1
+sas institute jmp,1
+sbsi,1
+scalce,1
+scheme.,1
+scientific python,1
+scopeexplorer,1
+scribus,1
+scrivener,1
+sds,1
+seisworks,1
+sente,1
+seqfindr,1
+sequenceserver,1
+serial cloner,1
+sg controls mcvd deposition systems,1
+shapeit,1
+shiny,1
+sias paramics,1
+sickle,1
+silvaco deckbuild,1
+simcap,1
+simpack,1
+simple pci,1
+simpleware,1
+simupop,1
+simwalk,1
+smalt,1
+smart rf studio,1
+snap,1
+snopt,1
+snv-seq,1
+snvmix2,1
+soapdenovo,1
+solar,1
+sonarqube,1
+spades,1
+spectrum,1
+spectrum v5.3.1 (ftir),1
+spike2,1
+spinworks nmr,1
+splus,1
+spm8,1
+spyder,1
+sql developer,1
+srilm,1
+ssps,1
+stampy,1
+stan,1
+stand visualisation system,1
+star,1
+stardrop,1
+stars,1
+startpage,1
+statgraphs,1
+stattransfer,1
+stisim drive,1
+stringdb,1
+structure,1
+sublime,1
+superlab,1
+surfer,1
+sv,1
+svmerge,1
+sygmaplot,1
+symplectic,1
+syngene genetools,1
+system design tools,1
+ta data analysis,1
+tair,1
+tao,1
+tapenade,1
+tecplot,1
+tekvisa,1
+teqc,1
+testexpert 2,1
+tex,1
+texgen,1
+texshop,1
+textedit,1
+theano,1
+thermo fisher,1
+thesaurus linguae graecae,1
+thredds data server,1
+ti smart rf studio,1
+ticketing system,1
+tilia,1
+timbl,1
+tinker,1
+tinnr,1
+tnt,1
+tobii eyetracker,1
+tobii studio,1
+toggl,1
+tomcat,1
+tool-stream,1
+toolkit.optimalmatching.com,1
+topas,1
+topcat,1
+treetagger,1
+trilinos,1
+tripal,1
+trj_cavity,1
+trl junctions,1
+tss aimsun,1
+tunslip6,1
+turbomole,1
+tweetdeck,1
+ucinet,1
+ucsf chimera,1
+ucto,1
+uk met office unified model,1
+unphased,1
+unscrambler,1
+usbee suite,1
+valkuil,1
+variant_tools,1
+variationhunter,1
+varscan,1
+vectornti,1
+veda,1
+veda-be,1
+veda-fe,1
+vg studio,1
+vimclangcmake,1
+vips,1
+virtual manuscript room,1
+visa,1
+visual molecular dynamics,1
+visual studio c++,1
+visualisation tools for research output,1
+vivo,1
+vtk,1
+web servers,1
+web services,1
+webapollo,1
+western blot reader software,1
+windiets,1
+wingx,1
+winlist,1
+winsdr,1
+winspec,1
+wolfram alpha,1
+wolfram mathematica,1
+wopr,1
+workspace for collaborative editing,1
+write codes in fortran and matlab,1
+wsxm,1
+wunderlist,1
+xcalibur,1
+xchat,1
+xd2006,1
+xfdtd,1
+xl,1
+xlstat,1
+xml,1
+xslt,1
+yices,1
+z3,1
+zcall,1
+zeal logger,1
+zsh,1

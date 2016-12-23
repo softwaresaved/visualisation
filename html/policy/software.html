@@ -6,7 +6,7 @@
     <title>Software Sustainability Institute</title>
   </head>
   <body>
-   <h1>Software Survey 2014 Data</h1>
+   <h1>Software Used In Research - combined data 2016</h1>
    <p>
      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
    </p>
@@ -21,15 +21,12 @@
 </style>
 <script src="../../js/circle_packing.js"></script>
 
-    <h2>Operating system</h2>
-    <p><svg id="chartOs" class="barchart_horiz"></svg></p>
-    <h2>Software</h2>
     <p><svg id="circleSw" class="circles"><g transform="translate(1,1)"></g></svg></p>
 
 <script>
-draw_chart("../../data/static/filtered/software_survey_2014_os.csv", "chartOs", "Operating System", "Count", 1000);
 
-draw_circle_chart("../../data/static/filtered/software_survey_2014_software.csv", "circleSw", "Research Software", "Count", 1000, 1000);
+draw_circle_chart("../../data/sheets/as-is/software.csv", "circleSw", "Unique names for counting", "How many times reported?", 1000, 1000);
+
 </script>
   </body>
 </html>
