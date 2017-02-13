@@ -17,17 +17,15 @@ if __name__ == "__main__":
     sheet_id = '1Jmq6ongECyJih7HbroltnAGZOecWOsl1qFdemw8Hj8A'
 
     tabs_files = [
-        ["Chart-FunderEffort",
-         "data/sheets/as-is/funders_effort.csv"],
-        ["Chart-Funding",
-         "data/sheets/as-is/funders_projects.csv"],
+        ["Chart-FunderEffort", "funders_effort.csv"],
+        ["Chart-Funding", "funders_projects.csv"],
         ["Chart-InstitutionEffort!A3:B22",
-         "data/sheets/filtered/institution_effort.csv"],
+         "institution_effort.csv"],
         ["Chart-InstitutionProjects!A3:B28",
-         "data/sheets/filtered/institution_projects.csv"],
+         "institution_projects.csv"],
         ["Chart-Effort!A3:B58",
-         "data/sheets/filtered/projects_effort.csv"]]
+         "projects_effort.csv"]]
 
     for [tab_and_range, file_name] in tabs_files:
         data = download_sheet(sheet_id, tab_and_range)
-        save_list_as_csv_file(data, file_name)
+        save_list_as_csv_file(data, "data/sheets/as-is/" + file_name)

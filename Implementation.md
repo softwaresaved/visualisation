@@ -48,12 +48,12 @@ $ python src/download_consultancy.py
   - Chart-InstitutionEffort
   - Chart-InstitutionProjects
 * Write:
-  - data/sheets/filtered/institution_effort.csv
-  - data/sheets/filtered/institution_projects.csv
+  - data/sheets/as-is/institution_effort.csv
+  - data/sheets/as-is/institution_projects.csv
 * Rendered by: html/consultancy/institutions.html, js/barchart.js, js/pie.js
 * Download SSI Consultancy Projects sheet, tabs:
   - Chart-Effort
-* Write: data/sheets/filtered/projects_effort.csv
+* Write: data/sheets/as-is/projects_effort.csv
 * Rendered by: html/consultancy/projects.html, js/circle_packing
 
 ## Software Carpentry scripts and data
