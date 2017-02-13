@@ -4,7 +4,8 @@
 
 Scripts prefixed with `download`:
 
-* These scripts download Google Sheets then filter the data using Python and save the resultant data as CSV.
+* These scripts download Google Sheets, using OAuth2 for authentication, then filter the data using Python and save the resultant data as CSV.
+* For more on the Google Sheets and OAuth2 APIs used, see Google Sheets API v4 [Python Quickstart](https://developers.google.com/sheets/api/quickstart/python)
 * Data that is saved as-is without filtering, is saved into data/sheets/as-is/.
 * Filtered data is saved into data/sheets/filtered/.
 
@@ -33,36 +34,35 @@ data/:
 ## Consultancy scripts and data
 
 ```
-$ python src/download_consultancy.py SHEET
+$ python src/download_consultancy.py
 ```
 
-* SHEET is the ID of the SSI Consultancy Projects Google Sheet
-* Download: SSI Consultancy Projects sheet tabs
-  - Chart-FunderEffort (1949517833)
-  - Chart-Funding (7)
+* Download SSI Consultancy Projects sheet, tabs:
+  - Chart-FunderEffort
+  - Chart-Funding
 * Write:
   - data/sheets/as-is/funders_effort.csv
   - data/sheets/as-is/funders_projects.csv
 * Rendered by: html/consultancy/funders.html, js/barchart.js, js/pie.js
-* Download: SSI Consultancy Projects sheet tabs
-  - Chart-InstitutionEffort (9)
-  - Chart-InstitutionProjects (8)
+* Download SSI Consultancy Projects sheet:
+  - Chart-InstitutionEffort
+  - Chart-InstitutionProjects
 * Write:
   - data/sheets/filtered/institution_effort.csv
   - data/sheets/filtered/institution_projects.csv
 * Rendered by: html/consultancy/institutions.html, js/barchart.js, js/pie.js
-* Download: SSI Consultancy Projects sheet tab Chart-Effort (1)
+* Download SSI Consultancy Projects sheet, tabs:
+  - Chart-Effort
 * Write: data/sheets/filtered/projects_effort.csv
 * Rendered by: html/consultancy/projects.html, js/circle_packing
 
 ## Software Carpentry scripts and data
 
 ```
-$ python src/download_swc.py SHEET
+$ python src/download_swc.py
 ```
 
-* SHEET is the ID of the SSI SWC from 2012-04-30 to 2014-04-09 from Mike Google Sheet
-* Download: Software Carpentry sheet Workshops tab (1)
+* Download: SSI SWC from 2012-04-30 to 2014-04-09 from Mike sheet, Workshops tab
 * Write: data/sheets/as-is/swc.csv 
 * Write: data/sheets/filtered/swc_attendees.csv
 * Rendered by: html/training/swc.html, js/barchart.js, js/pie.js
@@ -70,11 +70,10 @@ $ python src/download_swc.py SHEET
 ## Policy scripts and data
 
 ```
-$ python src/download_policy.py SHEET
+$ python src/download_policy.py
 ```
 
-* SHEET is the ID of the Software Used In Research Combined Results Google Sheet
-* Download: Unique names for publication tab (2010786314)
+* Download: Software Used In Research Combined Results sheet, Unique names for publication tab
 * Write: data/sheets/as-is/software.csv 
 * Rendered by: html/policy/software.html, js/barchart_horiz.js, js/circle_packing.js
 

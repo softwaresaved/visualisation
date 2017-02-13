@@ -27,7 +27,15 @@ The [Anaconda](https://www.continuum.io/downloads) version of Python is recommen
 
 ---
 
-## View within GitHub pages
+## Install Google Client library
+
+```
+$ pip install --upgrade google-api-python-client
+```
+
+---
+
+## View visualisations within GitHub pages
 
 [GitHub pages](https://pages.github.com/) renders web site content in `gh-pages` branches of repositories hosted on GitHub.
 
@@ -35,7 +43,7 @@ When you push changes to the `gh-pages` branch of your cloned repository on GitH
 
 ---
 
-## View within Python web server
+## View visualisations within Python web server
 
 Some browsers (e.g. Google Chrome) won't render JavaScript in HTML that is loaded into the browser via, for example, a file:// URL. 
 
@@ -139,23 +147,52 @@ Visit http://127.0.0.1/visualisation/
 
 ## Update Institute data
 
+Create Google API project:
+
+* Visit [Google API Console](https://console.developers.google.com/projectselector/apis/credentials)
+* Click Create Project
+* Enter project name e.g. ssi-viz
+
+Enable Google Sheets API:
+
+* Select your project.
+* Click + ENABLE API
+* Click Sheets API
+* Click ENABLE
+
+Create OAuth2 credentials:
+
+* Click Credentials
+* Click Create credentials
+* Select OAuth client id
+* Click Configure consent screen
+* Enter 
+  - E-mail address: user@somewhere.ac.uk
+  - Product name shown to users: SSI visualisation scripts
+* Select Application type: Other
+* Name: SSI visualisation scripts downloader
+* Click download icon to download JSON.
+* Save as `client_secret.json` in the `visualisation` directory.
+
+Download consultancy data:
+
 ```
-$ python src/download_consultancy_data.py SHEET
+$ python src/download_consultancy_data.py
 ```
 
-where `SHEET` is the ID of the SSI Consultancy Projects Google Sheet.
+Download Software Carpentry data:
 
 ```
-$ python swc/download_swc.py SHEET
+$ python swc/download_swc.py
 ```
 
-where `SHEET` is the ID of the SSI SWC from 2012-04-30 to 2014-04-09 from Mike  Google Sheet.
+Download policy data:
 
 ```
-$ python swc/download_policy.py SHEET
+$ python swc/download_policy.py
 ```
 
-where `SHEET` is the ID of the Software Used In Research Combined Results Google Sheet.
+The first time you run one of these scripts, a browser will appear and you will be prompted for your Google username and password (if not already logged in) and then asked to allow the program access to your Google Sheets.
 
 ---
 
@@ -178,12 +215,20 @@ Logging:
 
 ## Copyright and licence
 
-* Copyright 2015-2016, The University of Edinburgh and The University of Southampton except where noted in Third-party code below.
-* Licence: [GNU General Public License version 2](./LICENSE)
+* Copyright 2015-2017, The University of Edinburgh and The University of Southampton except where noted in Third-party code below.
+* Python code licence: [Apache 2.0](./LICENSE)
+* JavaScript code licence: [GNU General Public License version 2](./LICENSE)
 
 ---
 
 ## Third-party code
+
+Google Sheet and OAuth2 Python example
+
+* https://developers.google.com/sheets/api/quickstart/python
+* Copyright 2016, Google
+* Licence: [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+* Local code: `src/sheet_utils`
 
 Bootstrap 3.3.6
 
