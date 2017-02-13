@@ -7,41 +7,27 @@
 * Chart-Effort
 """
 
-# Copyright (c) 2016 The University of Edinburgh
+# Copyright (c) 2016-2017 The University of Edinburgh
 
-import os
-import sys
-
-from csv_utils import tail
-from web_utils import download_google_sheet
+from csv_utils import save_list_as_csv_file
+from sheet_utils import download_sheet
 
 if __name__ == "__main__":
-    sheet = sys.argv[1]
+    # SSI Consultancy Projects
+    sheet_id = '1Jmq6ongECyJih7HbroltnAGZOecWOsl1qFdemw8Hj8A'
 
-    tab = 1949517833 # Chart-FunderEffort
-    file_name = "data/sheets/as-is/funders_effort.csv"
-    download_google_sheet(file_name, sheet, tab)
+    tabs_files = [
+        ["Chart-FunderEffort",
+         "data/sheets/as-is/funders_effort.csv"],
+        ["Chart-Funding",
+         "data/sheets/as-is/funders_projects.csv"],
+        ["Chart-InstitutionEffort!A3:B22",
+         "data/sheets/filtered/institution_effort.csv"],
+        ["Chart-InstitutionProjects!A3:B28",
+         "data/sheets/filtered/institution_projects.csv"],
+        ["Chart-Effort!A3:B58",
+         "data/sheets/filtered/projects_effort.csv"]]
 
-    tab = 7 # Chart-Funding tab
-    file_name = "data/sheets/as-is/funders_projects.csv"
-    download_google_sheet(file_name, sheet, tab)
-
-    tab = 9 # Chart-InstitutionEffort
-    file_name = "tmp.csv"
-    download_google_sheet(file_name, sheet, tab)
-    # Trim notes lines
-    trimmed_file_name = "data/sheets/filtered/institution_effort.csv"
-    tail(file_name, trimmed_file_name, 2)
-
-    tab = 8 # Chart-InstitutionProjects
-    download_google_sheet(file_name, sheet, tab)
-    # Trim notes lines
-    trimmed_file_name = "data/sheets/filtered/institution_projects.csv"
-    tail(file_name, trimmed_file_name, 2)
-
-    tab = 1 # Chart-Effort
-    download_google_sheet(file_name, sheet, tab)
-    # Trim notes lines
-    trimmed_file_name = "data/sheets/filtered/projects_effort.csv"
-    tail(file_name, trimmed_file_name, 2)
-    os.remove(file_name)
+    for [tab_and_range, file_name] in tabs_files:
+        data = download_sheet(sheet_id, tab_and_range)
+        save_list_as_csv_file(data, file_name)
