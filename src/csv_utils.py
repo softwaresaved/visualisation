@@ -183,7 +183,7 @@ def save_csv_file(columns, csv_data, file_name):
     :param file_name: CSV file name
     :type file_name: str or unicode
     """
-    print("Saving:", file_name)
+    print(("Saving:", file_name))
     with open(file_name, 'w', newline="") as csv_file:
         csv_writer = csv.DictWriter(csv_file,
                                     fieldnames=columns,
@@ -209,7 +209,7 @@ def save_dict_as_csv_file(file_name, key_header, value_header, data):
     :param data: Data
     :type data: dict from str or unicode to int or float
     """
-    print("Saving:", file_name)
+    print(("Saving:", file_name))
     sorted_data = sorted(list(data.items()), key=operator.itemgetter(1))
     sorted_data.reverse()
     with open(file_name, 'w', newline="") as csv_file:
@@ -223,6 +223,24 @@ def save_dict_as_csv_file(file_name, key_header, value_header, data):
             csv_writer.writerow([name, value])
 
 
+def save_list_as_csv_file(csv_data, file_name):
+    """
+    Save CSV data to a CSV file.
+
+    :param csv_data: CSV rows
+    :type csv_data: list of lists of str or unicode
+    :param file_name: CSV file name
+    :type file_name: str or unicode
+    """
+    print(("Saving:", file_name))
+    with open(file_name, 'w', newline="") as csv_file:
+        csv_writer = csv.writer(csv_file,
+                                delimiter=DELIMITER,
+                                quotechar=QUOTE)
+        for row in csv_data:
+            csv_writer.writerow(row)
+
+
 def tail(file_name, tail_file_name, num_lines):
     """
     Copy a file to another file, ignoring the first N lines.
@@ -234,7 +252,7 @@ def tail(file_name, tail_file_name, num_lines):
     :param num_lines: Number of lines to ignore
     :type num_lines: int
     """
-    print("Saving:", tail_file_name)
+    print(("Saving:", tail_file_name))
     with open(file_name, 'r') as in_file:
         with open(tail_file_name, 'w', newline="") as out_file:
             for _ in range(num_lines):
