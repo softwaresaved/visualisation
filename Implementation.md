@@ -5,7 +5,9 @@
 Scripts prefixed with `download`:
 
 * These scripts download Google Sheets, using OAuth2 for authentication, then filter the data using Python and save the resultant data as CSV.
-* For more on the Google Sheets and OAuth2 APIs used, see Google Sheets API v4 [Python Quickstart](https://developers.google.com/sheets/api/quickstart/python)
+* For more on the Google Sheets and OAuth2 APIs used, see:
+  - [Introduction to the Google Sheets API](https://developers.google.com/sheets/api/guides/concepts)
+  - Google Sheets API v4 [Python Quickstart](https://developers.google.com/sheets/api/quickstart/python)
 * Data that is saved as-is without filtering, is saved into data/sheets/as-is/.
 * Filtered data is saved into data/sheets/filtered/.
 
