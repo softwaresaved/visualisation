@@ -16,6 +16,7 @@ Fork and clone this repository
 
 ```
 $ git clone http://USERNAME@github.com/USERNAME/visualisation.git
+$ cd visualisation
 $ git remote add ssi  http://USERNAME@github.com/softwaresaved/visualisation.git
 ```
 
