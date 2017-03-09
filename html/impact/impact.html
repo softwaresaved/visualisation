@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px helvetica;
+}
+
+.arc path {
+  stroke: #fff;
+}
+
+
+
+.legend rect {
+  font-size: 12px;
+  fill:white;
+  border: 1px solid black;
+  }
+
+
+
+h1 {text-align:center;}
+
+</style>
+
+
+</style>
+<head><h1>SSI Project Impact based on questionnaire results</h1></head>
+<body>
+<script src="../../js/d3.min.js"></script>
+
+
+
+<script>
+
+// render a pie chart into a specified already existing html element
+function renderPieChart(element, data, pie, title, colours)
+{
+
+	// define the font and size for the pie chart legends
+	// note - should do this via css!
+    var legend_font = "16px helvetica";
+
+	// read the top line of the data, this gives our column names
+	var headerRow = d3.keys(data[0]);
+
+       // read the labels
+       // currently the spreadsheet has no header for the categories;
+       // if the spreadsheet changes then the following selection will need to be changed
+
+       var labels = [];
+
+  	data.forEach(function(d)
+  	{
+		// assumes the categories have no header name;
+		// otherwise need to specify the header name here
+    		labels.push(d[""]);
+  	});
+
+
+	 var svg = d3.select(element).append("svg")
+	     .attr("width", width)
+	     .attr("height", height)
+	   .append("g")
+       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+
+    // add the pie chart
+    var g = svg.selectAll(".arc")
+	      .data(pie(data))
+	      .enter().append("g")
+	      .attr("class", "arc");
+
+	  g.append("path")
+	      .attr("d", arc)
+	      .attr("data-legend", function(d) { return d.data[headerRow[0]]; })
+	      .attr("data-legend-pos", function(d, i) { return i; })
+	      .style("fill", function(d) { return colours(d.data[headerRow[0]]); });
+
+
+
+	  var legend = svg.selectAll('.legend')
+          .data( labels )
+          .enter()
+          .append('g')
+          .attr('class', 'legend')
+          .attr('transform', function(d, i) {
+            var height = legendRectSize + legendSpacing;
+            var offset =  height * colours.length / 2;
+            var horz = 10 * legendRectSize;
+            var vert = i * height - offset;
+            return 'translate(' + horz + ',' + vert + ')';
+          });
+
+        legend.append('rect')
+          .attr('width', legendRectSize)
+          .attr('height', legendRectSize)
+          .style('fill', colours)
+          .style('stroke', colours);
+
+        legend.append('text')
+          .attr('x', legendRectSize + legendSpacing)
+          .attr('y', legendRectSize - legendSpacing)
+          .text(function(d) { return d; });
+
+         // add a title to the pie chart
+         // placing the legend is a bit tricky;
+	// think it is relative to the centre of the graph as 0,0
+		svg.append("text")
+                     .attr("x", -150)
+                     .attr("y", -100)
+		     .attr("text-anchor", "start")
+		     .style("font-size", "16px")
+		 	 .style("text-decoration", "underline")
+              .text(title);
+
+
+
+}
+
+// specify the dimensions of the graphic area and chart size for each chart
+var width = 720,
+    height = 375,
+    radius = Math.min(width-100, height-100) / 2;
+
+// specify the size of each colour block in the pie chart legend
+var legendRectSize = 18;
+        var legendSpacing = 4;
+
+
+// define pie chart colours, ranging in attention grabbing-ness from left to right
+var impactColours = d3.scaleOrdinal()
+    .range(["Brown", "Green", "Blue", "Yellow", "Red"]);
+
+// define the size of the chart
+var arc = d3.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(0);
+
+
+
+// the data loading callback, this is where the action is
+d3.csv("../../data/sheets/as-is/project_impact.csv", function(error, data)
+{
+  // get the column names. we will use these to set the titles above the pie charts
+  var headerRow = d3.keys(data[0]);
+
+  // check how many columns we have
+  var colCount = headerRow.length;
+  
+
+  // d3 loads data as strings, so convert the data to numbers
+  data.forEach(function(d)
+  {
+    for(var i=1; i<colCount; i++)
+    {
+    	d[headerRow[i]] = +d[headerRow[i]];
+    }
+  });
+
+  // generate a separate pie chart for each column of data in the spreadsheet
+  // here we render directly into the DOM body but could be changed to some more custom layout
+  for(var i=1; i<colCount; i++)
+  {
+  	      	renderPieChart("body", data, d3.pie()
+  	              .sort(null)
+  	              .value(function(d) { return d[headerRow[i]]; }), headerRow[i], impactColours);
+  }
+
+
+});
+
+
+
+</script>
+</body>
