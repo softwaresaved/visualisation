@@ -34,11 +34,12 @@ h1 {text-align:center;}
 
 <script>
 
-
+// render a pie chart into a specified already existing html element
 function renderPieChart(element, data, pie, title, colours)
 {
 
 	// define the font and size for the pie chart legends
+	// note - should do this via css!
     var legend_font = "16px helvetica";
 
 	// read the top line of the data, this gives our column names
@@ -52,6 +53,8 @@ function renderPieChart(element, data, pie, title, colours)
 
   	data.forEach(function(d)
   	{
+		// assumes the categories have no header name;
+		// otherwise need to specify the header name here
     		labels.push(d[""]);
   	});
 
@@ -102,7 +105,8 @@ function renderPieChart(element, data, pie, title, colours)
           .text(function(d) { return d; });
 
          // add a title to the pie chart
-         // fixme - title needs to appear above or below pie chart
+         // placing the legend is a bit tricky;
+	// think it is relative to the centre of the graph as 0,0
 		svg.append("text")
                      .attr("x", -150)
                      .attr("y", -100)
@@ -115,11 +119,12 @@ function renderPieChart(element, data, pie, title, colours)
 
 }
 
-
+// specify the dimensions of the graphic area and chart size for each chart
 var width = 720,
     height = 375,
     radius = Math.min(width-100, height-100) / 2;
 
+// specify the size of each colour block in the pie chart legend
 var legendRectSize = 18;
         var legendSpacing = 4;
 
@@ -154,7 +159,8 @@ d3.csv("../../data/sheets/as-is/project_impact.csv", function(error, data)
     }
   });
 
-
+  // generate a separate pie chart for each column of data in the spreadsheet
+  // here we render directly into the DOM body but could be changed to some more custom layout
   for(var i=1; i<colCount; i++)
   {
   	      	renderPieChart("body", data, d3.pie()
