@@ -198,6 +198,12 @@ Download policy data:
 $ python src/download_policy.py
 ```
 
+Download project impact data:
+
+```
+$ python src/download_impact.py
+```
+
 The first time you run one of these scripts, a browser will appear and you will be prompted for your Google username and password (if not already logged in) and then asked to allow the program access to your Google Sheets.
 
 ---

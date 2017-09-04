@@ -58,6 +58,14 @@ $ python src/download_consultancy.py
 * Write: data/sheets/as-is/projects_effort.csv
 * Rendered by: html/consultancy/projects.html, js/circle_packing
 
+```
+$ python src/download_impact.py
+```
+
+* Download Questionnaire Analysis sheet, AnalysisByQuestion tab, C5:N16.
+* Write: data/sheets/as-is/project_impact.csv 
+* Rendered by: html/impact/impact.html, JavaScript within HTML, js/d3.min.js.
+
 ## Software Carpentry scripts and data
 
 ```
