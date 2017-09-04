@@ -28,11 +28,16 @@ The [Anaconda](https://www.continuum.io/downloads) version of Python is recommen
 
 ---
 
-## Install Google Client library
+## Install Python packages
 
 ```
-$ pip install --upgrade google-api-python-client
+$ pip install -r requirements.txt
 ```
+
+This installs (if not already installed):
+
+* [requests](http://docs.python-requests.org/en/master/): Requests: HTTP for Humans.
+* [google-api-python-client](https://github.com/google/google-api-python-client): Client library for Google's discovery based APIs. 
 
 ---
 
