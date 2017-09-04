@@ -189,13 +189,13 @@ $ python src/download_consultancy_data.py
 Download Software Carpentry data:
 
 ```
-$ python swc/download_swc.py
+$ python src/download_swc.py
 ```
 
 Download policy data:
 
 ```
-$ python swc/download_policy.py
+$ python src/download_policy.py
 ```
 
 The first time you run one of these scripts, a browser will appear and you will be prompted for your Google username and password (if not already logged in) and then asked to allow the program access to your Google Sheets.
