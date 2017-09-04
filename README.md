@@ -183,7 +183,7 @@ Create OAuth2 credentials:
 Download consultancy data:
 
 ```
-$ python src/download_consultancy_data.py
+$ python src/download_consultanc.py
 ```
 
 Download Software Carpentry data:

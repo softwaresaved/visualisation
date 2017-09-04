@@ -11,6 +11,6 @@ pip install -r requirements.txt
 mkdir -p data/sheets/as-is
 mkdir -p data/sheets/filtered
 
-python src/download_consultancy_data.py
+python src/download_consultancy.py
 python src/download_swc.py
 python src/download_policy.py
