@@ -14,6 +14,7 @@ SURegen,0.50
 JiscRDS,0.60
 LabBook,0.67
 Cadabra,0.90
+DataSHIELD,0.90
 sameas-lite,0.95
 AMRMMHD,1.00
 BoneJ,1.00
@@ -23,7 +24,7 @@ ICAT,1.00
 LowerLimbModel,1.00
 iHUB,1.03
 ReproPhylo,1.05
-recipy,1.08
+recipy,1.17
 NeISS,1.20
 DawnScience,1.38
 RAPPORT,1.42
@@ -31,7 +32,6 @@ APEL,1.50
 Arts-humanities.net,1.50
 RTI-VIPS,1.50
 Synote,1.50
-LUX-ZEPLIN,1.58
 VAMPIRE,1.60
 BASIL/FABBER,1.61
 BioJS,1.61
@@ -43,6 +43,7 @@ DMACRYS,2.25
 DISTANCE,2.42
 TPLS,2.43
 CGPACK,2.50
+LUX-ZEPLIN,2.58
 ForestGrowth-SRC,3.00
 <Identification of Genetic Loci>,3.50
 Recomputation.org,3.65
@@ -53,4 +54,3 @@ TEXTvre,8.44
 CCFE,9.00
 ECIAS,9.00
 SynthSys,9.00
-BRIC,9.08
