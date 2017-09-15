@@ -11,6 +11,6 @@ pip install -r requirements.txt
 mkdir -p data/sheets/as-is
 mkdir -p data/sheets/filtered
 
-python src/download_consultancy.py
-python src/download_swc.py
-python src/download_policy.py
+python src/download_consultancy.py --noauth_local_webserver
+python src/download_swc.py --noauth_local_webserver
+python src/download_policy.py --noauth_local_webserver
