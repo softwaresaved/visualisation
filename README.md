@@ -151,7 +151,9 @@ Visit http://127.0.0.1/visualisation/
 
 ---
 
-## Update Institute data
+## Set up Google API authentication
+
+The Institute data Google Sheets are protected, so you need to set up Google API authentication to access these.
 
 Create Google API project:
 
@@ -180,6 +182,49 @@ Create OAuth2 credentials:
 * Click download icon to download JSON.
 * Save as `client_secret.json` in the `visualisation` directory.
 
+Run a data download script to add the Google API authentication files to your local machine:
+
+Download consultancy data:
+
+```
+$ python src/download_consultancy.py --noauth_local_webserver
+```
+
+When you run this script for the first time, with the given flag, Google's authentication component will ask you to give your permission for the use of your credentials to access Google Sheets to which you have access. It does this by asking you to go to a Google Accounts link to get a verification code and enter that code. For example:
+
+```
+Go to the following link in your browser:
+https://accounts.google.com/o/oauth2/auth?client_id=12345-678910.apps.googleusercontent.com&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&access_type=offline&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fspreadsheets.readonly
+
+Enter verification code:
+```
+
+Using a web browser:
+
+* Go to the link you are shown.
+* Sign in to your Google Account.
+* Click ALLOW to allow access to the Google Sheets.
+* Copy your verification code.
+
+Enter the verification code to successfully authenticate. For example:
+
+```
+Enter verification code: ABCDEF1234567890
+```
+
+You should then see a message like:
+
+```
+Authentication successful.
+Storing credentials to /home/someuser/credentials/sheets.googleapis.com-python-quickstart.json
+```
+
+When you run any of the download scripts, you will not be asked to authenticate again.
+
+---
+
+## Update Institute data
+
 Download consultancy data:
 
 ```
@@ -203,8 +248,6 @@ Download project impact data:
 ```
 $ python src/download_impact.py
 ```
-
-The first time you run one of these scripts, a browser will appear and you will be prompted for your Google username and password (if not already logged in) and then asked to allow the program access to your Google Sheets.
 
 ---
 
