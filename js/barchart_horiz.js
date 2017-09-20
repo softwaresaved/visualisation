@@ -6,7 +6,7 @@
  * on 04/08/2016.
  *
  * Copyright (C) 2016, Mike Bostock
- * Changes Copyright (C) 2016, The University of Edinburgh and 
+ * Changes Copyright (C) 2016-2017, The University of Edinburgh and 
  * The University of Southampton.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -41,11 +41,11 @@
  * each unique value in this column. Value determines size of bar.
  * @param {integer} area_width - drawing area width.
  */
-function draw_chart(data_file, 
-                    id_tag, 
-		    label_column,
-                    value_column, 
-                    area_width) {
+function draw_bar_horiz(data_file, 
+                        id_tag, 
+                        label_column,
+                        value_column, 
+                        area_width) {
 
     // Changes from original code:
     // Code in function so can draw multiple charts on same page.
@@ -84,34 +84,34 @@ function draw_chart(data_file,
     // Changes from original code:
     // Replaced d3.tsv with d3.csv.
     d3.csv(data_file, type, function(error, data) {
-	// Changes from original code:
-	// Added error handler.
+        // Changes from original code:
+        // Added error handler.
         if (error) {
             throw error;
         }        
 
         x.domain([0, d3.max(data, function(d) { return d[value_column]; })]);
-		 
-	chart.attr("height", barHeight * data.length);
+                 
+        chart.attr("height", barHeight * data.length);
 
-	var bar = chart.selectAll("g")
-	    .data(data)
-	    .enter().append("g")
-	    .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+        var bar = chart.selectAll("g")
+            .data(data)
+            .enter().append("g")
+            .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
 
-	bar.append("rect")
-	    .attr("width", function(d) { return x(d[value_column]); })
-	    .attr("height", barHeight - 1);
+        bar.append("rect")
+            .attr("width", function(d) { return x(d[value_column]); })
+            .attr("height", barHeight - 1);
 
-	// Changes from original code:
-	// Replaced d.value with d[label_column] to allow data column
-	// to be configured via function argument, so can use different
-	// data sets, and to label bar with label and not value.
-	// x function adds 3 so label is drawn after end of column.
-	bar.append("text")
-	    .attr("x", function(d) { return x(d[value_column]) + 3; })
-	    .attr("y", barHeight / 2)
-	    .attr("dy", ".35em")
-	    .text(function(d) { return d[label_column] + " (" + d[value_column] + ")"; });
+        // Changes from original code:
+        // Replaced d.value with d[label_column] to allow data column
+        // to be configured via function argument, so can use different
+        // data sets, and to label bar with label and not value.
+        // x function adds 3 so label is drawn after end of column.
+        bar.append("text")
+            .attr("x", function(d) { return x(d[value_column]) + 3; })
+            .attr("y", barHeight / 2)
+            .attr("dy", ".35em")
+            .text(function(d) { return d[label_column] + " (" + d[value_column] + ")"; });
     });
 };
