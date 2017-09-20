@@ -2,11 +2,11 @@
  * D3 bar chart
  *
  * This version derived from original downloaded from
- * Bar Chart https://bl.ocks.org/mbostock/3885304#index.html 
+ * Bar Chart https://bl.ocks.org/mbostock/3885304#index.html
  * on 05/08/2016.
  *
  * Copyright (C) 2016, Mike Bostock
- * Changes Copyright (C) 2016, The University of Edinburgh and 
+ * Changes Copyright (C) 2016-2017, The University of Edinburgh and
  * The University of Southampton.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@
  * @param {string} data_file - file with comma-separated values
  * (CSV).
  * @param {string} id_tag - ID of HTML tag in which the bar chart is
- * drawn. 
+ * drawn.
  * @param {string} label_column - bar chart will have one X axis bar for
  * each unique value in this column.
  * @param {string} value_column - bar chart will have one X axis bar for
@@ -46,12 +46,12 @@
  * @param {integer} area_width - drawing area width.
  * @param {integer} area_height - drawing area height.
  */
-function draw_chart(data_file, 
-                    id_tag, 
-                    label_column, 
-                    value_column, 
-                    area_width,
-                    area_height) {
+function draw_bar(data_file,
+                  id_tag,
+                  label_column,
+                  value_column,
+                  area_width,
+                  area_height) {
 
     // Changes from original code:
     // Code in function so can draw multiple charts on same page.
@@ -77,7 +77,7 @@ function draw_chart(data_file,
 
     var x = d3.scaleBand()
         .range([0, width]);
-    
+
     var y = d3.scaleLinear()
         .range([height, 0]);
 
@@ -104,45 +104,45 @@ function draw_chart(data_file,
     d3.csv(data_file, type, function(error, data) {
         if (error) throw error;
 
-	// Changes from original code:
-	// Replaced d.letter with d[label_column] to allow data column
-	// to be configured via function argument, so can use different
-	// data sets.
+        // Changes from original code:
+        // Replaced d.letter with d[label_column] to allow data column
+        // to be configured via function argument, so can use different
+        // data sets.
         x.domain(data.map(function(d) { return d[label_column]; }));
         y.domain([0, d3.max(data, function(d) { return d[value_column]; })]);
-        
-	svg.append("g")
-	    .attr("class", "x axis")
-	    .attr("transform", "translate(0," + height + ")")
-	    .call(xAxis)
-	    // Changes from original code:
-	    // Draw axis labels vertically so they don't overrite siblings.
+
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            // Changes from original code:
+            // Draw axis labels vertically so they don't overrite siblings.
             .selectAll("text")
             .attr("y", 0)
             .attr("x", -9)
             .attr("transform", "rotate(-90)")
             .style("text-anchor", "end");
 
-	// Changes from original code:
-	// Replaced "Frequency" with label_column, so can use different
-	// data sets.
-	svg.append("g")
-	    .attr("class", "y axis")
-	    .call(yAxis)
-	    .append("text")
-	    .attr("transform", "rotate(-90)")
-	    .attr("y", 6)
-	    .attr("dy", ".71em")
-	    .style("text-anchor", "end")
-	    .text(value_column);
-	
-	svg.selectAll(".bar")
-	    .data(data)
-	    .enter().append("rect")
-	    .attr("class", "bar")
-	    .attr("x", function(d) { return x(d[label_column]); })
-	    .attr("width", x.bandwidth())
-	    .attr("y", function(d) { return y(d[value_column]); })
-	    .attr("height", function(d) { return height - y(d[value_column]); });
+        // Changes from original code:
+        // Replaced "Frequency" with label_column, so can use different
+        // data sets.
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", ".71em")
+            .style("text-anchor", "end")
+            .text(value_column);
+
+        svg.selectAll(".bar")
+            .data(data)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(d[label_column]); })
+            .attr("width", x.bandwidth())
+            .attr("y", function(d) { return y(d[value_column]); })
+            .attr("height", function(d) { return height - y(d[value_column]); });
     });
 };
