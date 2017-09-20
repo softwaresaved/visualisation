@@ -27,6 +27,22 @@
  * .arc path - pie chart wedge dividers.
  */
 
+/** Fill colours for pie chart wedges. */
+var fill_colour = [
+    "#f9fc99",
+    "#fce19f",
+    "#ffaf47",
+    "#ff8747",
+    "#ff6547",
+    "#ff4747",
+    "#ffa3c9",
+    "#f8a3ff",
+    "#bba3ff",
+    "#a3dbff",
+    "#a3ffbb"];
+// Changes from original code:
+// Replaced hard-coded colours array with fill_colour.
+
 /**
  * Draws pie chart.
  *
@@ -38,11 +54,11 @@
  * each unique value in this column.
  * @param {string} value_column - bar chart will have one wedge for
  * each unique value in this column. Value determines size of wedge.
- * @param {Object[]} colour_bins - colours for each wedge.
- * @param {integer} colour_bins[].bound - if a value_column value is
- * less than or equal to this value then the
- * corresponding fill colour is used to colour the wedge.
- * @param {string} colour_bins[].fill - a colour code (e.g. "#e0e2fe").
+ * @param {integer[]} bound - upper-bounds for values to be placed
+ * in a wedge. If a value_column value is less than or equal to
+ * bound[N] then fill_colour[N % (fill_colour.length - 2)] is used
+ * to colour the corresponding wedge.
+ * bound.length must be <= fill_colour.length.
  * @param {integer} width - drawing area width.
  * @param {integer} height - drawing area height.
  */
@@ -50,16 +66,16 @@ function draw_pie(data_file,
                   id_tag,
                   label_column,
                   value_column,
-                  colour_bins,
                   width,
-                  height) {
+                  height,
+                  bound) {
 
     // Changes from original code:
     // Code in function so can draw multiple charts on same page.
     // Hard-coded width and height replaced with parameters
     // so can configure drawing area size.
-    // Replaced hard-coded colours array with colour_bins parameter
-    // so can configure pie chart colours.
+    // Replaced hard-coded colours array with bound to allow
+    // future refactoring for configurable colours.
 
     // Changes from original code:
     // Moved type within draw_chart so can draw multiple charts
@@ -128,14 +144,14 @@ function draw_pie(data_file,
         // Changes from original code:
         // Added function to return colour bin values.
         function get_slice_colour(value) {
-            for (var k = 0; k < colour_bins.length; k++) {
-                value = parseFloat(value);
-                if (value <= colour_bins[k].bound)
+            for (var k = 0; k < bound.length; k++) {
+                value  = parseFloat(value);
+                if (value <= parseFloat(bound[k]))
                 {
-                    return colour_bins[k].fill;
+                    return fill_colour[k % (fill_colour.length - 2)];
                 }
             }
-            return colour_bins[colour_bins.length - 1].fill;
+            return fill_colour[fill_colour.length - 1];
         };
     });
 };

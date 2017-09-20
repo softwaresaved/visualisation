@@ -30,16 +30,9 @@
     </table>
 
 <script>
+var colour_bins_bounds = [1, 2, 5, 10, 15, 20];
 
-var colour_bins_effort = [
-    { bound: 1, fill: "#e0e2fe" },
-    { bound: 5, fill: "#c5c9fd" },
-    { bound: 10, fill: "#a6acff" },
-    { bound: 20, fill: "#515cfd" },
-    { bound: Number.MAX_VALUE, fill: "#0000ff" }
-];
-
-draw_pie("../../data/sheets/as-is/funders_effort.csv", "pieFunderEffort", "Funder", "Effort", colour_bins_effort, 500, 400);
+draw_pie("../../data/sheets/as-is/funders_effort.csv", "pieFunderEffort", "Funder", "Effort", 500, 400, colour_bins_bounds);
 draw_bar("../../data/sheets/as-is/funders_effort.csv", "chartFunderEffort", "Funder", "Effort", 500, 400);
 </script>
 
@@ -53,15 +46,7 @@ draw_bar("../../data/sheets/as-is/funders_effort.csv", "chartFunderEffort", "Fun
     </table>
 
 <script>
-var colour_bins_projects = [
-    { bound: 1, fill: "#fee5d9" },
-    { bound: 2, fill: "#fcbba1" },
-    { bound: 5, fill: "#fc9272" },
-    { bound: 10, fill: "#fb6a4a" },
-    { bound: Number.MAX_VALUE, fill: "#a50f15" }
-];
-
-draw_pie("../../data/sheets/as-is/funders_projects.csv", "pieFunderProjects", "Funder", "Projects", colour_bins_projects, 500, 400);
+draw_pie("../../data/sheets/as-is/funders_projects.csv", "pieFunderProjects", "Funder", "Projects", 500, 400, colour_bins_bounds);
 draw_bar("../../data/sheets/as-is/funders_projects.csv", "chartFunderProjects", "Funder", "Projects", 500, 400);
 </script>
 
