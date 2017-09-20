@@ -285,6 +285,13 @@ Google Sheet and OAuth2 Python example
 * Licence: [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 * Local code: `src/sheet_utils`
 
+Automattic Color.js
+
+* https://github.com/Automattic/Color.js
+* Copyright 2015, Matt Wiebe
+* Licence: [GNU General Public License version 2](https://github.com/Automattic/Color.js/blob/master/LICENSE)
+* Local code: `js/Color.js`
+
 Bootstrap 3.3.6
 
 * http://getbootstrap.com/

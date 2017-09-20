@@ -30,7 +30,7 @@
 // Changes from original code:
 // Introduced minimium value for RGB component.
 
-// Minimium value for RGB component.
+/** Minimium value for RGB component. */
 var PIE_COLOUR_MIN_RGB = 100;
 
 /**
@@ -102,6 +102,9 @@ function draw_pie(data_file,
 
     // Changes from original code:
     // Replaced d3.tsv with d3.csv.
+
+    wedge_count = 0
+
     d3.csv(data_file, type, function(error, data) {
         if (error) throw error;
 
@@ -115,7 +118,8 @@ function draw_pie(data_file,
         // so can configure pie chart colours.
         g.append("path")
             .attr("d", arc)
-            .style("fill", function(d) { return get_slice_colour(d.data[value_column]); });
+//            .style("fill", function(d) { return get_slice_colour(d.data[value_column]); });
+             .style("fill", function(d) { wedge_count++; return get_slice_colour_hsv(wedge_count, d.data[value_column]); });
 
         // Changes from original code:
         // Replaced d.data.age with d.data[value_column] to allow data column
@@ -140,19 +144,42 @@ function draw_pie(data_file,
         // Changes from original code:
         // Added function to calculate colour based on current value
         // return colour bin values.
+        function get_slice_colour_hsv(wedge_count, value) {
+            // https://stackoverflow.com/questions/236936/how-pick-colors-for-a-pie-chart
+            baseHex = "#8A56E2";
+            baseColour = Color().fromHex(baseHex);
+            baseHsv = baseColour.toHsv();
+            baseHue = baseHsv["h"];
+            num_colours = 10;
+            hue = baseHue + ((240 / 10) * (wedge_count % 10) % 240);
+            // Create colour with same saturation and luminosity:
+            hsv = {"h": hue,
+                   "s": baseHsv["s"],
+                   "v": baseHsv["v"]};
+            colour = Color().fromHsv(hsv);
+            return colour.toString();
+        };
+
+        // Changes from original code:
+        // Added function to calculate colour based on current value
+        // return colour bin values.
         function get_slice_colour(value) {
             for (var k = 0; k < bounds.length; k++) {
                 value  = parseFloat(value);
                 if (value <= parseFloat(bounds[k]))
                 {
                     red = get_rgb_component(PIE_COLOUR_MIN_RGB, k, bounds.length);
-                    colour = rgb_to_hex(red, 100, 200);
+                    rgb = {"r": red, "g": 100, "b": 200};
+                    rgb_colour = Color().fromRgb(rgb);
+                    colour = rgb_colour.toString();
                     console.log(value + " : " + k + " : " + red + " : " + colour);
                     return colour;
                 }
             }
             red = get_rgb_component(PIE_COLOUR_MIN_RGB, bounds.length, bounds.length);
-            colour = rgb_to_hex(red, 200, 200);
+            rgb = {"r": red, "g": 100, "b": 200};
+            rgb_colour = Color().fromRgb(rgb);
+            colour = rgb_colour.toString();
             console.log(value + " : " + bounds.length + " : " + red + " : " + colour + " (MAX)");
             return colour;
         };
