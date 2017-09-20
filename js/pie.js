@@ -27,21 +27,11 @@
  * .arc path - pie chart wedge dividers.
  */
 
-/** Fill colours for pie chart wedges. */
-var fill_colour = [
-    "#f9fc99",
-    "#fce19f",
-    "#ffaf47",
-    "#ff8747",
-    "#ff6547",
-    "#ff4747",
-    "#ffa3c9",
-    "#f8a3ff",
-    "#bba3ff",
-    "#a3dbff",
-    "#a3ffbb"];
 // Changes from original code:
-// Replaced hard-coded colours array with fill_colour.
+// Introduced minimium value for RGB component.
+
+// Minimium value for RGB component.
+var PIE_COLOUR_MIN_RGB = 100;
 
 /**
  * Draws pie chart.
@@ -54,11 +44,8 @@ var fill_colour = [
  * each unique value in this column.
  * @param {string} value_column - bar chart will have one wedge for
  * each unique value in this column. Value determines size of wedge.
- * @param {integer[]} bound - upper-bounds for values to be placed
- * in a wedge. If a value_column value is less than or equal to
- * bound[N] then fill_colour[N % (fill_colour.length - 2)] is used
- * to colour the corresponding wedge.
- * bound.length must be <= fill_colour.length.
+ * @param {integer[]} bounds - upper-bounds for values to be placed
+ * in a wedge.
  * @param {integer} width - drawing area width.
  * @param {integer} height - drawing area height.
  */
@@ -68,13 +55,13 @@ function draw_pie(data_file,
                   value_column,
                   width,
                   height,
-                  bound) {
+                  bounds) {
 
     // Changes from original code:
     // Code in function so can draw multiple charts on same page.
     // Hard-coded width and height replaced with parameters
     // so can configure drawing area size.
-    // Replaced hard-coded colours array with bound to allow
+    // Replaced hard-coded colours array with bounds to allow
     // future refactoring for configurable colours.
 
     // Changes from original code:
@@ -141,17 +128,33 @@ function draw_pie(data_file,
             .attr("dy", ".35em")
             .text(function(d) { return d.data[label_column]; });
 
+        bounds=[25,50,75,100]
+        console.log("Length: " + bounds.length);
+        get_slice_colour(20);
+        get_slice_colour(40);
+        get_slice_colour(60);
+        get_slice_colour(80);
+        get_slice_colour(100);
+        get_slice_colour(110);
+
         // Changes from original code:
-        // Added function to return colour bin values.
+        // Added function to calculate colour based on current value
+        // return colour bin values.
         function get_slice_colour(value) {
-            for (var k = 0; k < bound.length; k++) {
+            for (var k = 0; k < bounds.length; k++) {
                 value  = parseFloat(value);
-                if (value <= parseFloat(bound[k]))
+                if (value <= parseFloat(bounds[k]))
                 {
-                    return fill_colour[k % (fill_colour.length - 2)];
+                    red = get_rgb_component(PIE_COLOUR_MIN_RGB, k, bounds.length);
+                    colour = rgb_to_hex(red, 100, 200);
+                    console.log(value + " : " + k + " : " + red + " : " + colour);
+                    return colour;
                 }
             }
-            return fill_colour[fill_colour.length - 1];
+            red = get_rgb_component(PIE_COLOUR_MIN_RGB, bounds.length, bounds.length);
+            colour = rgb_to_hex(red, 200, 200);
+            console.log(value + " : " + bounds.length + " : " + red + " : " + colour + " (MAX)");
+            return colour;
         };
     });
 };
