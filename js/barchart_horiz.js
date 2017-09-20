@@ -6,7 +6,7 @@
  * on 04/08/2016.
  *
  * Copyright (C) 2016, Mike Bostock
- * Changes Copyright (C) 2016-2017, The University of Edinburgh and 
+ * Changes Copyright (C) 2016-2017, The University of Edinburgh and
  * The University of Southampton.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,17 +34,17 @@
  * @param {string} data_file - file with comma-separated values
  * (CSV).
  * @param {string} id_tag - ID of HTML tag in which the bar chart is
- * drawn. 
+ * drawn.
  * @param {string} label_column - bar chart will have one Y axis bar for
  * each unique value in this column.
  * @param {string} value_column - bar chart will have one Y axis bar for
  * each unique value in this column. Value determines size of bar.
  * @param {integer} area_width - drawing area width.
  */
-function draw_bar_horiz(data_file, 
-                        id_tag, 
+function draw_bar_horiz(data_file,
+                        id_tag,
                         label_column,
-                        value_column, 
+                        value_column,
                         area_width) {
 
     // Changes from original code:
@@ -88,10 +88,10 @@ function draw_bar_horiz(data_file,
         // Added error handler.
         if (error) {
             throw error;
-        }        
+        }
 
         x.domain([0, d3.max(data, function(d) { return d[value_column]; })]);
-                 
+
         chart.attr("height", barHeight * data.length);
 
         var bar = chart.selectAll("g")

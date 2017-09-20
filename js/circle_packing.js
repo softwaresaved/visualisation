@@ -6,7 +6,7 @@
  * on 10/08/2016.
  *
  * Copyright (C) 2016, Mike Bostock
- * Changes Copyright (C) 2016, The University of Edinburgh and 
+ * Changes Copyright (C) 2016-2017, The University of Edinburgh and
  * The University of Southampton.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -35,21 +35,21 @@
  * @param {string} data_file - file with comma-separated values
  * (CSV).
  * @param {string} id_tag - ID of HTML tag in which the chart is
- * drawn. 
+ * drawn.
  * @param {string} label_column - chart will have one circle for
  * each unique value in this column.
  * @param {string} value_column - chart will have one circle for
- * each unique value in this column. Value determines radius of 
+ * each unique value in this column. Value determines radius of
  * circle.
  * @param {integer} area_width - drawing area width.
  * @param {integer} area_height - drawing area height.
  */
-function draw_circle_chart(data_file, 
-			   id_tag, 
-			   label_column,
-			   value_column, 
-			   area_width,
-			   area_height) {
+function draw_circle_chart(data_file,
+                           id_tag,
+                           label_column,
+                           value_column,
+                           area_width,
+                           area_height) {
 
     // Changes from original code:
     // Code in function so can draw multiple charts on same page.
@@ -79,68 +79,68 @@ function draw_circle_chart(data_file,
     var format = d3.format(",d");
 
     var pack = d3.pack()
-	.size([area_width - 2, area_height - 2])
-	.padding(3);
+        .size([area_width - 2, area_height - 2])
+        .padding(3);
 
     // Changes from original code:
     // Replaced "flare.csv" with data_file.
     d3.csv(data_file, type, function(error, data) {
         if (error) {
             throw error;
-        }        
+        }
 
-	// Changes from original code:
-	// Give each row a unique ID to make indexing circles easier.
-	var circle_id = 0;
-	data.forEach(function(row) {
-	    row.circle_id = circle_id;
-	    circle_id++;
-	}); 
+        // Changes from original code:
+        // Give each row a unique ID to make indexing circles easier.
+        var circle_id = 0;
+        data.forEach(function(row) {
+            row.circle_id = circle_id;
+            circle_id++;
+        });
 
-	// Changes from original code:
-	// Replaced a.value and b.value with a[value_column] and
-	// b[value_column] to allow data column to be configured 
-	// via function argument, so can use different data sets.
-	var root = d3.hierarchy({children: data})
-	    .sum(function(d) { return d[value_column]; })
-	    .sort(function(a, b) { return b[value_column] - a[value_column]; });
+        // Changes from original code:
+        // Replaced a.value and b.value with a[value_column] and
+        // b[value_column] to allow data column to be configured
+        // via function argument, so can use different data sets.
+        var root = d3.hierarchy({children: data})
+            .sum(function(d) { return d[value_column]; })
+            .sort(function(a, b) { return b[value_column] - a[value_column]; });
 
-	pack(root);
+        pack(root);
 
-	var node = svg.select("g")
-	    .selectAll("g")
-	    .data(root.children)
-	    .enter().append("g")
-	    .attr("transform", function(d) { 
-		return "translate(" + d.x + "," + d.y + ")"; })
-	    .attr("class", "node");
+        var node = svg.select("g")
+            .selectAll("g")
+            .data(root.children)
+            .enter().append("g")
+            .attr("transform", function(d) {
+                return "translate(" + d.x + "," + d.y + ")"; })
+            .attr("class", "node");
 
-	node.append("circle")
-	    .attr("id", function(d) { return "node-" + d.data.circle_id; })
-	    .attr("r", function(d) { return d.r; });
+        node.append("circle")
+            .attr("id", function(d) { return "node-" + d.data.circle_id; })
+            .attr("r", function(d) { return d.r; });
 
-	// Changes from original code:
-	// Replaced data.id with data.circle_id.
-	node.append("clipPath")
-	    .attr("id", function(d) { return "clip-" + d.data.circle_id; })
-	    .append("use")
-	    .attr("xlink:href", function(d) { return "#node-" + d.data.circle_id + ""; });
+        // Changes from original code:
+        // Replaced data.id with data.circle_id.
+        node.append("clipPath")
+            .attr("id", function(d) { return "clip-" + d.data.circle_id; })
+            .append("use")
+            .attr("xlink:href", function(d) { return "#node-" + d.data.circle_id + ""; });
 
-	// Changes from original code:
-	// Replaced data.id with data[label_column] as text label.
-	node.append("text")
-	    .attr("clip-path", function(d) { return "url(#clip-" + d.data.circle_id + ")"; })
-	    .selectAll("tspan")
-	    .data(function(d) { 
-		return d.data[label_column].split(".").pop().split(/(?=[A-Z][^A-Z])/g); })
-	    .enter().append("tspan")
-	    .attr("x", 0)
-	    .attr("y", function(d, i, nodes) { 
-		return 13 + (i - nodes.length / 2 - 0.5) * 10; })
-	    .text(function(d) { return d; });
+        // Changes from original code:
+        // Replaced data.id with data[label_column] as text label.
+        node.append("text")
+            .attr("clip-path", function(d) { return "url(#clip-" + d.data.circle_id + ")"; })
+            .selectAll("tspan")
+            .data(function(d) {
+                return d.data[label_column].split(".").pop().split(/(?=[A-Z][^A-Z])/g); })
+            .enter().append("tspan")
+            .attr("x", 0)
+            .attr("y", function(d, i, nodes) {
+                return 13 + (i - nodes.length / 2 - 0.5) * 10; })
+            .text(function(d) { return d; });
 
-	node.append("title")
-	    .text(function(d) { 
-		return d.data[label_column] + "\n" + format(d.data[value_column]); });
+        node.append("title")
+            .text(function(d) {
+                return d.data[label_column] + "\n" + format(d.data[value_column]); });
     });
 };

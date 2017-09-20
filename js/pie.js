@@ -6,7 +6,7 @@
  * on 05/08/2016.
  *
  * Copyright (C) 2016, Mike Bostock
- * Changes Copyright (C) 2016, The University of Edinburgh.
+ * Changes Copyright (C) 2016-2017, The University of Edinburgh.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,29 +27,29 @@
  * .arc path - pie chart wedge dividers.
  */
 
-/** 
+/**
  * Draws pie chart.
  *
  * @param {string} data_file - file with comma-separated values
  * (CSV).
  * @param {string} id_tag - ID of HTML tag in which the bar chart is
- * drawn. 
+ * drawn.
  * @param {string} label_column - pie chart will have one wedge for
  * each unique value in this column.
  * @param {string} value_column - bar chart will have one wedge for
  * each unique value in this column. Value determines size of wedge.
  * @param {Object[]} colour_bins - colours for each wedge.
- * @param {integer} colour_bins[].bound - if a value_column value is 
+ * @param {integer} colour_bins[].bound - if a value_column value is
  * less than or equal to this value then the
  * corresponding fill colour is used to colour the wedge.
  * @param {string} colour_bins[].fill - a colour code (e.g. "#e0e2fe").
- * @param {integer} width - drawing area width. 
- * @param {integer} height - drawing area height. 
+ * @param {integer} width - drawing area width.
+ * @param {integer} height - drawing area height.
  */
-function draw_pie(data_file, 
-                  id_tag, 
-                  label_column, 
-                  value_column, 
+function draw_pie(data_file,
+                  id_tag,
+                  label_column,
+                  value_column,
                   colour_bins,
                   width,
                   height) {
@@ -107,26 +107,26 @@ function draw_pie(data_file,
             .enter().append("g")
             .attr("class", "arc");
 
-	// Changes from original code:
-	// Replaced hard-coded colours array with colour_bins parameter
-	// so can configure pie chart colours.
+        // Changes from original code:
+        // Replaced hard-coded colours array with colour_bins parameter
+        // so can configure pie chart colours.
         g.append("path")
             .attr("d", arc)
             .style("fill", function(d) { return get_slice_colour(d.data[value_column]); });
-    
-	// Changes from original code:
-	// Replaced d.data.age with d.data[value_column] to allow data column
-	// to be configured via function argument, so can use different
-	// data sets.
+
+        // Changes from original code:
+        // Replaced d.data.age with d.data[value_column] to allow data column
+        // to be configured via function argument, so can use different
+        // data sets.
         g.append("text")
-            .attr("transform", function(d) { 
-                return "translate(" + labelArc.centroid(d) + ")"; 
+            .attr("transform", function(d) {
+                return "translate(" + labelArc.centroid(d) + ")";
             })
             .attr("dy", ".35em")
             .text(function(d) { return d.data[label_column]; });
 
-	// Changes from original code:
-	// Added function to return colour bin values.
+        // Changes from original code:
+        // Added function to return colour bin values.
         function get_slice_colour(value) {
             for (var k = 0; k < colour_bins.length; k++) {
                 value = parseFloat(value);
