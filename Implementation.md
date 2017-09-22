@@ -97,10 +97,5 @@ $ python src/filter_software_survey.py
 
 ## Fellows scripts and data
 
-```
-$ python src/filter_fellows.py
-```
-
-* Read: data/static/raw/fellows_institutions.csv
-* Write: data/static/filtered/fellows_institutions.csv
+* data/static/raw/fellows_institutions.csv
 * Rendered by: html/community/fellows.html, js/circle_packing.js
