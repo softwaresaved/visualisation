@@ -29,7 +29,6 @@ data/:
   - filtered/: data filtered after downloading
 * data/static/: data inserted into this directory directly
   - raw/: data downloaded and saved as-is
-  - filtered/: data filtered after downloading
 
 ---
 
@@ -86,16 +85,15 @@ $ python src/download_policy.py
 * Write: data/sheets/as-is/software.csv 
 * Rendered by: html/policy/software.html, js/barchart_horiz.js, js/circle_packing.js
 
-```
-$ python src/filter_software_survey.py
-```
+Local data:
 
-* Read: data/raw/as-is/The use of software in research (Responses) Cleaned For All Hands Hack - Form Responses 1.csv
-* Write: data/raw/filtered/software_survey_2014_os.csv
-* Write: data/raw/filtered/software_survey_2014_software.csv
+* data/static/raw/software_survey_2014_os.csv
+* data/static/raw/software_survey_2014_software.csv
 * Rendered by: html/policy/survey.html, js/barchart_horiz.js, js/circle_packing.js
 
 ## Fellows scripts and data
+
+Local data:
 
 * data/static/raw/fellows_institutions.csv
 * Rendered by: html/community/fellows.html, js/circle_packing.js
