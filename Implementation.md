@@ -72,9 +72,8 @@ $ python src/download_impact.py
 $ python src/download_swc.py
 ```
 
-* Download: SSI SWC from 2012-04-30 to 2014-04-09 from Mike sheet, Workshops tab
+* Download: SSI SWC from 2012-04-30 to 2014-04-09 from Mike sheet, Workshops-Summary tab
 * Write: data/sheets/as-is/swc.csv 
-* Write: data/sheets/filtered/swc_attendees.csv
 * Rendered by: html/training/swc.html, js/barchart.js, js/pie.js
 
 ## Policy scripts and data
