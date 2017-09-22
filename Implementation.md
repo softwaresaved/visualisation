@@ -11,11 +11,6 @@ Scripts prefixed with `download`:
 * Data that is saved as-is without filtering, is saved into data/sheets/as-is/.
 * Filtered data is saved into data/sheets/filtered/.
 
-Scripts prefixed with `filter`:
-
-* These scripts filter data held locally within the data/raw/as-is.
-* Filtered data is saved into data/raw/filtered/.
-
 Other scripts:
 
 * Utilities used by the foregoing.
@@ -27,8 +22,7 @@ data/:
 * sheets/: data from Google Sheets downloaded by Python scripts
   - as-is/: data downloaded and saved as-is
   - filtered/: data filtered after downloading
-* data/static/: data inserted into this directory directly
-  - raw/: data downloaded and saved as-is
+* data/static/: data stored as-is
 
 ---
 
@@ -87,13 +81,13 @@ $ python src/download_policy.py
 
 Local data:
 
-* data/static/raw/software_survey_2014_os.csv
-* data/static/raw/software_survey_2014_software.csv
+* data/static/software_survey_2014_os.csv
+* data/static/software_survey_2014_software.csv
 * Rendered by: html/policy/survey.html, js/barchart_horiz.js, js/circle_packing.js
 
 ## Fellows scripts and data
 
 Local data:
 
-* data/static/raw/fellows_institutions.csv
+* data/static/fellows_institutions.csv
 * Rendered by: html/community/fellows.html, js/circle_packing.js
