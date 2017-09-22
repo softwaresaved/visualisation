@@ -27,12 +27,6 @@
  * .arc path - pie chart wedge dividers.
  */
 
-// Changes from original code:
-// Introduced minimium value for RGB component.
-
-/** Minimium value for RGB component. */
-var PIE_COLOUR_MIN_RGB = 100;
-
 /**
  * Draws pie chart.
  *
@@ -44,8 +38,6 @@ var PIE_COLOUR_MIN_RGB = 100;
  * each unique value in this column.
  * @param {string} value_column - bar chart will have one wedge for
  * each unique value in this column. Value determines size of wedge.
- * @param {integer[]} bounds - upper-bounds for values to be placed
- * in a wedge.
  * @param {integer} width - drawing area width.
  * @param {integer} height - drawing area height.
  */
@@ -54,15 +46,13 @@ function draw_pie(data_file,
                   label_column,
                   value_column,
                   width,
-                  height,
-                  bounds) {
+                  height) {
 
     // Changes from original code:
     // Code in function so can draw multiple charts on same page.
     // Hard-coded width and height replaced with parameters
     // so can configure drawing area size.
-    // Replaced hard-coded colours array with bounds to allow
-    // future refactoring for configurable colours.
+    // Replaced hard-coded colours array with coloured slices.
 
     // Changes from original code:
     // Moved type within draw_chart so can draw multiple charts
@@ -102,9 +92,9 @@ function draw_pie(data_file,
 
     // Changes from original code:
     // Replaced d3.tsv with d3.csv.
+    // Added wedge_count.
 
     wedge_count = 0
-
     d3.csv(data_file, type, function(error, data) {
         if (error) throw error;
 
@@ -114,12 +104,14 @@ function draw_pie(data_file,
             .attr("class", "arc");
 
         // Changes from original code:
-        // Replaced hard-coded colours array with colour_bins parameter
-        // so can configure pie chart colours.
+        // Replaced hard-coded colours with wedge_count and get_slice_colour.
         g.append("path")
             .attr("d", arc)
-//            .style("fill", function(d) { return get_slice_colour(d.data[value_column]); });
-             .style("fill", function(d) { wedge_count++; return get_slice_colour_hsv(wedge_count, d.data[value_column]); });
+            .style("fill", function(d) {
+                wedge_count++;
+                return get_slice_colour(wedge_count,
+                                        d.data[value_column]);
+              });
 
         // Changes from original code:
         // Replaced d.data.age with d.data[value_column] to allow data column
@@ -130,58 +122,29 @@ function draw_pie(data_file,
                 return "translate(" + labelArc.centroid(d) + ")";
             })
             .attr("dy", ".35em")
-            .text(function(d) { return d.data[label_column]; });
-
-        bounds=[25,50,75,100]
-        console.log("Length: " + bounds.length);
-        get_slice_colour(20);
-        get_slice_colour(40);
-        get_slice_colour(60);
-        get_slice_colour(80);
-        get_slice_colour(100);
-        get_slice_colour(110);
+            .text(function(d) {
+                return d.data[label_column] +
+                    "\n(" + d.data[value_column] + ")";
+            });
 
         // Changes from original code:
-        // Added function to calculate colour based on current value
-        // return colour bin values.
-        function get_slice_colour_hsv(wedge_count, value) {
-            // https://stackoverflow.com/questions/236936/how-pick-colors-for-a-pie-chart
+        // Added function to calculate colour based on current number
+        // of wedges.
+        function get_slice_colour(wedge_count, value) {
+            // From https://stackoverflow.com/questions/236936/how-pick-colors-for-a-pie-chart
             baseHex = "#8A56E2";
             baseColour = Color().fromHex(baseHex);
             baseHsv = baseColour.toHsv();
             baseHue = baseHsv["h"];
-            num_colours = 10;
-            hue = baseHue + ((240 / 10) * (wedge_count % 10) % 240);
+            num_colours = 8;
+            hue = baseHue + ((240 / num_colours) *
+                             (wedge_count % num_colours) % 240);
             // Create colour with same saturation and luminosity:
             hsv = {"h": hue,
                    "s": baseHsv["s"],
                    "v": baseHsv["v"]};
             colour = Color().fromHsv(hsv);
             return colour.toString();
-        };
-
-        // Changes from original code:
-        // Added function to calculate colour based on current value
-        // return colour bin values.
-        function get_slice_colour(value) {
-            for (var k = 0; k < bounds.length; k++) {
-                value  = parseFloat(value);
-                if (value <= parseFloat(bounds[k]))
-                {
-                    red = get_rgb_component(PIE_COLOUR_MIN_RGB, k, bounds.length);
-                    rgb = {"r": red, "g": 100, "b": 200};
-                    rgb_colour = Color().fromRgb(rgb);
-                    colour = rgb_colour.toString();
-                    console.log(value + " : " + k + " : " + red + " : " + colour);
-                    return colour;
-                }
-            }
-            red = get_rgb_component(PIE_COLOUR_MIN_RGB, bounds.length, bounds.length);
-            rgb = {"r": red, "g": 100, "b": 200};
-            rgb_colour = Color().fromRgb(rgb);
-            colour = rgb_colour.toString();
-            console.log(value + " : " + bounds.length + " : " + red + " : " + colour + " (MAX)");
-            return colour;
         };
     });
 };
