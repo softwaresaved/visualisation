@@ -30,11 +30,12 @@
  *
  * @param {string} id_tag_link - ID of HTML tag in which the pie charts
  * are drawn, prefixed by "#".
+ * @param {string} category_header - name of category header.
  * @param {object} data - data, first row is assumed to be a header
  * row with column names.
- * @param {string} category_header - name of category header.
  * @param {function} pie - object returned by d3.pie().
  * drawn.
+ * @param {string} index - column index for data rendered by the pie chart.
  * @param {string} title - pie chart title.
  * @param {function} colours - function to return colours.
  * @param {integer} width - drawing area width.
@@ -47,6 +48,7 @@ function draw_pie_member(id_tag_link,
                          category_header,
                          data,
                          pie,
+                         index,
                          title,
                          colours,
                          width,
@@ -78,6 +80,9 @@ function draw_pie_member(id_tag_link,
         .attr("data-legend", function(d) { return d.data[header[0]]; })
         .attr("data-legend-pos", function(d, i) { return i; })
         .style("fill", function(d) { return colours(d.data[header[0]]); });
+    g.append("title")
+        .text(function(d) { return d.data[header[index]]; });
+
     var legend = svg.selectAll('.legend')
         .data(labels)
         .enter()
@@ -167,6 +172,7 @@ function draw_pie_group(data_file,
                 d3.pie()
                     .sort(null)
                     .value(function(d) { return d[header[i]]; }), 
+                i,
                 header[i],
                 colours,
                 width,
