@@ -20,7 +20,7 @@ For Institute staff, to request a data set be added to the visualisations:
   - Suggest any visualisations you want (e.g. pie chart, bar chart etc) (optional). 
     - You may want to look at D3 examples (e.g. see [M Bostock](https://bl.ocks.org/mbostock)) for possible options. (optional)
 
-**Note:** Any vague suggestions for which data does not yet exist, or does exist but not as a Google Sheet, should be added as a comment to the general issue, [What data should we visualise?](https://github.com/softwaresaved/visualisation/issues/1),
+**Note:** Any vague suggestions for which data does not yet exist, or does exist but not as a Google Sheet, should be added as a comment to the general issue, [What data should we visualise?](https://github.com/softwaresaved/visualisation/issues/1).
 
 ---
 
