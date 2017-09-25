@@ -6,6 +6,24 @@ To view, visit http://softwaresaved.github.io/visualisation.
 
 ---
 
+## Requesting a visualisation for a data set
+
+For Institute staff, to request a data set be added to the visualisations:
+
+* Consider data you currently maintain in Google Sheets.
+  - The data should be in a reasonably well-structured format.
+  - See [Spreadsheets](./SpreadsheetDesign.md) for the ideal format.
+* For each data set you'd like to have a visualisation for, create a New issue:
+  - Add the "Data" label to the issue.
+  - Add the Google Sheet URL, tab name and additional information on the data you want visualised e.g. how frequently you update its content.
+    - Remember the Google Sheet URL should not be anonymously readable unless it's a public data set.
+  - Suggest any visualisations you want (e.g. pie chart, bar chart etc) (optional). 
+    - You may want to look at D3 examples (e.g. see [M Bostock](https://bl.ocks.org/mbostock)) for possible options. (optional)
+
+**Note:** Any vague suggestions for which data does not yet exist, or does exist but not as a Google Sheet, should be added as a comment to the general issue, [What data should we visualise?](https://github.com/softwaresaved/visualisation/issues/1),
+
+---
+
 ## Get source code
 
 Fork and clone this repository
