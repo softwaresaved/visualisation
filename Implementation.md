@@ -55,9 +55,9 @@ $ python src/download_consultancy.py
 $ python src/download_impact.py
 ```
 
-* Download Questionnaire Analysis sheet, AnalysisByQuestion tab, C5:N16.
+* Download Questionnaire Analysis sheet, AnalysisByQuestion-VisualisationCompliant tab, A2:L7.
 * Write: data/sheets/as-is/project_impact.csv 
-* Rendered by: html/impact/impact.html, JavaScript within HTML, js/d3.min.js.
+* Rendered by: html/impact/impact.html, JavaScript within HTML, js/pie_group.js, js/d3.min.js.
 
 ## Software Carpentry scripts and data
 
