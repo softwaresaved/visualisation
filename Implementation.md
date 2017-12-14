@@ -69,6 +69,14 @@ $ python src/download_swc.py
 * Write: data/sheets/as-is/swc.csv 
 * Rendered by: html/training/swc.html, js/barchart.js, js/pie.js
 
+* Download: carpentry-workshops-instructors-affiliation_GB_2017-12-14 sheet
+  - workshops-affiliation_GB_2017-12-14 tab
+  - instructors-affiliation_GB_2017-12-14 tab
+* Write: data/sheets/as-is/swc_workshops_affiliation_gb_2017.csv 
+* Rendered by: html/training/swc_workshops_2017.html, js/barchart_horiz.js, js/pie.js, js/circle_packing.js
+* Write: data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv 
+* Rendered by: html/training/swc_instructors_2017.html, js/barchart_horiz.js, js/pie.js, js/circle_packing.js
+
 ## Policy scripts and data
 
 ```

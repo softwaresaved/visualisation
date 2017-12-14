@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Software Sustainability Institute</title>
+  </head>
+  <body>
+   <h1>Software Carpentry Instructors 2017</h1>
+   <p>
+     <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
+   </p>
+
+<script src="../../js/d3.min.js"></script>
+<script src="../../js/rgb_utils.js"></script>
+<script src="../../js/color.js"></script>
+<style>
+@import url("../../css/pie.css");
+</style>
+<script src="../../js/pie.js"></script>
+<style>
+@import url("../../css/barchart_horiz.css");
+</style>
+<script src="../../js/barchart_horiz.js"></script>
+<style>
+@import url("../../css/circle_packing.css");
+</style>
+<script src="../../js/circle_packing.js"></script>
+
+    <table>
+      <tr>
+        <td id="pieInstructors" class="pie"></td>
+        <td><svg id="chartInstructors" class="barchart_horiz"></svg></td>
+      </tr>
+    </table>
+    <p><svg id="circleInstructors" class="circles"><g transform="translate(1,1)"></g></svg></p>
+
+<script>
+draw_pie("../../data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv", "pieInstructors", "affiliation", "count", 500, 400);
+
+draw_bar_horiz("../../data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv", "chartInstructors", "affiliation", "count", 1000);
+
+draw_circle_chart("../../data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv", "circleInstructors", "affiliation", "count", 1000, 1000);
+</script>
+
+  </body>
+</html>
