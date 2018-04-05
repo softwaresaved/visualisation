@@ -145,7 +145,7 @@ def download_sheets(workbook, sheets_config, credentials):
             data = download_cells(workbook, sheet, cells, credentials)
             save_list_as_csv_file(data, file)
         except Exception as exc:
-            print("Problem, moving onto next download", exc)
+            print("Problem with accessing and saving data", exc)
 
 
 def download_cells(workbook, sheet, cells, credentials):
