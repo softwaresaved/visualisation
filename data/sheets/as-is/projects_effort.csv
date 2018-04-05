@@ -1,4 +1,5 @@
 Project,Effort (PMs)
+ProvTemp,0.15
 DIAMOND,0.25
 HSL,0.25
 INQUIRE,0.25
@@ -6,13 +7,18 @@ Libhpc-2,0.25
 LifeGuide,0.25
 SWOP,0.25
 VRIC,0.25
+RDLC,0.30
+Spike,0.30
+SurfAT,0.30
 <Studying Online Communities with Big Data>,0.50
 AircraftGeometry,0.50
+Clipper,0.50
 JournalTOCS,0.50
 Libhpc-1,0.50
 SURegen,0.50
 JiscRDS,0.60
 LabBook,0.67
+CCBC,0.75
 Cadabra,0.90
 DataSHIELD,0.90
 sameas-lite,0.95
@@ -26,6 +32,7 @@ iHUB,1.03
 ReproPhylo,1.05
 recipy,1.17
 NeISS,1.20
+Mantid,1.33
 DawnScience,1.38
 RAPPORT,1.42
 APEL,1.50
@@ -47,10 +54,3 @@ LUX-ZEPLIN,2.58
 ForestGrowth-SRC,3.00
 <Identification of Genetic Loci>,3.50
 Recomputation.org,3.65
-NGS/SARoNGS,4.50
-SPRINT,7.20
-MAUS,7.50
-TEXTvre,8.44
-CCFE,9.00
-ECIAS,9.00
-SynthSys,9.00

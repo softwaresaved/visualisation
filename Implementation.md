@@ -2,18 +2,16 @@
 
 ## Python scripts
 
-Scripts prefixed with `download`:
+`src/download_sheets.py`:
 
-* These scripts download Google Sheets, using OAuth2 for authentication, then filter the data using Python and save the resultant data as CSV.
+* This script downloads Google Sheets, using OAuth2 for authentication, then saves the resultant data as CSV files.
+* The sheets, tabs and cells to download, and the files to save the data in, are specified via a YAML file (see `sheets.yml`).
 * For more on the Google Sheets and OAuth2 APIs used, see:
   - [Introduction to the Google Sheets API](https://developers.google.com/sheets/api/guides/concepts)
   - Google Sheets API v4 [Python Quickstart](https://developers.google.com/sheets/api/quickstart/python)
-* Data that is saved as-is without filtering, is saved into data/sheets/as-is/.
-* Filtered data is saved into data/sheets/filtered/.
+* Data is saved into files under data/sheets/as-is/.
 
-Other scripts:
-
-* Utilities used by the foregoing.
+Other scripts are utilities used by the above.
 
 ## Data
 
@@ -24,78 +22,58 @@ data/:
   - filtered/: data filtered after downloading
 * data/static/: data stored as-is
 
----
+## Visualisation
 
-## Consultancy scripts and data
+Data files visualised by HTML pages.
 
-```
-$ python src/download_consultancy.py
-```
+### Consultancy data
 
-* Download SSI Consultancy Projects sheet, tabs:
-  - Chart-FunderEffort
-  - Chart-Funding
-* Write:
-  - data/sheets/as-is/funders_effort.csv
-  - data/sheets/as-is/funders_projects.csv
-* Rendered by: html/consultancy/funders.html, js/barchart.js, js/pie.js
-* Download SSI Consultancy Projects sheet:
-  - Chart-InstitutionEffort
-  - Chart-InstitutionProjects
-* Write:
-  - data/sheets/as-is/institution_effort.csv
-  - data/sheets/as-is/institution_projects.csv
-* Rendered by: html/consultancy/institutions.html, js/barchart.js, js/pie.js
-* Download SSI Consultancy Projects sheet, tabs:
-  - Chart-Effort
-* Write: data/sheets/as-is/projects_effort.csv
-* Rendered by: html/consultancy/projects.html, js/circle_packing
+html/consultancy/funders.html:
 
-```
-$ python src/download_impact.py
-```
+* data/sheets/as-is/funders_effort.csv
+* data/sheets/as-is/funders_projects.csv
 
-* Download Questionnaire Analysis sheet, AnalysisByQuestion-VisualisationCompliant tab, A2:L7.
-* Write: data/sheets/as-is/project_impact.csv 
-* Rendered by: html/impact/impact.html, JavaScript within HTML, js/pie_group.js, js/d3.min.js.
+html/consultancy/institutions.html:
 
-## Software Carpentry scripts and data
+* data/sheets/as-is/institution_effort.csv
+* data/sheets/as-is/institution_projects.csv
 
-```
-$ python src/download_swc.py
-```
+html/consultancy/projects.html:
 
-* Download: SSI SWC from 2012-04-30 to 2014-04-09 from Mike sheet, Workshops-Summary tab
-* Write: data/sheets/as-is/swc.csv 
-* Rendered by: html/training/swc.html, js/barchart.js, js/pie.js
+* data/sheets/as-is/projects_effort.csv
 
-* Download: carpentry-workshops-instructors-affiliation_GB_2017-12-14 sheet
-  - workshops-affiliation_GB_2017-12-14 tab
-  - instructors-affiliation_GB_2017-12-14 tab
-* Write: data/sheets/as-is/swc_workshops_affiliation_gb_2017.csv 
-* Rendered by: html/training/swc_workshops_2017.html, js/barchart_horiz.js, js/pie.js, js/circle_packing.js
-* Write: data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv 
-* Rendered by: html/training/swc_instructors_2017.html, js/barchart_horiz.js, js/pie.js, js/circle_packing.js
+html/impact/impact.html:
 
-## Policy scripts and data
+* data/sheets/as-is/project_impact.csv 
+* data/sheets/as-is/project_impact.csv 
 
-```
-$ python src/download_policy.py
-```
+### Software Carpentry data
 
-* Download: Software Used In Research Combined Results sheet, Unique names for publication tab
-* Write: data/sheets/as-is/software.csv 
-* Rendered by: html/policy/software.html, js/barchart_horiz.js, js/circle_packing.js
+html/training/swc.html:
 
-Local data:
+* data/sheets/as-is/swc.csv 
+
+html/training/swc_workshops_2017.html:
+
+* data/sheets/as-is/swc_workshops_affiliation_gb_2017.csv 
+
+html/training/swc_instructors_2017.html:
+
+* data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv 
+
+### Policy data
+
+html/policy/software.html:
+
+* data/sheets/as-is/software.csv 
+
+html/policy/survey.html:
 
 * data/static/software_survey_2014_os.csv
 * data/static/software_survey_2014_software.csv
-* Rendered by: html/policy/survey.html, js/barchart_horiz.js, js/circle_packing.js
 
-## Fellows scripts and data
+### Fellows data
 
-Local data:
+html/community/fellows.html:
 
 * data/static/fellows_institutions.csv
-* Rendered by: html/community/fellows.html, js/circle_packing.js

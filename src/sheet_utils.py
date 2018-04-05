@@ -1,101 +1,179 @@
-"""Utilities for accessing Google Sheets.
-
-Derived from source code on
-
-https://developers.google.com/sheets/api/quickstart/python
-
-Copyright (C) 2016, Google
-Changes Copyright (C) 2017, The University of Edinburgh.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
+"""Functions to download data from sheets in Google Sheets workbooks
+and save these as CSV files.
 """
+
+# Derived from source code on
+#
+# https://developers.google.com/sheets/api/quickstart/python
+#
+# Copyright (C) 2016, Google
+# Changes Copyright (C) 2017-2018, The University of Edinburgh.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 from __future__ import print_function
 
-import os
-
 import httplib2
+import yaml
 
 from apiclient import discovery
-from oauth2client import client
-from oauth2client import tools
-from oauth2client.file import Storage
+
+from csv_utils import save_list_as_csv_file
+
+WORKBOOK = "workbook"
+""" YAML configuration file key. """
+SHEETS = "sheets"
+""" YAML configuration file key. """
+SHEET = "sheet"
+""" YAML configuration file key. """
+CELLS = "cells"
+""" YAML configuration file key. """
+FILE = "file"
+""" YAML configuration file key. """
 
 
-USER_CREDENTIAL_DIR = ".credentials"
-USER_CREDENTIAL_FILE = "sheets.googleapis.com-python-quickstart.json"
+def load_yaml(file):
+    """Load YAML configuration file specifying data to download and
+    local files to save these in.
 
-# If modifying these scopes, delete your previously saved credentials
-# at ~/.credentials/sheets.googleapis.com-python-quickstart.json
-SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly"
-CLIENT_SECRET_FILE = "client_secret.json"
-APPLICATION_NAME = "Google Sheets API Python Quickstart"
+       ---
+       # YAML file must contain 0 or more entries of form:
+       -
+         workbook: Google Sheet workbook ID.
+         sheets:
+         # sheets must contain 0 or more entries of form:
+         - sheet: Sheet name.
+           cells: Cells, optional, e.g. A1:B38.
+           file: File name in which data is to be saved.
 
-
-try:
-    import argparse
-    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
-except ImportError:
-    flags = None
-
-
-def get_credentials():
-    """Gets valid user credentials from storage.
-    If nothing has been stored, or if the stored credentials are
-    invalid, the OAuth2 flow is completed to obtain the new
-    credentials.
-
-    :return: credentials, the obtained credential.
-    :rtype: oauth2client.client.OAuth2Credentials
+    :param file: YAML configuration file.
+    :type file: str or unicode
+    :return: configuration, a list of dicts, one per sheet.
+    :rtype: list(dict)
+    :raises: yaml.YAMLError is the file is not valid YAML.
     """
-    home_dir = os.path.expanduser("~")
-    credential_dir = os.path.join(home_dir, USER_CREDENTIAL_DIR)
-    if not os.path.exists(credential_dir):
-        os.makedirs(credential_dir)
-    credential_path = os.path.join(credential_dir,
-                                   USER_CREDENTIAL_FILE)
-    store = Storage(credential_path)
-    credentials = store.get()
-    if not credentials or credentials.invalid:
-        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
-        flow.user_agent = APPLICATION_NAME
-        if flags:
-            credentials = tools.run_flow(flow, store, flags)
-        else: # Needed only for compatibility with Python 2.6
-            credentials = tools.run(flow, store)
-        print("Storing credentials to " + credential_path)
-    return credentials
+    config = {}
+    with open(file, 'r') as stream:
+        config = yaml.load(stream)
+    return config
 
 
-def download_sheet(sheet_id, tab_and_range):
+def download_workbooks(config, credentials):
+    """Given configuration for zero or more workbooks, download cells
+    from sheets in each workbook and save in local files.
+    config is expected to be a list of dicts, each of form:
+
+        {
+             "workbook": Google Workbook ID,
+             "sheets": [
+                 {
+                     "sheets": Sheet name,
+                     "cells": Cells, optional, e.g. A1:B38,
+                     "file": File name in which data is to be saved
+                 },...
+              ]
+        }
+
+    Any content not conforming to this structure is ignored.
+
+    :param config: Workbook configuration.
+    :type config: dict
+    :param credentials: OAuth2 credentials.
+    :type credentials: oauth2client.client.OAuth2Credentials
     """
-    Get Google Sheet data.
+    for workbook_config in config:
+        if WORKBOOK not in workbook_config:
+            print(WORKBOOK, "not in", workbook_config, "skipping")
+            continue
+        if SHEETS not in workbook_config:
+            print(SHEETS, "not in", workbook_config, "skipping")
+            continue
+        workbook = workbook_config[WORKBOOK]
+        sheets = workbook_config[SHEETS]
+        print("Workbook:", workbook)
+        download_sheets(workbook, sheets, credentials)
 
-    :param sheet_id: Sheet ID
-    :type sheet_id: str or unicode
-    :param tab_and_range: Sheet tab and (optional) range e.g.
-    "Workshops" or "Workshops!A1:B12"
-    :type sheet_id: str or unicode
-    :return: Sheet data
+
+def download_sheets(workbook, sheets_config, credentials):
+    """Given configuration a workbook, download cells from sheets in
+    the workbook and save in local files.
+    sheets_config is expected to be a list of dicts, each of form:
+
+        {
+            "sheet": Sheet name,
+            "cells": Cells, optional, e.g. A1:B38,
+            "file": File name in which data is to be saved
+        }
+
+    Any content not conforming to this structure is ignored.
+
+    Any problems in downloading are printed, but execution will
+    continue onto the next sheet.
+
+    :param workbook: Workbook ID.
+    :type workbook: str or unicode
+    :param config: Sheets configuration.
+    :type config: dict
+    :param credentials: OAuth2 credentials.
+    :type credentials: oauth2client.client.OAuth2Credentials
+    """
+    for sheet_config in sheets_config:
+        if SHEET not in sheet_config:
+            print(SHEET, "not in", sheet_config, "skipping")
+            continue
+        if FILE not in sheet_config:
+            print(FILE, "not in", sheet_config, "skipping")
+            continue
+        sheet = sheet_config[SHEET]
+        if CELLS in sheet_config:
+            cells = sheet_config[CELLS]
+        else:
+            cells = None
+        file = sheet_config[FILE]
+        print("Downloading:", workbook, sheet, cells, file)
+        try:
+            data = download_cells(workbook, sheet, cells, credentials)
+            save_list_as_csv_file(data, file)
+        except Exception as exc:
+            print("Problem, moving onto next download", exc)
+
+
+def download_cells(workbook, sheet, cells, credentials):
+    """Dowload cells from a sheet of a workbook.
+
+    :param workbook: Workbook ID.
+    :type workbook: str or unicode
+    :param sheet: Sheet name e.g. "Data".
+    :type sheet: str or unicode
+    :param cells: Cells e.g. "A2:L7" or None if all cells
+    are to be downloaded.
+    :type cells: str or unicode
+    :param credentials: OAuth2 credentials.
+    :type credentials: oauth2client.client.OAuth2Credentials
+    :return: Cells data.
     :rtype: list of list of str or unicode
     """
-    credentials = get_credentials()
+    if cells is None:
+        sheet_and_cells = sheet
+    else:
+        sheet_and_cells = sheet + "!" + cells
     http = credentials.authorize(httplib2.Http())
     discovery_url = ("https://sheets.googleapis.com/$discovery/rest?")
     service = discovery.build("sheets", "v4", http=http,
                               discoveryServiceUrl=discovery_url)
+    sheet_metadata = service.spreadsheets().get(spreadsheetId=workbook).execute()
+    print("Workbook file name:", sheet_metadata["properties"]["title"])
     result = service.spreadsheets().values().get(
-        spreadsheetId=sheet_id, range=tab_and_range).execute()
+        spreadsheetId=workbook, range=sheet_and_cells).execute()
     values = result.get("values", [])
     return values

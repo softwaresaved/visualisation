@@ -202,10 +202,10 @@ Create OAuth2 credentials:
 
 Run a data download script to add the Google API authentication files to your local machine:
 
-Download consultancy data:
+Download data:
 
 ```
-$ python src/download_consultancy.py --noauth_local_webserver
+$ python src/download_sheets.py --noauth_local_webserver --sheets sheets.yml
 ```
 
 When you run this script for the first time, with the given flag, Google's authentication component will ask you to give your permission for the use of your credentials to access Google Sheets to which you have access. It does this by asking you to go to a Google Accounts link to get a verification code and enter that code. For example:
@@ -243,28 +243,10 @@ When you run any of the download scripts, you will not be asked to authenticate 
 
 ## Update Institute data
 
-Download consultancy data:
+Download data:
 
 ```
-$ python src/download_consultanc.py
-```
-
-Download Software Carpentry data:
-
-```
-$ python src/download_swc.py
-```
-
-Download policy data:
-
-```
-$ python src/download_policy.py
-```
-
-Download project impact data:
-
-```
-$ python src/download_impact.py
+$ python src/download_sheets.py --noauth_local_webserver --sheets sheets.yml
 ```
 
 ---

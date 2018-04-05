@@ -1,0 +1,43 @@
+---
+- # SSI SWC from 2012-04-30 to 2014-04-09 from Mike
+  workbook: 1xna48IRFl-lLJrPhlI7vC-1TWnl1kICxzEfrvpIKLp8
+  sheets:
+    - sheet: Workshops-Summary
+      file: data/sheets/as-is/swc.csv
+- # carpentry-workshops-instructors-affiliation_GB_2017-12-14
+  workbook: 1-tfDUusAIs5clffqDpsHsncn7-W47-UC-TepG3xTlwU
+  sheets:
+    - sheet: workshops-affiliation_GB_2017-12-14
+      cells: A1:B38
+      file: data/sheets/as-is/swc_workshops_affiliation_gb_2017.csv
+    - sheet: instructors-affiliation_GB_2017-12-14
+      cells: A1:B42
+      file: data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv
+- # Software Used In Research Combined Results
+  workbook: 15HBoRuJ0OcDDRspBGA0mH_71gaX1EdlWuXHTw4IybTY
+  sheets:
+    - sheet: Unique names for publication
+      file: data/sheets/as-is/software.csv
+- # SSI questionnaire data
+  workbook: 1h3IZ6C37pNtIQ_-1duZaQ6kbW788G6s0ARvdOZrOKT8
+  sheets:
+    - sheet: AnalysisByQuestion-VisualisationCompliant
+      cells: A2:L7
+      file: data/sheets/as-is/project_impact.csv
+- # SSI Consultancy Projects
+  workbook: 1Jmq6ongECyJih7HbroltnAGZOecWOsl1qFdemw8Hj8A
+  sheets:
+    - sheet: Chart-FunderEffort
+      file: data/sheets/as-is/funders_effort.csv
+    - sheet: Chart-Funding
+      cells: A1:B13
+      file: data/sheets/as-is/funders_projects.csv
+    - sheet: Chart-InstitutionEffort
+      cells: A3:B22
+      file: data/sheets/as-is/institution_effort.csv
+    - sheet: Chart-InstitutionProjects
+      cells: A3:B28
+      file: data/sheets/as-is/institution_projects.csv
+    - sheet: Chart-Effort
+      cells: A3:B58
+      file: data/sheets/as-is/projects_effort.csv
