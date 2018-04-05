@@ -45,7 +45,6 @@ html/consultancy/projects.html:
 html/impact/impact.html:
 
 * data/sheets/as-is/project_impact.csv 
-* data/sheets/as-is/project_impact.csv 
 
 ### Software Carpentry data
 
