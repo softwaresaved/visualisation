@@ -23,10 +23,7 @@ and save these as CSV files.
 
 from __future__ import print_function
 
-import httplib2
 import yaml
-
-from apiclient import discovery
 
 from csv_utils import save_list_as_csv_file
 
@@ -68,7 +65,7 @@ def load_yaml(file):
     return config
 
 
-def download_workbooks(config, credentials):
+def download_workbooks(service, config):
     """Given configuration for zero or more workbooks, download cells
     from sheets in each workbook and save in local files.
     config is expected to be a list of dicts, each of form:
@@ -86,10 +83,10 @@ def download_workbooks(config, credentials):
 
     Any content not conforming to this structure is ignored.
 
+    :param service: Google service object.
+    :type service: googleapiclient.discovery.Resource
     :param config: Workbook configuration.
     :type config: dict
-    :param credentials: OAuth2 credentials.
-    :type credentials: oauth2client.client.OAuth2Credentials
     """
     for workbook_config in config:
         if WORKBOOK not in workbook_config:
@@ -101,10 +98,10 @@ def download_workbooks(config, credentials):
         workbook = workbook_config[WORKBOOK]
         sheets = workbook_config[SHEETS]
         print("Workbook:", workbook)
-        download_sheets(workbook, sheets, credentials)
+        download_sheets(service, workbook, sheets)
 
 
-def download_sheets(workbook, sheets_config, credentials):
+def download_sheets(service, workbook, sheets_config):
     """Given configuration a workbook, download cells from sheets in
     the workbook and save in local files.
     sheets_config is expected to be a list of dicts, each of form:
@@ -120,12 +117,12 @@ def download_sheets(workbook, sheets_config, credentials):
     Any problems in downloading are printed, but execution will
     continue onto the next sheet.
 
+    :param service: Google service object.
+    :type service: googleapiclient.discovery.Resource
     :param workbook: Workbook ID.
     :type workbook: str or unicode
     :param config: Sheets configuration.
     :type config: dict
-    :param credentials: OAuth2 credentials.
-    :type credentials: oauth2client.client.OAuth2Credentials
     """
     for sheet_config in sheets_config:
         if SHEET not in sheet_config:
@@ -142,15 +139,17 @@ def download_sheets(workbook, sheets_config, credentials):
         file = sheet_config[FILE]
         print("Downloading:", workbook, sheet, cells, file)
         try:
-            data = download_cells(workbook, sheet, cells, credentials)
+            data = download_cells(service, workbook, sheet, cells)
             save_list_as_csv_file(data, file)
         except Exception as exc:
             print("Problem with accessing and saving data", exc)
 
 
-def download_cells(workbook, sheet, cells, credentials):
+def download_cells(service, workbook, sheet, cells):
     """Dowload cells from a sheet of a workbook.
 
+    :param service: Google service object.
+    :type service: googleapiclient.discovery.Resource
     :param workbook: Workbook ID.
     :type workbook: str or unicode
     :param sheet: Sheet name e.g. "Data".
@@ -158,8 +157,6 @@ def download_cells(workbook, sheet, cells, credentials):
     :param cells: Cells e.g. "A2:L7" or None if all cells
     are to be downloaded.
     :type cells: str or unicode
-    :param credentials: OAuth2 credentials.
-    :type credentials: oauth2client.client.OAuth2Credentials
     :return: Cells data.
     :rtype: list of list of str or unicode
     """
@@ -167,11 +164,8 @@ def download_cells(workbook, sheet, cells, credentials):
         sheet_and_cells = sheet
     else:
         sheet_and_cells = sheet + "!" + cells
-    http = credentials.authorize(httplib2.Http())
-    discovery_url = ("https://sheets.googleapis.com/$discovery/rest?")
-    service = discovery.build("sheets", "v4", http=http,
-                              discoveryServiceUrl=discovery_url)
-    sheet_metadata = service.spreadsheets().get(spreadsheetId=workbook).execute()
+    sheet_metadata = service.spreadsheets().get(
+        spreadsheetId=workbook).execute()
     print("Workbook file name:", sheet_metadata["properties"]["title"])
     result = service.spreadsheets().values().get(
         spreadsheetId=workbook, range=sheet_and_cells).execute()

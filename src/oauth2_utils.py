@@ -22,7 +22,9 @@
 from __future__ import print_function
 
 import os
+import httplib2
 
+from apiclient import discovery
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
@@ -72,3 +74,20 @@ def get_credentials(flags):
             credentials = tools.run(flow, store)
         print("Storing credentials to " + credential_path)
     return credentials
+
+
+def get_google_service(credentials):
+    """Get Google service object.
+
+    :param credentials: OAuth2 credentials.
+    :type credentials: oauth2client.client.OAuth2Credentials
+    :return: Google service object.
+    :rtype: googleapiclient.discovery.Resource
+    """
+    http = credentials.authorize(httplib2.Http())
+    discovery_url = ("https://sheets.googleapis.com/$discovery/rest?")
+    service = discovery.build("sheets",
+                              "v4",
+                              http=http,
+                              discoveryServiceUrl=discovery_url)
+    return service

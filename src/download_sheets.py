@@ -28,6 +28,7 @@ import argparse
 from oauth2client import tools
 
 from oauth2_utils import get_credentials
+from oauth2_utils import get_google_service
 from sheet_utils import load_yaml
 from sheet_utils import download_workbooks
 
@@ -39,4 +40,5 @@ if __name__ == "__main__":
     config_file = flags.sheets
     config = load_yaml(config_file)
     credentials = get_credentials(flags)
-    download_workbooks(config, credentials)
+    service = get_google_service(credentials)
+    download_workbooks(service, config)
