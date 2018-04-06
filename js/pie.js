@@ -6,7 +6,7 @@
  * on 05/08/2016.
  *
  * Copyright (C) 2016, Mike Bostock
- * Changes Copyright (C) 2016-2017, The University of Edinburgh.
+ * Changes Copyright (C) 2016-2018, The University of Edinburgh.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,13 +40,24 @@
  * each unique value in this column. Value determines size of wedge.
  * @param {integer} width - drawing area width.
  * @param {integer} height - drawing area height.
+ * @param {string} colourScheme - comma-separated string of colour names. If provided, these are used to determine wedge colours. The number of colours must match the number of categories in label_column, which are assumed to be unique.
  */
 function draw_pie(data_file,
                   id_tag,
                   label_column,
                   value_column,
                   width,
-                  height) {
+                  height,
+                  colourScheme = null)
+{
+    // Changes from original code:
+    // Add support for colour scheme from caller.
+    var colours = null;
+    if (colourScheme != null)
+    {
+        colours = colourScheme.split(",");
+        console.log(colours);
+    }
 
     // Changes from original code:
     // Code in function so can draw multiple charts on same page.
@@ -93,8 +104,10 @@ function draw_pie(data_file,
     // Changes from original code:
     // Replaced d3.tsv with d3.csv.
     // Added wedge_count.
-
-    wedge_count = 0
+    // Added logging.
+    var wedge_count = 0
+    console.log("Label column name:" + label_column);
+    console.log("Value column name:" + value_column);
     d3.csv(data_file, type, function(error, data) {
         if (error) throw error;
 
@@ -105,13 +118,29 @@ function draw_pie(data_file,
 
         // Changes from original code:
         // Replaced hard-coded colours with wedge_count and get_slice_colour.
+        // Added logging.
         g.append("path")
             .attr("d", arc)
             .style("fill", function(d) {
+                var colour = null;
+
+                // d.index corresponds to row index.
+                // data[d.index] == d.data.
+                // d corresponds to row.
+                console.log("Wedge " + d.index + " (" + d.data[label_column] + ") Value: " + d.data[value_column]);
+                if (colourScheme != null)
+                {
+                    colour = colours[d.index];
+                }
+                else
+                {
+                    colour = get_slice_colour(wedge_count,
+                                              d.data[value_column]);
+                }
                 wedge_count++;
-                return get_slice_colour(wedge_count,
-                                        d.data[value_column]);
-              });
+                return colour;
+              }
+        );
 
         // Changes from original code:
         // Replaced d.data.age with d.data[value_column] to allow data column
@@ -119,7 +148,8 @@ function draw_pie(data_file,
         // data sets.
         g.append("text")
             .attr("transform", function(d) {
-                return "translate(" + labelArc.centroid(d) + ")";
+               return "translate(" + labelArc.centroid(d) + ")";
+//               return "translate(" + labelArc.centroid(d) + ")";
             })
             .attr("dy", ".35em")
             .text(function(d) {

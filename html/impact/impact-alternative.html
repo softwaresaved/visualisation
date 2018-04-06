@@ -19,10 +19,16 @@
 </style>
 <script src="../../js/pie.js"></script>
 
+<p>
 <div id="graphs"/>
+</p>
 
 <script>
 var csvFile = "../../data/sheets/as-is/project_impact.csv";
+
+// Number of elements in colour scheme must match number of elements
+// in categoryHeader column.
+var colourScheme="Red,Orange,Yellow,LightGreen,Lime";
 
 d3.csv(csvFile, function(error, data) {
     if (error) throw error;
@@ -35,7 +41,7 @@ d3.csv(csvFile, function(error, data) {
             var graphs = d3.select("#graphs")
             graphs.append("h2").html(headers[i]);
             graphs.append("p").attr("id", "pieFunderEffort" + i).classed("pie", true);
-            draw_pie(csvFile, "pieFunderEffort" + i, categoryHeader, headers[i], 500, 400);
+            draw_pie(csvFile, "pieFunderEffort" + i, categoryHeader, headers[i], 500, 400, colourScheme);
         }
     }
 );
