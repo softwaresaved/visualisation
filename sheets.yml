@@ -27,17 +27,18 @@
 - # SSI Consultancy Projects
   workbook: 1Jmq6ongECyJih7HbroltnAGZOecWOsl1qFdemw8Hj8A
   sheets:
-    - sheet: Chart-FunderEffort
+    - sheet: QuerySheetsForJavaScript
+      cells: A8:B19
       file: data/sheets/as-is/funders_effort.csv
-    - sheet: Chart-Funding
-      cells: A1:B13
+    - sheet: QuerySheetsForJavaScript
+      cells: C8:D20
       file: data/sheets/as-is/funders_projects.csv
-    - sheet: Chart-InstitutionEffort
-      cells: A3:B22
+    - sheet: QuerySheetsForJavaScript
+      cells: E8:F26
       file: data/sheets/as-is/institution_effort.csv
-    - sheet: Chart-InstitutionProjects
-      cells: A3:B28
+    - sheet: QuerySheetsForJavaScript
+      cells: G8:H31
       file: data/sheets/as-is/institution_projects.csv
-    - sheet: Chart-Effort
-      cells: A3:B58
+    - sheet: QuerySheetsForJavaScript
+      cells: I8:J71
       file: data/sheets/as-is/projects_effort.csv
