@@ -15,26 +15,15 @@
 <script src="../../js/rgb_utils.js"></script>
 <script src="../../js/color.js"></script>
 <style>
-@import url("../../css/pie.css");
-</style>
-<script src="../../js/pie.js"></script>
-<style>
 @import url("../../css/barchart.css");
 </style>
 <script src="../../js/barchart.js"></script>
 
     <h2>Attendees by location</h2>
     <p>Software Carpentry events from 2012-2014 at which the Institute administered, organised, taught at or helped at.</p>
-    <table>
-      <tr>
-        <td id="pieSwcAttendees" class="pie"></td>
-        <td id="chartSwcAttendees" class="barchart"></td>
-      </tr>
-    </table>
+    <p id="chartSwcAttendees" class="barchart"></p>
 
 <script>
-draw_pie("../../data/sheets/as-is/swc.csv", "pieSwcAttendees", "Institution", "Attendees", 500, 400);
-
 draw_bar("../../data/sheets/as-is/swc.csv", "chartSwcAttendees", "Institution", "Attendees", 500, 400);
 </script>
 

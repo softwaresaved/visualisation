@@ -15,10 +15,6 @@
 <script src="../../js/rgb_utils.js"></script>
 <script src="../../js/color.js"></script>
 <style>
-@import url("../../css/pie.css");
-</style>
-<script src="../../js/pie.js"></script>
-<style>
 @import url("../../css/barchart_horiz.css");
 </style>
 <script src="../../js/barchart_horiz.js"></script>
@@ -27,20 +23,13 @@
 </style>
 <script src="../../js/circle_packing.js"></script>
 
-    <table>
-      <tr>
-        <td id="pieWorkshops" class="pie"></td>
-        <td><svg id="chartWorkshops" class="barchart_horiz"></svg></td>
-      </tr>
-    </table>
+    <p><svg id="chartWorkshops" class="barchart_horiz"></svg></>
     <p><svg id="circleWorkshops" class="circles"><g transform="translate(1,1)"></g></svg></p>
 
 <script>
-draw_pie("../../data/sheets/as-is/swc_workshops_affiliation_gb_2017.csv", "pieWorkshops", "workshop_institution", "count", 500, 400);
-
 draw_bar_horiz("../../data/sheets/as-is/swc_workshops_affiliation_gb_2017.csv", "chartWorkshops", "workshop_institution", "count", 1000);
-
 draw_circle_chart("../../data/sheets/as-is/swc_workshops_affiliation_gb_2017.csv", "circleWorkshops", "workshop_institution", "count", 1000, 1000);
 </script>
+
   </body>
 </html>

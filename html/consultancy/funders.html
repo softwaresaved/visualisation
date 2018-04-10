@@ -15,38 +15,23 @@
 <script src="../../js/rgb_utils.js"></script>
 <script src="../../js/color.js"></script>
 <style>
-@import url("../../css/pie.css");
-</style>
-<script src="../../js/pie.js"></script>
-<style>
 @import url("../../css/barchart.css");
 </style>
 <script src="../../js/barchart.js"></script>
 
-    <h2>Effort (staff-months) by funder</h2>
     <table>
       <tr>
-        <td id="pieFunderEffort" class="pie"></td>
         <td id="chartFunderEffort" class="barchart"></td>
-      </tr>
-    </table>
-
-<script>
-draw_pie("../../data/sheets/as-is/funders_effort.csv", "pieFunderEffort", "Funder", "Effort", 500, 400);
-draw_bar("../../data/sheets/as-is/funders_effort.csv", "chartFunderEffort", "Funder", "Effort", 500, 400);
-</script>
-
-    <h2>Number of consultancy projects by funder</h2>
-
-    <table>
-      <tr>
-        <td id="pieFunderProjects" class="pie"></td>
         <td id="chartFunderProjects" class="barchart"></td>
       </tr>
+      <tr>
+        <td><center>Effort (staff-months) by funder</center></td>
+        <td><center>Number of consultancy projects by funder</center></td>
+      </tr>
     </table>
 
 <script>
-draw_pie("../../data/sheets/as-is/funders_projects.csv", "pieFunderProjects", "Funder", "Projects", 500, 400);
+draw_bar("../../data/sheets/as-is/funders_effort.csv", "chartFunderEffort", "Funder", "Effort", 500, 400);
 draw_bar("../../data/sheets/as-is/funders_projects.csv", "chartFunderProjects", "Funder", "Projects", 500, 400);
 </script>
 
