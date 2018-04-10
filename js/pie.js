@@ -40,7 +40,7 @@
  * each unique value in this column. Value determines size of wedge.
  * @param {integer} width - drawing area width.
  * @param {integer} height - drawing area height.
- * @param {string} colourScheme - comma-separated string of colour names. If provided, these are used to determine wedge colours. The number of colours must match the number of categories in label_column, which are assumed to be unique.
+ * @param {string} colourScheme - comma-separated string of colour names. These are used to determine wedge colours. The number of colours must match the number of categories in label_column, which are assumed to be unique.
  */
 function draw_pie(data_file,
                   id_tag,
@@ -52,12 +52,7 @@ function draw_pie(data_file,
 {
     // Changes from original code:
     // Add support for colour scheme from caller.
-    var colours = null;
-    if (colourScheme != null)
-    {
-        colours = colourScheme.split(",");
-        console.log(colours);
-    }
+    var colours = colourScheme.split(",");
 
     // Changes from original code:
     // Code in function so can draw multiple charts on same page.
@@ -103,11 +98,7 @@ function draw_pie(data_file,
 
     // Changes from original code:
     // Replaced d3.tsv with d3.csv.
-    // Added wedge_count.
     // Added logging.
-    var wedge_count = 0
-    console.log("Label column name:" + label_column);
-    console.log("Value column name:" + value_column);
     d3.csv(data_file, type, function(error, data) {
         if (error) throw error;
 
@@ -117,7 +108,7 @@ function draw_pie(data_file,
             .attr("class", "arc");
 
         // Changes from original code:
-        // Replaced hard-coded colours with wedge_count and get_slice_colour.
+        // Replaced hard-coded colours with use of colours array.
         // Added logging.
         g.append("path")
             .attr("d", arc)
@@ -127,17 +118,7 @@ function draw_pie(data_file,
                 // d.index corresponds to row index.
                 // data[d.index] == d.data.
                 // d corresponds to row.
-                console.log("Wedge " + d.index + " (" + d.data[label_column] + ") Value: " + d.data[value_column]);
-                if (colourScheme != null)
-                {
-                    colour = colours[d.index];
-                }
-                else
-                {
-                    colour = get_slice_colour(wedge_count,
-                                              d.data[value_column]);
-                }
-                wedge_count++;
+                colour = colours[d.index];
                 return colour;
               }
         );
@@ -149,32 +130,11 @@ function draw_pie(data_file,
         g.append("text")
             .attr("transform", function(d) {
                return "translate(" + labelArc.centroid(d) + ")";
-//               return "translate(" + labelArc.centroid(d) + ")";
             })
             .attr("dy", ".35em")
             .text(function(d) {
                 return d.data[label_column] +
                     "\n(" + d.data[value_column] + ")";
             });
-
-        // Changes from original code:
-        // Added function to calculate colour based on current number
-        // of wedges.
-        function get_slice_colour(wedge_count, value) {
-            // From https://stackoverflow.com/questions/236936/how-pick-colors-for-a-pie-chart
-            baseHex = "#8A56E2";
-            baseColour = Color().fromHex(baseHex);
-            baseHsv = baseColour.toHsv();
-            baseHue = baseHsv["h"];
-            num_colours = 8;
-            hue = baseHue + ((240 / num_colours) *
-                             (wedge_count % num_colours) % 240);
-            // Create colour with same saturation and luminosity:
-            hsv = {"h": hue,
-                   "s": baseHsv["s"],
-                   "v": baseHsv["v"]};
-            colour = Color().fromHsv(hsv);
-            return colour.toString();
-        };
     });
 };
