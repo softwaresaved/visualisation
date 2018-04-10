@@ -6,25 +6,28 @@ To view, visit http://softwaresaved.github.io/visualisation.
 
 ---
 
-## Requesting a visualisation for a data set
+## Requesting a visualisation for a data set (Institute staff)
 
-For Institute staff, to request a data set be added to the visualisations:
+To request that a data set be added to the visualisations:
 
 * Consider data you currently maintain in Google Sheets.
   - The data should be in a reasonably well-structured format.
-  - See [Spreadsheets](./SpreadsheetDesign.md) for the ideal format.
+  - See [Spreadsheets](./SpreadsheetDesign.md) for the preferred format.
 * For each data set you'd like to have a visualisation for, create a New issue:
   - Add the "Data" label to the issue.
   - Add the Google Sheet URL, tab name and additional information on the data you want visualised e.g. how frequently you update its content.
     - Remember the Google Sheet URL should not be anonymously readable unless it's a public data set.
-  - Suggest any visualisations you want (e.g. pie chart, bar chart etc) (optional). 
-    - You may want to look at D3 examples (e.g. see [M Bostock](https://bl.ocks.org/mbostock)) for possible options. (optional)
+  - Suggest visualisations you might want (optional):
+    - You may want to look at [Chart Suggestions - a Thought Starter](https://www.flickr.com/photos/amit-agarwal/3196386402/)...
+    - ...and D3 examples (e.g. see [M Bostock](https://bl.ocks.org/mbostock)) for possibilities!
 
-**Note:** Any vague suggestions for which data does not yet exist, or does exist but not as a Google Sheet, should be added as a comment to the general issue, [What data should we visualise?](https://github.com/softwaresaved/visualisation/issues/1).
+**Note:** Any vague suggestions for which data does not yet exist, or does exist but not as a Google Sheet, can be added as a comment to the general issue, [What data should we visualise?](https://github.com/softwaresaved/visualisation/issues/1).
 
 ---
 
-## Get source code
+## Deploy visualisations
+
+### Get source code
 
 Fork and clone this repository
 
@@ -38,15 +41,11 @@ $ cd visualisation
 $ git remote add ssi  http://USERNAME@github.com/softwaresaved/visualisation.git
 ```
 
----
-
-## Get Python 3
+### Get Python 3
 
 The [Anaconda](https://www.continuum.io/downloads) version of Python is recommended.
 
----
-
-## Install Python packages
+### Install Python packages
 
 ```
 $ pip install -r requirements.txt
@@ -57,17 +56,13 @@ This installs (if not already installed):
 * [requests](http://docs.python-requests.org/en/master/): Requests: HTTP for Humans.
 * [google-api-python-client](https://github.com/google/google-api-python-client): Client library for Google's discovery based APIs. 
 
----
-
-## View visualisations within GitHub pages
+### View visualisations within GitHub pages
 
 [GitHub pages](https://pages.github.com/) renders web site content in `gh-pages` branches of repositories hosted on GitHub.
 
 When you push changes to the `gh-pages` branch of your cloned repository on GitHub, you can view the web site at http://USERNAME.github.io/visualisation/
 
----
-
-## View visualisations within Python web server
+### View visualisations within Python web server
 
 Some browsers (e.g. Google Chrome) won't render JavaScript in HTML that is loaded into the browser via, for example, a file:// URL. 
 
@@ -78,11 +73,9 @@ $ cd visualisation
 $ python -m http.server
 ```
 
-Visit http://localhost:8000/ to see the visualisations index.html page.
+Visit http://localhost:8000/ to see index.html.
 
----
-
-## Deploy under Apache 2 web server
+### Deploy under Apache 2 web server
 
 [Apache](https://httpd.apache.org/) is a popular web server.
 
@@ -94,7 +87,7 @@ These instructions assume you have sudo access to install and configure software
 $ sudo su -
 ```
 
-### Install Apache 2 on Ubuntu 14.04.3 LTS Trusty Tahr
+**Install Apache 2 on Ubuntu 14.04.3 LTS Trusty Tahr**
 
 Install:
 
@@ -107,7 +100,7 @@ $ service apache2 status
  * apache2 is running
 ```
 
-### Install Apache 2 on Scientific Linux 6.6 (Carbon)
+**Install Apache 2 on Scientific Linux 6.6 (Carbon)**
 
 Install:
 
@@ -121,7 +114,7 @@ $ /etc/init.d/httpd status
 httpd (pid  18161) is running...
 ```
 
-### Install Apache 2 on Scientific Linux 7.1 (Nitrogen)
+**Install Apache 2 on Scientific Linux 7.1 (Nitrogen)**
 
 Install:
 
@@ -140,7 +133,7 @@ httpd.service - The Apache HTTP Server
 n Main PID: 14675 (httpd)
 ```
 
-### Clone this repository
+**Clone the repository**
 
 Clone:
 
@@ -149,7 +142,7 @@ $ cd /var/www/html
 $ git clone https://github.com/softwaresaved/visualisation
 ```
 
-### Set permissions
+**Set permissions**
 
 * For Ubuntu:
 
@@ -163,15 +156,19 @@ $ chown -R www-data:www-data visualisation
 $ chown -R apache:apache visualisation
 ```
 
-### View visualisations
+**View visualisations**
 
-Visit http://127.0.0.1/visualisation/
+Visit http://127.0.0.1/visualisation/ to see index.html.
 
 ---
 
-## Set up Google API authentication
+## Update data (Institute staff)
 
-The Institute data Google Sheets are protected, so you need to set up Google API authentication to access these.
+Updates to data in `data/` can be downloaded from the Institute's Google Sheets.
+
+### Set up Google API authentication
+
+The Institute's Google Sheets are protected. You need to set up Google API authentication to access these.
 
 Create Google API project:
 
@@ -239,11 +236,9 @@ Storing credentials to /home/someuser/credentials/sheets.googleapis.com-python-q
 
 When you run any of the download scripts, you will not be asked to authenticate again.
 
----
+### Download updated data
 
-## Update Institute data
-
-Download data:
+Run:
 
 ```
 $ python src/download_sheets.py --noauth_local_webserver --sheets sheets.yml
@@ -253,6 +248,10 @@ $ python src/download_sheets.py --noauth_local_webserver --sheets sheets.yml
 
 ## JavaScript development
 
+Introduction to HTML, CSS, JavaScript and D3:
+
+* Software Carpentry's [Visualizing your data on the web using D3](http://isakiko.github.io/D3-visualising-data/).
+
 Browser developer tools:
 
 * Google Chrome: CTRL+SHIFT+J opens Web Console and Debugger.
@@ -260,17 +259,34 @@ Browser developer tools:
 
 Comments:
 
-* [jsdoc](http://usejsdoc.org/) is used for commenting JavaScript.
+* [jsdoc](http://usejsdoc.org/) can be used for commenting JavaScript.
 
 Logging:
 
 * `console.log(...)` outputs to browser Web console.
 
+Google Chrome developer tools:
+
+* Force Chrome to reload page, JavaScript and CSS: CTRL+reload icon.
+* View element style: Right-click => Inspect:
+  - Explore Elements and Styles tabs.
+* Console tab:
+  - Outputs from `console.log("...")`.
+  - Errors.
+* Elements tab:
+  - HTML elements.
+  - Roll mouse over Elements to highlight elements in HTML.
+  - Check layout and styles.
+  - Make changes in Styles tab to see effect of changes.
+* Sources tab:
+  - CTRL+P: Load and view sources e.g. `.html`, `.jsp`, `.css`.
+  - Add breakpoints.
+
 ---
 
 ## Copyright and licence
 
-* Copyright 2015-2017, The University of Edinburgh and The University of Southampton except where noted in Third-party code below.
+* Copyright 2015-2018, The University of Edinburgh and The University of Southampton except where noted in Third-party code below.
 * Python code licence: [Apache 2.0](./LICENSE)
 * JavaScript code licence: [GNU General Public License version 2](./LICENSE)
 
