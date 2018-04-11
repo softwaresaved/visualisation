@@ -6,7 +6,7 @@
  * on 10/08/2016.
  *
  * Copyright (C) 2016, Mike Bostock
- * Changes Copyright (C) 2016-2017, The University of Edinburgh and
+ * Changes Copyright (C) 2016-2018, The University of Edinburgh and
  * The University of Southampton.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -71,10 +71,20 @@ function draw_circle_chart(data_file,
     // so can draw multiple charts on same page.
     // Changed use of svg.attr("width") and svg.attr("height"), width and
     // height with area_width and area_height.
+    // Inserts "svg" and "g" elements, building elements formerly 
+    // present in HTML snippet in
+    // http://bl.ocks.org/mbostock/07ec62d9957a29a30e71cad962ff2efd
     var id_tag_link = "#" + id_tag;
-    var svg = d3.select(id_tag_link)
+    var element = d3.select(id_tag_link)
         .attr("width", area_width)
         .attr("height", area_height);
+    var svg = element.append("svg")
+        .attr("width", area_width)
+        .attr("height", area_height);
+    var g = svg.append("g")
+        .attr("width", area_width)
+        .attr("height", area_height)
+        .attr("transform", "translate(1, 1)");
 
     var format = d3.format(",d");
 
@@ -107,7 +117,9 @@ function draw_circle_chart(data_file,
 
         pack(root);
 
-        var node = svg.select("g")
+        // Changes from original code:
+        // Replaced svg.select("g") with g
+        var node = g
             .selectAll("g")
             .data(root.children)
             .enter().append("g")
