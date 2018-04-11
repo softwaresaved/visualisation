@@ -77,8 +77,11 @@ function draw_bar_horiz(data_file,
     // Original replaced hard-coded "body" tag. Updated to specify
     // tag to replace via its ID, provided as function argument,
     // so can draw multiple charts on same page.
+    // Inserts "svg" element.
     var id_tag_link = "#" + id_tag;
-    var chart = d3.select(id_tag_link)
+    var element = d3.select(id_tag_link)
+        .attr("width", width);
+    var chart = element.append("svg")
         .attr("width", width);
 
     // Changes from original code:
@@ -92,6 +95,7 @@ function draw_bar_horiz(data_file,
 
         x.domain([0, d3.max(data, function(d) { return d[value_column]; })]);
 
+        element.attr("height", barHeight * data.length);
         chart.attr("height", barHeight * data.length);
 
         var bar = chart.selectAll("g")
