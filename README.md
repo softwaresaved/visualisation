@@ -164,11 +164,11 @@ Visit http://127.0.0.1/visualisation/ to see index.html.
 
 ## Update data (Institute staff)
 
-Updates to data in `data/` can be downloaded from the Institute's Google Sheets.
+Updates to data in `data/` can be downloaded from the Institute's Google Sheets and private GitHub repositories.
 
 ### Set up Google API authentication
 
-The Institute's Google Sheets are protected. You need to set up Google API authentication to access these.
+You need to set up Google API authentication to access the Institute's Google Sheets as they are private. 
 
 Create Google API project:
 
@@ -244,9 +244,33 @@ Run:
 $ python src/download_sheets.py --noauth_local_webserver --sheets sheets.yml
 ```
 
+### Create GitHub personal access token
+
+You need to set up a GitHub personal access token as some of the Institute's GitHub repositories are private.
+
+Within GitHub:
+
+* Select USER => Settings
+* Click Settings
+* Click Developer settings
+* Click Personal access tokens
+* Click Generate new token
+* Enter Token description: metrics
+* Select scopes: check repo
+* Click Generate token
+* Copy the token text
+
+### Download updated data
+
+Run:
+
+```
+$ GIT_TOKEN=<YOUR_GIT_TOKEN> bash get_repositories.sh	
+```
+
 ---
 
-## JavaScript development
+## Development
 
 Introduction to HTML, CSS, JavaScript and D3:
 
@@ -281,6 +305,11 @@ Google Chrome developer tools:
 * Sources tab:
   - CTRL+P: Load and view sources e.g. `.html`, `.jsp`, `.css`.
   - Add breakpoints.
+
+Google Sheets and OAuth2 APIs:
+
+* [Introduction to the Google Sheets API](https://developers.google.com/sheets/api/guides/concepts)
+* Google Sheets API v4 [Python Quickstart](https://developers.google.com/sheets/api/quickstart/python)
 
 ---
 
