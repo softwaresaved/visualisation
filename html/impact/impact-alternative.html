@@ -6,46 +6,32 @@
     <title>Software Sustainability Institute</title>
   </head>
   <body>
-   <h1>Consultancy project impact based on questionnaire results</h1>
-   <p>
-     <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
-   </p>
+    <h1>Consultancy project impact based on questionnaire results</h1>
+    <p>
+      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
+    </p>
 
-<script src="../../js/d3.min.js"></script>
-<script src="../../js/rgb_utils.js"></script>
-<script src="../../js/color.js"></script>
-<style>
-@import url("../../css/pie.css");
-</style>
-<script src="../../js/pie.js"></script>
+    <script src="../../js/d3.min.js"></script>
+    <script src="../../js/pie.js"></script>
+    <script src="../../js/pie_group_alt.js"></script>
+    <style>
+      .pie .arc text {
+        font: 10px sans-serif;
+        text-anchor: middle;
+      }
+      .pie .arc path {
+        stroke: #ffffff;
+      }
+    </style>
 
-<p>
-<div id="graphs"/>
-</p>
-
-<script>
-var csvFile = "../../data/sheets/as-is/project_impact.csv";
-
-// Number of elements in colour scheme must match number of elements
-// in categoryHeader column.
-var colourScheme="Red,Orange,Yellow,LightGreen,Lime";
-
-d3.csv(csvFile, function(error, data) {
-    if (error) throw error;
-        var headers = d3.keys(data[0]);
-        var categoryHeader = headers[0];
-        var numHeaders = headers.length;
-        var i = 0;
-        for (i = 1; i < numHeaders; i++)
-        {
-            var graphs = d3.select("#graphs")
-            graphs.append("h2").html(headers[i]);
-            graphs.append("p").attr("id", "pieFunderEffort" + i).classed("pie", true);
-            draw_pie(csvFile, "pieFunderEffort" + i, categoryHeader, headers[i], 500, 400, colourScheme);
-        }
-    }
-);
-</script>
-
+    <div id="graphs"/>
+    <script>
+      draw_pie_charts("../../data/sheets/as-is/project_impact.csv",
+                      "graphs",
+                      "pieFunderEffort",
+                      500,
+                      400,
+                      "Red,Orange,Yellow,LightGreen,Lime");
+    </script>
   </body>
 </html>

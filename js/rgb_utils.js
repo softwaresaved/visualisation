@@ -1,7 +1,7 @@
 /**
  * RGB utilities.
 
- * Copyright (C) 2016-2017, The University of Edinburgh.
+ * Copyright (c) 2016-2018, The University of Edinburgh.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

@@ -2,11 +2,19 @@
  * D3 circle packing
  *
  * This version derived from original downloaded from
+ * Circle-Packing II
  * http://bl.ocks.org/mbostock/07ec62d9957a29a30e71cad962ff2efd
  * on 10/08/2016.
  *
- * Copyright (C) 2016, Mike Bostock
- * Changes Copyright (C) 2016-2018, The University of Edinburgh and
+ * Uses styles: text, .node circle, .node:hover circle
+ *
+ * Changes: Wrapped code within a function; replaced hard-coded
+ * file name, column names, labels with arguments passed in via
+ * function call; inserts <svg> element instead of assuming one has
+ * been defined in HTML.
+ *
+ * Copyright (c) 2016, Mike Bostock
+ * Changes Copyright (c) 2016-2018, The University of Edinburgh and
  * The University of Southampton.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,12 +29,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Requires styles for:
- *
- * text - text colour.
- * .node circle - circle colour.
- * .node:hover circle - circle colour when mouse hovers over it.
  */
 
 /**
@@ -51,29 +53,11 @@ function draw_circle_chart(data_file,
                            area_width,
                            area_height) {
 
-    // Changes from original code:
-    // Code in function so can draw multiple charts on same page.
-
-    // Changes from original code:
-    // Moved type within draw_circle_chart so can draw multiple charts
-    // on same page.
-    // Replaced d.value with d[value_column] to allow data column
-    // to be configured via function argument, so can use different
-    // data sets.
     function type(d) {
         d[value_column] = +d[value_column];
         return d[value_column] ? d : null;
     }
 
-    // Changes from original code:
-    // Original replaced hard-coded "svg" tag. Updated to specify
-    // tag to replace via its ID, provided as function argument,
-    // so can draw multiple charts on same page.
-    // Changed use of svg.attr("width") and svg.attr("height"), width and
-    // height with area_width and area_height.
-    // Inserts "svg" and "g" elements, building elements formerly 
-    // present in HTML snippet in
-    // http://bl.ocks.org/mbostock/07ec62d9957a29a30e71cad962ff2efd
     var id_tag_link = "#" + id_tag;
     var element = d3.select(id_tag_link)
         .attr("width", area_width)
@@ -92,33 +76,23 @@ function draw_circle_chart(data_file,
         .size([area_width - 2, area_height - 2])
         .padding(3);
 
-    // Changes from original code:
-    // Replaced "flare.csv" with data_file.
     d3.csv(data_file, type, function(error, data) {
         if (error) {
             throw error;
         }
 
-        // Changes from original code:
-        // Give each row a unique ID to make indexing circles easier.
         var circle_id = 0;
         data.forEach(function(row) {
             row.circle_id = circle_id;
             circle_id++;
         });
 
-        // Changes from original code:
-        // Replaced a.value and b.value with a[value_column] and
-        // b[value_column] to allow data column to be configured
-        // via function argument, so can use different data sets.
         var root = d3.hierarchy({children: data})
             .sum(function(d) { return d[value_column]; })
             .sort(function(a, b) { return b[value_column] - a[value_column]; });
 
         pack(root);
 
-        // Changes from original code:
-        // Replaced svg.select("g") with g
         var node = g
             .selectAll("g")
             .data(root.children)
@@ -131,15 +105,11 @@ function draw_circle_chart(data_file,
             .attr("id", function(d) { return "node-" + d.data.circle_id; })
             .attr("r", function(d) { return d.r; });
 
-        // Changes from original code:
-        // Replaced data.id with data.circle_id.
         node.append("clipPath")
             .attr("id", function(d) { return "clip-" + d.data.circle_id; })
             .append("use")
             .attr("xlink:href", function(d) { return "#node-" + d.data.circle_id + ""; });
 
-        // Changes from original code:
-        // Replaced data.id with data[label_column] as text label.
         node.append("text")
             .attr("clip-path", function(d) { return "url(#clip-" + d.data.circle_id + ")"; })
             .selectAll("tspan")

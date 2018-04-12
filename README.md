@@ -313,7 +313,7 @@ Bootstrap 3.3.6
 * http://getbootstrap.com/
 * Copyright 2011-2016 Twitter, Inc.
 * Licence: [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE)
-* Local code: `css/bootstrapcss`, `css/bootstrap.min.css`, `js/bootstrap.js`, `js/bootstrap.min.js`
+* Local code: `css/bootstrap.css`, `css/bootstrap.min.css`, `js/bootstrap.js`, `js/bootstrap.min.js`
 
 D3 4.2.1
 
@@ -328,28 +328,28 @@ D3 bar chart
 * http://bl.ocks.org/mbostock/3885304
 * Copyright 2016, Mike Bostock
 * Licence: [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
-* Local code: `js/barchart.js` and `css/barchart.css` are modified versions.
+* Local code: `js/barchart.js` is a modified version.
 
-D3 horizontal bar chart (bar chart IIc)
+D3 horizontal bar chart
 
-* http://bl.ocks.org/mbostock/7341714
-* Copyright 2016, Mike Bostock
-* Licence: [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
-* Local code: `js/barchart_horiz.js` and `css/barchart_horiz.css` are modified versions.
+* https://bl.ocks.org/curran/e842c1b64974666c60fc3e437f8c8cf9
+* Copyright 2017, Curran Kelleher
+* Licence: [MITc License](https://opensource.org/licenses/MIT)
+* Local code: `js/barchart_horiz.js` is a modified version.
 
 D3 pie chart
 
 * https://bl.ocks.org/mbostock/3887235
 * Copyright 2016, Mike Bostock
 * Licence: [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
-* Local code: `js/pie.js` and `css/pie.css` are modified versions.
+* Local code: `js/pie.js` is a modified version.
 
 D3 circle packing
 
 * http://bl.ocks.org/mbostock/07ec62d9957a29a30e71cad962ff2efd
 * Copyright 2016, Mike Bostock
 * Licence: [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0)
-* Local code: `js/circle_packing.js` and `css/circle_packing.css` are modified versions.
+* Local code: `js/circle_packing.js` is a modified version.
 
 jQuery 2.2.1
 

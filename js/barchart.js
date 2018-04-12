@@ -5,8 +5,15 @@
  * Bar Chart https://bl.ocks.org/mbostock/3885304#index.html
  * on 05/08/2016.
  *
- * Copyright (C) 2016, Mike Bostock
- * Changes Copyright (C) 2016-2017, The University of Edinburgh and
+ * Uses styles: .bar text, .bar:hover, .axis, .axis path, .axis line,
+ * .x.axis path
+ *
+ * Changes: Wrapped code within a function; replaced hard-coded
+ * file name, column names, labels with arguments passed in via
+ * function call.
+ * 
+ * Copyright (c) 2018, Mike Bostock
+ * Changes Copyright (c) 2016-2018, The University of Edinburgh and
  * The University of Southampton.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -21,15 +28,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Requires styles for:
- *
- * .bar text - bar labels.
- * .bar:hover - bar mouse over colour.
- * .axis - axis label.
- * .axis path - axis lines.
- * .axis line - axis lines.
- * .x.axis path - X-axis lines.
  */
 
 /**
@@ -53,24 +51,11 @@ function draw_bar(data_file,
                   area_width,
                   area_height) {
 
-    // Changes from original code:
-    // Code in function so can draw multiple charts on same page.
-
-    // Changes from original code:
-    // Moved type within draw_chart so can draw multiple charts
-    // on same page.
-    // Replaced d.frequency with d[value_column] to allow data column
-    // to be configured via function argument, so can use different
-    // data sets.
     function type(d) {
         d[value_column] = +d[value_column];
         return d;
     }
 
-    // Changes from original code:
-    // bottom: 30 updated to allow more space for labels.
-    // 960 replaced with area_width and 500 replaced with area_height
-    // so can configure drawing area size.
     var margin = {top: 20, right: 20, bottom: 100, left: 40},
     width = area_width - margin.left - margin.right,
     height = area_height - margin.top - margin.bottom;
@@ -88,10 +73,6 @@ function draw_bar(data_file,
         .scale(y)
         .tickSize(1,5);
 
-    // Changes from original code:
-    // Original replaced hard-coded "body" tag. Updated to specify
-    // tag to replace via its ID, provided as function argument,
-    // so can draw multiple charts on same page.
     var id_tag_link = "#" + id_tag;
     var svg = d3.select(id_tag_link).append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -99,15 +80,9 @@ function draw_bar(data_file,
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    // Changes from original code:
-    // Replaced d3.tsv with d3.csv.
     d3.csv(data_file, type, function(error, data) {
         if (error) throw error;
 
-        // Changes from original code:
-        // Replaced d.letter with d[label_column] to allow data column
-        // to be configured via function argument, so can use different
-        // data sets.
         x.domain(data.map(function(d) { return d[label_column]; }));
         y.domain([0, d3.max(data, function(d) { return d[value_column]; })]);
 
@@ -115,17 +90,12 @@ function draw_bar(data_file,
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
-            // Changes from original code:
-            // Draw axis labels vertically so they don't overrite siblings.
             .selectAll("text")
             .attr("y", 0)
             .attr("x", -9)
             .attr("transform", "rotate(-90)")
             .style("text-anchor", "end");
 
-        // Changes from original code:
-        // Replaced "Frequency" with label_column, so can use different
-        // data sets.
         svg.append("g")
             .attr("class", "y axis")
             .call(yAxis)

@@ -6,21 +6,30 @@
     <title>Software Sustainability Institute</title>
   </head>
   <body>
-   <h1>Software Used In Research - combined data 2016</h1>
-   <p>
+    <h1>Software Used In Research - combined data 2016</h1>
+    <p>
      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
-   </p>
+    </p>
 
-<script src="../../js/d3.min.js"></script>
-<style>
-@import url("../../css/circle_packing.css");
-</style>
-<script src="../../js/circle_packing.js"></script>
+    <script src="../../js/d3.min.js"></script>
+    <script src="../../js/circle_packing.js"></script>
+    <style>
+      .circles text {
+        font: 10px sans-serif;
+        text-anchor: middle;
+      }
+      .circles .node circle {
+        fill: #fcffaa;
+      }
+      .circles .node:hover circle {
+        stroke: #000;
+        stroke-width: 1.2px;
+      }
+    </style>
 
     <p id="circleSw" class="circles"/>
-
-<script>
-draw_circle_chart("../../data/sheets/as-is/software.csv", "circleSw", "Unique names for counting", "How many times reported?", 1000, 1000);
-</script>
+    <script>
+      draw_circle_chart("../../data/sheets/as-is/software.csv", "circleSw", "Unique names for counting", "How many times reported?", 1000, 1000);
+    </script>
   </body>
 </html>

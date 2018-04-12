@@ -6,29 +6,61 @@
     <title>Software Sustainability Institute</title>
   </head>
   <body>
-   <h1>Software Survey 2014 Data</h1>
-   <p>
-     <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
-   </p>
+    <h1>Software Survey 2014 Data</h1>
+    <p>
+      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
+    </p>
 
-<script src="../../js/d3.min.js"></script>
-<style>
-@import url("../../css/barchart_horiz.css");
-</style>
-<script src="../../js/barchart_horiz.js"></script>
-<style>
-@import url("../../css/circle_packing.css");
-</style>
-<script src="../../js/circle_packing.js"></script>
+    <script src="../../js/d3.min.js"></script>
+    <script src="../../js/barchart_horiz.js"></script>
+    <script src="../../js/circle_packing.js"></script>
+    <style>
+      body {
+        margin: 0px;
+      }
+      .barchart_horiz .domain {
+        display: none;
+      }
+      .barchart_horiz rect {
+        fill: steelblue;
+      }
+      .barchart_horiz .tick line {
+        stroke: #C0C0BB;
+      }
+      .barchart_horiz .tick text {
+        fill: #000000;
+        font-size: 10pt;
+        font-family: sans-serif;
+      }
+      .barchart_horiz .axis-label {
+        fill: #000000;
+        font-size: 12pt;
+        font-family: sans-serif;
+      }
+      .barchart_horiz .bar-value {
+        color: #000000;
+      }
+
+      .circles text {
+        font: 10px sans-serif;
+        text-anchor: middle;
+      }
+      .circles .node circle {
+        fill: #fcffaa;
+      }
+      .circles .node:hover circle {
+        stroke: #000;
+        stroke-width: 1.2px;
+      }
+    </style>
 
     <h2>Operating system</h2>
     <p id="chartOs" class="barchart_horiz"/>
     <h2>Software</h2>
     <p id="circleSw" class="circles"/>
-
-<script>
-draw_bar_horiz("../../data/static/software_survey_2014_os.csv", "chartOs", "Operating System", "Count", 1000);
-draw_circle_chart("../../data/static/software_survey_2014_software.csv", "circleSw", "Research Software", "Count", 1000, 1000);
-</script>
+    <script>
+      draw_bar_horiz("../../data/static/software_survey_2014_os.csv", "chartOs", "Operating System", "Count", 1000, 500);
+      draw_circle_chart("../../data/static/software_survey_2014_software.csv", "circleSw", "Research Software", "Count", 1000, 1000);
+    </script>
   </body>
 </html>

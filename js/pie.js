@@ -2,11 +2,18 @@
  * D3 pie chart
  *
  * This version derived from original downloaded from
- * Pie Chart https://bl.ocks.org/mbostock/3887235#index.html
+ * Pie Chart
+ * https://bl.ocks.org/mbostock/3887235#index.html
  * on 05/08/2016.
  *
- * Copyright (C) 2016, Mike Bostock
- * Changes Copyright (C) 2016-2018, The University of Edinburgh.
+ * Changes: Wrapped code within a function; replaced hard-coded
+ * file name, column names, labels with arguments passed in via
+ * function call.
+ *
+ * Uses styles: text, .arc path, .legend rect .legend text
+ *
+ * Copyright (c) 2016, Mike Bostock
+ * Changes Copyright (c) 2016-2018, The University of Edinburgh.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,22 +57,8 @@ function draw_pie(data_file,
                   height,
                   colourScheme = null)
 {
-    // Changes from original code:
-    // Add support for colour scheme from caller.
     var colours = colourScheme.split(",");
 
-    // Changes from original code:
-    // Code in function so can draw multiple charts on same page.
-    // Hard-coded width and height replaced with parameters
-    // so can configure drawing area size.
-    // Replaced hard-coded colours array with coloured slices.
-
-    // Changes from original code:
-    // Moved type within draw_chart so can draw multiple charts
-    // on same page.
-    // Replaced d.population with d[value_column] to allow data column
-    // to be configured via function argument, so can use different
-    // data sets.
     function type(d) {
         d[value_column] = +d[value_column];
         return d;
@@ -85,10 +78,6 @@ function draw_pie(data_file,
         .sort(null)
         .value(function(d) { return d[value_column]; });
 
-    // Changes from original code:
-    // Original replaced hard-coded "body" tag. Updated to specify
-    // tag to replace via its ID, provided as function argument,
-    // so can draw multiple charts on same page.
     var id_tag_link = "#" + id_tag;
     var svg = d3.select(id_tag_link).append("svg")
         .attr("width", width)
@@ -96,9 +85,6 @@ function draw_pie(data_file,
         .append("g")
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-    // Changes from original code:
-    // Replaced d3.tsv with d3.csv.
-    // Added logging.
     d3.csv(data_file, type, function(error, data) {
         if (error) throw error;
 
@@ -107,9 +93,6 @@ function draw_pie(data_file,
             .enter().append("g")
             .attr("class", "arc");
 
-        // Changes from original code:
-        // Replaced hard-coded colours with use of colours array.
-        // Added logging.
         g.append("path")
             .attr("d", arc)
             .style("fill", function(d) {
@@ -123,10 +106,6 @@ function draw_pie(data_file,
               }
         );
 
-        // Changes from original code:
-        // Replaced d.data.age with d.data[value_column] to allow data column
-        // to be configured via function argument, so can use different
-        // data sets.
         g.append("text")
             .attr("transform", function(d) {
                return "translate(" + labelArc.centroid(d) + ")";

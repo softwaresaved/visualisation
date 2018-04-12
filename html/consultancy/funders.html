@@ -6,18 +6,32 @@
     <title>Software Sustainability Institute</title>
   </head>
   <body>
-   <h1>Consultancy Data - Funders</h1>
-   <p>
-     <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
-   </p>
+    <h1>Consultancy Data - Funders</h1>
+    <p>
+      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
+    </p>
 
-<script src="../../js/d3.min.js"></script>
-<script src="../../js/rgb_utils.js"></script>
-<script src="../../js/color.js"></script>
-<style>
-@import url("../../css/barchart.css");
-</style>
-<script src="../../js/barchart.js"></script>
+    <script src="../../js/d3.min.js"></script>
+    <script src="../../js/barchart.js"></script>
+    <style>
+      .barchart  .bar {
+        fill: steelblue;
+      }
+      .barchart .bar:hover {
+        fill: brown;
+      }
+      .barchart .axis {
+        font: 10px sans-serif;
+      }
+      .barchart .axis path, .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+      .barchart .x.axis path {
+        display: none;
+      }
+    </style>
 
     <table>
       <tr>
@@ -29,11 +43,9 @@
         <td><center>Number of consultancy projects by funder</center></td>
       </tr>
     </table>
-
-<script>
-draw_bar("../../data/sheets/as-is/funders_effort.csv", "chartFunderEffort", "Funder", "Effort", 500, 400);
-draw_bar("../../data/sheets/as-is/funders_projects.csv", "chartFunderProjects", "Funder", "Projects", 500, 400);
-</script>
-
+    <script>
+      draw_bar("../../data/sheets/as-is/funders_effort.csv", "chartFunderEffort", "Funder", "Effort", 500, 400);
+      draw_bar("../../data/sheets/as-is/funders_projects.csv", "chartFunderProjects", "Funder", "Projects", 500, 400);
+    </script>
   </body>
 </html>

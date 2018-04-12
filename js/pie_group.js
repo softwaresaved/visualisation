@@ -1,7 +1,9 @@
 /**
  * Collection of pie charts.
  *
- * Copyright (C) 2016-2017, The University of Edinburgh.
+ * Uses styles: text, .arc path, .legend rect, .legend text
+ *
+ * Copyright (c) 2016-2018, The University of Edinburgh.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,13 +17,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Requires styles for:
- *
- * text - pie chart titles.
- * .arc path - pie chart wedge dividers.
- * .legend rect - legend rectangle.
- * .legend text - legend text.
  */
 
 /**

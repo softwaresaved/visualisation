@@ -6,31 +6,60 @@
     <title>Software Sustainability Institute</title>
   </head>
   <body>
-   <h1>Software Carpentry Instructors 2017</h1>
-   <p>
-     <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
-   </p>
+    <h1>Software Carpentry Instructors 2017</h1>
+    <p>
+      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
+    </p>
 
-<script src="../../js/d3.min.js"></script>
-<script src="../../js/rgb_utils.js"></script>
-<script src="../../js/color.js"></script>
-<style>
-@import url("../../css/barchart_horiz.css");
-</style>
-<script src="../../js/barchart_horiz.js"></script>
-<style>
-@import url("../../css/circle_packing.css");
-</style>
-<script src="../../js/circle_packing.js"></script>
+    <script src="../../js/d3.min.js"></script>
+    <script src="../../js/barchart_horiz.js"></script>
+    <script src="../../js/circle_packing.js"></script>
+    <style>
+      body {
+        margin: 0px;
+      }
+      .barchart_horiz .domain {
+        display: none;
+      }
+      .barchart_horiz rect {
+        fill: steelblue;
+      }
+      .barchart_horiz .tick line {
+        stroke: #C0C0BB;
+      }
+      .barchart_horiz .tick text {
+        fill: #000000;
+        font-size: 10pt;
+        font-family: sans-serif;
+      }
+      .barchart_horiz .axis-label {
+        fill: #000000;
+        font-size: 12pt;
+        font-family: sans-serif;
+      }
+      .barchart_horiz .bar-value {
+        color: #000000;
+      }
+
+      .circles text {
+        font: 10px sans-serif;
+        text-anchor: middle;
+      }
+      .circles .node circle {
+        fill: #fcffaa;
+      }
+      .circles .node:hover circle {
+        stroke: #000;
+        stroke-width: 1.2px;
+      }
+    </style>
 
     <h2>Software Carpentry instructors 2017</h2>
     <p id="chartInstructors" class="barchart_horiz"/>
     <p id="circleInstructors" class="circles"/>
-
-<script>
-draw_bar_horiz("../../data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv", "chartInstructors", "affiliation", "count", 1000);
-draw_circle_chart("../../data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv", "circleInstructors", "affiliation", "count", 1000, 1000);
-</script>
-
+    <script>
+      draw_bar_horiz("../../data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv", "chartInstructors", "affiliation", "count", 1000, 1500);
+      draw_circle_chart("../../data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv", "circleInstructors", "affiliation", "count", 1000, 1000);
+    </script>
   </body>
 </html>

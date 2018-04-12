@@ -1,35 +1,44 @@
 /**
  * D3 horizontal bar chart
  *
- * This version derived from original downloaded from
- * Bar Chart IIc http://bl.ocks.org/mbostock/7341714#index.html
- * on 04/08/2016.
+ * Derived from original downloaded from Horizontal Bar Chart
+ * https://bl.ocks.org/curran/e842c1b64974666c60fc3e437f8c8cf9
+ * on 11/04/2018.
+ * 
+ * Changes: Wrapped code within a function; replaced hard-coded
+ * file name, column names, labels with arguments passed in via
+ * function call; inserts <svg> element instead of assuming one has
+ * been defined in HTML; tool-tip displays value of each bar on
+ * mouse-over.
  *
- * Copyright (C) 2016, Mike Bostock
- * Changes Copyright (C) 2016-2017, The University of Edinburgh and
- * The University of Southampton.
+ * Uses styles: body, .domain, rect, .tick line, .tick text,
+ * .axis-label, .bar-value
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Copyright (c) 2017, Curran Kelleher
+ * Changes Copyright (c) 2018, The University of Edinburgh.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use, copy,
+ * modify, merge, publish, distribute, sublicense, and/or sell copies
+ * of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions: 
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Requires styles for:
- *
- * .chart rect - bar colour.
- * .chart text - bar label colour.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. 
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
 
 /**
- * Draws horizontal bar chart.
+ * Draw horizontal bar chart.
  *
  * @param {string} data_file - file with comma-separated values
  * (CSV).
@@ -38,84 +47,108 @@
  * @param {string} label_column - bar chart will have one Y axis bar for
  * each unique value in this column.
  * @param {string} value_column - bar chart will have one Y axis bar for
- * each unique value in this column. Value determines size of bar.
+ * each unique value in this column. Value determines length of bar.
  * @param {integer} area_width - drawing area width.
+ * @param {integer} area_height - drawing area height.
  */
 function draw_bar_horiz(data_file,
                         id_tag,
                         label_column,
                         value_column,
-                        area_width) {
+                        width,
+                        height) {
 
-    // Changes from original code:
-    // Code in function so can draw multiple charts on same page.
+    const id_tag_link = "#" + id_tag;
+    const element = d3.select(id_tag_link);
+    const svg = element.append("svg")
+        .attr("width", width)
+        .attr("height", height);
 
-    // Changes from original code:
-    // Moved type within draw_chart so can draw multiple charts
-    // on same page.
-    // Replaced d.value with d[value_column] to allow data column
-    // to be configured via function argument, so can use different
-    // data sets.
-    function type(d) {
-        d[value_column] = +d[value_column];
-        return d;
-    }
+    const tooltip = element.append("div")
+        .attr("class", "bar-value")
+        .style("position", "absolute")
+        .style("visibility", "hidden");
 
-    // Changes from original code:
-    // 420 replaced with area_width and 500 so can configure drawing
-    // area size.
-    var width = area_width;
-    var barHeight = 20;
+    const xValue = d => d[value_column];
+    const xLabel = value_column;
+    const yValue = d => d[label_column];
+    const yLabel = label_column;
+    const margin = { left: 200, right: 30, top: 30, bottom: 75 };
 
-    // Changes from original code:
-    // Width of bar area decremented by 200 to allow space for labels
-    // after bars.
-    var x = d3.scaleLinear()
-        .range([0, width - 200]);
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
 
-    // Changes from original code:
-    // Original replaced hard-coded "body" tag. Updated to specify
-    // tag to replace via its ID, provided as function argument,
-    // so can draw multiple charts on same page.
-    // Inserts "svg" element.
-    var id_tag_link = "#" + id_tag;
-    var element = d3.select(id_tag_link)
-        .attr("width", width);
-    var chart = element.append("svg")
-        .attr("width", width);
+    const g = svg.append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
+    const xAxisG = g.append('g')
+        .attr('transform', `translate(0, ${innerHeight})`);
+    const yAxisG = g.append('g');
 
-    // Changes from original code:
-    // Replaced d3.tsv with d3.csv.
-    d3.csv(data_file, type, function(error, data) {
-        // Changes from original code:
-        // Added error handler.
-        if (error) {
-            throw error;
-        }
+    xAxisG.append('text')
+      .attr('class', 'axis-label')
+      .attr('x', innerWidth / 2)
+      .attr('y', 55)
+      .text(xLabel);
 
-        x.domain([0, d3.max(data, function(d) { return d[value_column]; })]);
+    yAxisG.append('text')
+      .attr('class', 'axis-label')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('transform',`translate(${(-margin.left+20)},${innerHeight/2})rotate(-90)`)
+      .style("text-anchor", "middle")
+      .text(yLabel);
 
-        element.attr("height", barHeight * data.length);
-        chart.attr("height", barHeight * data.length);
+    const xScale = d3.scaleLinear();
+    const yScale = d3.scaleBand()
+        .paddingInner(0.3)
+        .paddingOuter(0);
 
-        var bar = chart.selectAll("g")
-            .data(data)
-            .enter().append("g")
-            .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+    const xTicks = 10;
+    const xAxis = d3.axisBottom()
+        .scale(xScale)
+        .ticks(xTicks)
+        .tickPadding(5)
+        .tickSize(-innerHeight);
 
-        bar.append("rect")
-            .attr("width", function(d) { return x(d[value_column]); })
-            .attr("height", barHeight - 1);
+    const yAxis = d3.axisLeft()
+        .scale(yScale)
+        .tickPadding(5)
+        .tickSize(-innerWidth);
 
-        // Changes from original code:
-        // Replaced d.value with d[label_column] to allow data column
-        // to be configured via function argument, so can use different
-        // data sets, and to label bar with label and not value.
-        // x function adds 3 so label is drawn after end of column.
-        bar.append("text")
-            .attr("x", function(d) { return x(d[value_column]) + 3; })
-            .attr("y", barHeight / 2)
-            .attr("dy", ".35em")
-            .text(function(d) { return d[label_column] + " (" + d[value_column] + ")"; });
+    const row = d => {
+        return {
+          [label_column]: d[label_column],
+          [value_column]: +d[value_column]
+        };
+      };
+
+     d3.csv(data_file, row, data => {
+
+        yScale
+            .domain(data.map(yValue).reverse())
+            .range([innerHeight, 0]);
+
+        xScale
+            .domain([0, d3.max(data, xValue)])
+            .range([0, innerWidth])
+            .nice(xTicks);
+
+        g.selectAll('rect').data(data)
+            .enter().append('rect')
+            .attr('x', 0)
+            .attr('y', d => yScale(yValue(d)))
+            .attr('width', d => xScale(xValue(d)))
+            .attr('height', d => yScale.bandwidth())
+            .on("mouseover", function(d){return tooltip.style("visibility", "visible").text(d[value_column]);})
+            .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+            .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
+
+
+
+
+        xAxisG.call(xAxis);
+
+        yAxisG.call(yAxis);
+        yAxisG.selectAll('.tick line').remove();
     });
 };

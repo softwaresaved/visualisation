@@ -6,22 +6,31 @@
     <title>Software Sustainability Institute</title>
   </head>
   <body>
-   <h1>Fellows</h1>
-   <p>
-     <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
-   </p>
+    <h1>Fellows</h1>
+    <p>
+      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
+    </p>
 
-<script src="../../js/d3.min.js"></script>
-<style>
-@import url("../../css/circle_packing.css");
-</style>
-<script src="../../js/circle_packing.js"></script>
+    <script src="../../js/d3.min.js"></script>
+    <script src="../../js/circle_packing.js"></script>
+    <style>
+      .circles text {
+        font: 10px sans-serif;
+        text-anchor: middle;
+      }
+      .circles .node circle {
+        fill: #fcffaa;
+      }
+      .circles .node:hover circle {
+        stroke: #000;
+        stroke-width: 1.2px;
+      }
+    </style>
 
     <h2>Institutions</h2>
     <p id="circleFellows" class="circles"/>
-
-<script>
-draw_circle_chart("../../data/static/fellows_institutions.csv", "circleFellows", "Institution", "Count", 1000, 1000);
-</script>
+    <script>
+      draw_circle_chart("../../data/static/fellows_institutions.csv", "circleFellows", "Institution", "Count", 1000, 1000);
+    </script>
   </body>
 </html>
