@@ -122,7 +122,8 @@ function draw_bar_horiz(data_file,
         };
       };
 
-    d3.csv(data_file, row, data => {
+    d3.csv(data_file, row, function(error, data) {
+        if (error) throw error;
 
         xScale
             .domain([0, d3.max(data, xValue)])
