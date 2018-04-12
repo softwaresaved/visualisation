@@ -23,8 +23,6 @@ and save these as CSV files.
 
 from __future__ import print_function
 
-import yaml
-
 from csv_utils import save_list_as_csv_file
 
 WORKBOOK = "workbook"
@@ -37,32 +35,6 @@ CELLS = "cells"
 """ YAML configuration file key. """
 FILE = "file"
 """ YAML configuration file key. """
-
-
-def load_yaml(file):
-    """Load YAML configuration file specifying data to download and
-    local files to save these in.
-
-       ---
-       # YAML file must contain 0 or more entries of form:
-       -
-         workbook: Google Sheet workbook ID.
-         sheets:
-         # sheets must contain 0 or more entries of form:
-         - sheet: Sheet name.
-           cells: Cells, optional, e.g. A1:B38.
-           file: File name in which data is to be saved.
-
-    :param file: YAML configuration file.
-    :type file: str or unicode
-    :return: configuration, a list of dicts, one per sheet.
-    :rtype: list(dict)
-    :raises: yaml.YAMLError is the file is not valid YAML.
-    """
-    config = {}
-    with open(file, 'r') as stream:
-        config = yaml.load(stream)
-    return config
 
 
 def download_workbooks(service, config):

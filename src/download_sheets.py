@@ -29,8 +29,8 @@ from oauth2client import tools
 
 from oauth2_utils import get_credentials
 from oauth2_utils import get_google_service
-from sheet_utils import load_yaml
 from sheet_utils import download_workbooks
+from yaml_utils import load_yaml
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(add_help=False)
