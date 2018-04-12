@@ -73,13 +73,14 @@ function draw_bar_horiz(data_file,
     const xLabel = value_column;
     const yValue = d => d[label_column];
     const yLabel = label_column;
-    const margin = { left: 200, right: 30, top: 30, bottom: 75 };
 
+    const margin = { left: 200, right: 30, top: 30, bottom: 75 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
     const g = svg.append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
+
     const xAxisG = g.append('g')
         .attr('transform', `translate(0, ${innerHeight})`);
     const yAxisG = g.append('g');
@@ -89,7 +90,6 @@ function draw_bar_horiz(data_file,
       .attr('x', innerWidth / 2)
       .attr('y', 55)
       .text(xLabel);
-
     yAxisG.append('text')
       .attr('class', 'axis-label')
       .attr('x', 0)
@@ -104,12 +104,12 @@ function draw_bar_horiz(data_file,
         .paddingOuter(0);
 
     const xTicks = 10;
+
     const xAxis = d3.axisBottom()
         .scale(xScale)
         .ticks(xTicks)
         .tickPadding(5)
         .tickSize(-innerHeight);
-
     const yAxis = d3.axisLeft()
         .scale(yScale)
         .tickPadding(5)
@@ -122,16 +122,19 @@ function draw_bar_horiz(data_file,
         };
       };
 
-     d3.csv(data_file, row, data => {
-
-        yScale
-            .domain(data.map(yValue).reverse())
-            .range([innerHeight, 0]);
+    d3.csv(data_file, row, data => {
 
         xScale
             .domain([0, d3.max(data, xValue)])
             .range([0, innerWidth])
             .nice(xTicks);
+        xAxisG.call(xAxis);
+
+        yScale
+            .domain(data.map(yValue).reverse())
+            .range([innerHeight, 0]);
+        yAxisG.call(yAxis);
+        yAxisG.selectAll('.tick line').remove();
 
         g.selectAll('rect').data(data)
             .enter().append('rect')
@@ -142,13 +145,5 @@ function draw_bar_horiz(data_file,
             .on("mouseover", function(d){return tooltip.style("visibility", "visible").text(d[value_column]);})
             .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
             .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
-
-
-
-
-        xAxisG.call(xAxis);
-
-        yAxisG.call(yAxis);
-        yAxisG.selectAll('.tick line').remove();
     });
 };
