@@ -16,22 +16,31 @@
     <script src="../../js/d3.min.js"></script>
     <script src="../../js/barchart.js"></script>
     <style>
-      .barchart  .bar {
+      body {
+        margin: 0px;
+      }
+      .barchart .domain {
+        display: none;
+      }
+      .barchart rect {
         fill: steelblue;
       }
-      .barchart .bar:hover {
-        fill: brown;
+      .barchart .tick line {
+        stroke: #C0C0BB;
       }
-      .barchart .axis {
-        font: 10px sans-serif;
+      .barchart .tick text {
+        fill: #000000;
+        font-size: 10pt;
+        font-family: sans-serif;
       }
-      .barchart .axis path, .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
+      .barchart .axis-label {
+        fill: #000000;
+        font-size: 12pt;
+        font-family: sans-serif;
       }
-      .barchart .x.axis path {
-        display: none;
+      .barchart .bar-value {
+        color: #000000;
+        background-color: #fcffaa;
       }
     </style>
 
@@ -40,14 +49,10 @@
         <td id="chartFunderEffort" class="barchart"></td>
         <td id="chartFunderProjects" class="barchart"></td>
       </tr>
-      <tr>
-        <td><center>Effort (staff-months) by funder</center></td>
-        <td><center>Number of consultancy projects by funder</center></td>
-      </tr>
     </table>
     <script>
-      draw_bar("../../data/sheets/as-is/funders_effort.csv", "chartFunderEffort", "Funder", "Effort", 500, 400);
-      draw_bar("../../data/sheets/as-is/funders_projects.csv", "chartFunderProjects", "Funder", "Projects", 500, 400);
+      draw_bar("../../data/sheets/as-is/funders_effort.csv", "chartFunderEffort", "Funder", "Effort", 500, 500);
+      draw_bar("../../data/sheets/as-is/funders_projects.csv", "chartFunderProjects", "Funder", "Projects", 500, 500);
     </script>
 
     <div id="note"></div>

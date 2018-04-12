@@ -16,22 +16,31 @@
     <script src="../../js/d3.min.js"></script>
     <script src="../../js/barchart.js"></script>
     <style>
-      .barchart  .bar {
+      body {
+        margin: 0px;
+      }
+      .barchart .domain {
+        display: none;
+      }
+      .barchart rect {
         fill: steelblue;
       }
-      .barchart .bar:hover {
-        fill: brown;
+      .barchart .tick line {
+        stroke: #C0C0BB;
       }
-      .barchart .axis {
-        font: 10px sans-serif;
+      .barchart .tick text {
+        fill: #000000;
+        font-size: 8pt;
+        font-family: sans-serif;
       }
-      .barchart .axis path, .axis line {
-        fill: none;
-        stroke: #000;
-        shape-rendering: crispEdges;
+      .barchart .axis-label {
+        fill: #000000;
+        font-size: 12pt;
+        font-family: sans-serif;
       }
-      .barchart .x.axis path {
-        display: none;
+      .barchart .bar-value {
+        color: #000000;
+        background-color: #fcffaa;
       }
     </style>
 
@@ -40,14 +49,10 @@
         <td id="chartInstitutionEffort" class="barchart"></td>
         <td id="chartInstitutionProjects" class="barchart"></td>
       </tr>
-      <tr>
-        <td><center>Effort (staff-months) by institution</center></td>
-        <td><center>Number of consultancy projects by institution</center></td>
-      </tr>
     </table>
     <script>
-      draw_bar("../../data/sheets/as-is/institution_effort.csv", "chartInstitutionEffort", "Project", "Total Effort (PMs)", 500, 400);
-      draw_bar("../../data/sheets/as-is/institution_projects.csv", "chartInstitutionProjects", "Project", "Number", 500, 400);
+      draw_bar("../../data/sheets/as-is/institution_effort.csv", "chartInstitutionEffort", "Project", "Total Effort (PMs)", 500, 500);
+      draw_bar("../../data/sheets/as-is/institution_projects.csv", "chartInstitutionProjects", "Project", "Number", 500, 500);
     </script>
 
     <div id="note"></div>

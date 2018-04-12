@@ -90,13 +90,6 @@ function draw_bar_horiz(data_file,
       .attr('x', innerWidth / 2)
       .attr('y', 55)
       .text(xLabel);
-    yAxisG.append('text')
-      .attr('class', 'axis-label')
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('transform',`translate(${(-margin.left+20)},${innerHeight/2})rotate(-90)`)
-      .style("text-anchor", "middle")
-      .text(yLabel);
 
     const xScale = d3.scaleLinear();
     const yScale = d3.scaleBand()

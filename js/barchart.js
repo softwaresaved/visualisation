@@ -1,33 +1,40 @@
 /**
  * D3 bar chart
  *
- * This version derived from original downloaded from
- * Bar Chart https://bl.ocks.org/mbostock/3885304#index.html
- * on 05/08/2016.
- *
- * Uses styles: .bar text, .bar:hover, .axis, .axis path, .axis line,
- * .x.axis path
- *
+ * Derived from original downloaded from Horizontal Bar Chart
+ * https://bl.ocks.org/curran/e842c1b64974666c60fc3e437f8c8cf9
+ * on 11/04/2018.
+ * 
  * Changes: Wrapped code within a function; replaced hard-coded
  * file name, column names, labels with arguments passed in via
- * function call.
+ * function call; inserts <svg> element instead of assuming one has
+ * been defined in HTML; tool-tip displays value of each bar on
+ * mouse-over; oriented horizontally.
+ *
+ * Uses styles: body, .domain, rect, .tick line, .tick text,
+ * .axis-label, .bar-value
+ *
+ * Copyright (c) 2017, Curran Kelleher
+ * Changes Copyright (c) 2018, The University of Edinburgh.
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use, copy,
+ * modify, merge, publish, distribute, sublicense, and/or sell copies
+ * of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions: 
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software. 
  * 
- * Copyright (c) 2018, Mike Bostock
- * Changes Copyright (c) 2016-2018, The University of Edinburgh and
- * The University of Southampton.
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
 
 /**
@@ -41,78 +48,103 @@
  * each unique value in this column.
  * @param {string} value_column - bar chart will have one X axis bar for
  * each unique value in this column. Value determines size of bar.
- * @param {integer} area_width - drawing area width.
- * @param {integer} area_height - drawing area height.
+ * @param {integer} width - drawing area width.
+ * @param {integer} height - drawing area height.
  */
 function draw_bar(data_file,
                   id_tag,
                   label_column,
                   value_column,
-                  area_width,
-                  area_height) {
+                  width,
+                  height) {
 
-    function type(d) {
-        d[value_column] = +d[value_column];
-        return d;
-    }
+    const id_tag_link = "#" + id_tag;
+    const element = d3.select(id_tag_link);
+    const svg = element.append("svg")
+        .attr("width", width)
+        .attr("height", height)
 
-    var margin = {top: 20, right: 20, bottom: 100, left: 40},
-    width = area_width - margin.left - margin.right,
-    height = area_height - margin.top - margin.bottom;
+    const tooltip = element.append("div")
+        .attr("class", "bar-value")
+        .style("position", "absolute")
+        .style("visibility", "hidden");
 
-    var x = d3.scaleBand()
-        .range([0, width]);
+    const xValue = d => d[label_column];
+    const xLabel = label_column;
+    const yValue = d => d[value_column];
+    const yLabel = value_column;
 
-    var y = d3.scaleLinear()
-        .range([height, 0]);
+    const margin = { left: 75, right: 30, top: 30, bottom: 200 };
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
 
-    var xAxis = d3.axisBottom()
-        .scale(x);
+    const g = svg.append('g')
+        .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    var yAxis = d3.axisLeft()
-        .scale(y)
-        .tickSize(1,5);
+    const xAxisG = g.append('g')
+        .attr('transform', `translate(0, ${innerHeight})`);
+    const yAxisG = g.append('g');
 
-    var id_tag_link = "#" + id_tag;
-    var svg = d3.select(id_tag_link).append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    yAxisG.append('text')
+      .attr('class', 'axis-label')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('transform',`translate(${(-margin.left+20)},${innerHeight/2})rotate(-90)`)
+      .style("text-anchor", "middle")
+      .text(yLabel);
 
-    d3.csv(data_file, type, function(error, data) {
+    const xScale = d3.scaleBand()
+        .paddingInner(0.3)
+        .paddingOuter(0);
+    const yScale = d3.scaleLinear();
+
+    const yTicks = 10;
+
+    const xAxis = d3.axisBottom()
+        .scale(xScale)
+        .tickPadding(5)
+        .tickSize(-innerHeight);
+    const yAxis = d3.axisLeft()
+        .scale(yScale)
+        .ticks(yTicks)
+        .tickPadding(5)
+        .tickSize(-innerWidth);
+
+    const row = d => {
+        return {
+          [label_column]: d[label_column],
+          [value_column]: +d[value_column]
+        };
+      };
+
+    d3.csv(data_file, row, function(error, data) {
         if (error) throw error;
 
-        x.domain(data.map(function(d) { return d[label_column]; }));
-        y.domain([0, d3.max(data, function(d) { return d[value_column]; })]);
-
-        svg.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis)
-            .selectAll("text")
+        xScale
+            .domain(data.map(xValue).reverse())
+            .range([0, innerWidth]);
+        xAxisG.call(xAxis);
+        xAxisG.selectAll(".tick").selectAll("text")
             .attr("y", 0)
-            .attr("x", -9)
+            .attr("x", -10)
             .attr("transform", "rotate(-90)")
             .style("text-anchor", "end");
+        xAxisG.selectAll('.tick line').remove();
 
-        svg.append("g")
-            .attr("class", "y axis")
-            .call(yAxis)
-            .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
-            .text(value_column);
+        yScale
+            .domain([0, d3.max(data, yValue)])
+            .range([innerHeight, 0])
+            .nice(yTicks);
+        yAxisG.call(yAxis);
 
-        svg.selectAll(".bar")
-            .data(data)
-            .enter().append("rect")
-            .attr("class", "bar")
-            .attr("x", function(d) { return x(d[label_column]); })
-            .attr("width", x.bandwidth())
-            .attr("y", function(d) { return y(d[value_column]); })
-            .attr("height", function(d) { return height - y(d[value_column]); });
+        g.selectAll('rect').data(data)
+            .enter().append('rect')
+            .attr("x", function(d) { return xScale(d[label_column]); })
+            .attr("width", xScale.bandwidth())
+            .attr("y", function(d) { return yScale(d[value_column]); })
+            .attr("height", function(d) { return innerHeight - yScale(d[value_column]); })
+            .on("mouseover", function(d){return tooltip.style("visibility", "visible").text(d[value_column]);})
+            .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+            .on("mouseout", function(){return tooltip.style("visibility", "hidden");})
     });
 };
