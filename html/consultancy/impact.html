@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Software Sustainability Institute</title>
+    <title>The Software Sustainability Institute</title>
   </head>
   <body>
-    <h1>Consultancy project impact based on questionnaire results</h1>
-    <p>
-      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
-    </p>
-
+    <h1>Consultancy: Project impact based on questionnaire results</h1>
+    <script src="../../js/jquery.js"></script>
+    <script> 
+      $(function(){
+        $("#note").load("../note.html");
+     });  
+    </script>
     <script src="../../js/d3.min.js"></script>
     <script src="../../js/pie_group.js"></script>
 
@@ -18,5 +20,7 @@
     <script>
       draw_pie_group("../../data/sheets/as-is/project_impact.csv", "", "impactCharts", "Red,Orange,Yellow,LightGreen,Lime", 720, 375);
     </script>
+
+    <div id="note"></div>
   </body>
 </html>

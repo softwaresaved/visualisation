@@ -42,7 +42,11 @@ html/consultancy/projects.html:
 
 * data/sheets/as-is/projects_effort.csv
 
-html/impact/impact.html:
+html/consultancy/impact.html:
+
+* data/sheets/as-is/project_impact.csv 
+
+html/consultancy/impact-alternative.html:
 
 * data/sheets/as-is/project_impact.csv 
 

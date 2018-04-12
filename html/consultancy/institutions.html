@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Software Sustainability Institute</title>
+    <title>The Software Sustainability Institute</title>
   </head>
   <body>
-    <h1>Consultancy Data - Institutions</h1>
-    <p>
-      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
-    </p>
-
+    <h1>Consultancy: Effort and projects by institution</h1>
+    <script src="../../js/jquery.js"></script>
+    <script> 
+      $(function(){
+        $("#note").load("../note.html");
+     });  
+    </script>
     <script src="../../js/d3.min.js"></script>
     <script src="../../js/barchart.js"></script>
     <style>
@@ -47,5 +49,7 @@
       draw_bar("../../data/sheets/as-is/institution_effort.csv", "chartInstitutionEffort", "Project", "Total Effort (PMs)", 500, 400);
       draw_bar("../../data/sheets/as-is/institution_projects.csv", "chartInstitutionProjects", "Project", "Number", 500, 400);
     </script>
+
+    <div id="note"></div>
   </body>
 </html>

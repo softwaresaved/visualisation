@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Software Sustainability Institute</title>
+    <title>The Software Sustainability Institute</title>
   </head>
   <body>
-    <h1>Software Carpentry Instructors 2017</h1>
-    <p>
-      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
-    </p>
-
+    <h1>Training: Number of Software Carpentry instructors 2017</h1>
+    <script src="../../js/jquery.js"></script>
+    <script> 
+      $(function(){
+        $("#note").load("../note.html");
+     });  
+    </script>
     <script src="../../js/d3.min.js"></script>
     <script src="../../js/barchart_horiz.js"></script>
     <script src="../../js/circle_packing.js"></script>
@@ -54,12 +56,13 @@
       }
     </style>
 
-    <h2>Software Carpentry instructors 2017</h2>
     <p id="chartInstructors" class="barchart_horiz"/>
     <p id="circleInstructors" class="circles"/>
     <script>
       draw_bar_horiz("../../data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv", "chartInstructors", "affiliation", "count", 1000, 1500);
       draw_circle_chart("../../data/sheets/as-is/swc_instructors_affiliation_gb_2017.csv", "circleInstructors", "affiliation", "count", 1000, 1000);
     </script>
+
+    <div id="note"></div>
   </body>
 </html>

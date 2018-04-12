@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Software Sustainability Institute</title>
+    <title>The Software Sustainability Institute</title>
   </head>
   <body>
-    <h1>Software Used In Research - combined data 2016</h1>
-    <p>
-     <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
-    </p>
-
+    <h1>Policy: Software used in research 2016</h1>
+    <script src="../../js/jquery.js"></script>
+    <script> 
+      $(function(){
+        $("#note").load("../note.html");
+     });  
+    </script>
     <script src="../../js/d3.min.js"></script>
     <script src="../../js/circle_packing.js"></script>
     <style>
@@ -31,5 +33,7 @@
     <script>
       draw_circle_chart("../../data/sheets/as-is/software.csv", "circleSw", "Unique names for counting", "How many times reported?", 1000, 1000);
     </script>
+
+    <div id="note"></div>
   </body>
 </html>

@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Software Sustainability Institute</title>
+    <title>The Software Sustainability Institute</title>
   </head>
   <body>
-    <h1>Software Carpentry 2012-2014</h1>
-    <p>
-      <strong>Note:</strong> At present, this script is a prototype and renders sample data from a static comma-separated value file of sample data. We hope, in time, to have this CSV file dynamically updated weekly or monthly from a Google spreadsheet where we record our data.
-    </p>
-
+    <h1>Training: Software Carpentry attendees by location 2012-2014</h1>
+    <script src="../../js/jquery.js"></script>
+    <script> 
+      $(function(){
+        $("#note").load("../note.html");
+     });  
+    </script>
     <script src="../../js/d3.min.js"></script>
     <script src="../../js/barchart.js"></script>
     <style>
@@ -34,9 +36,10 @@
     </style>
 
     <p id="chartSwcAttendees" class="barchart"></p>
-    <p>Software Carpentry events from 2012-2014 at which the Institute administered, organised, taught at or helped at.</p>
     <script>
       draw_bar("../../data/sheets/as-is/swc.csv", "chartSwcAttendees", "Institution", "Attendees", 500, 400);
     </script>
+
+    <div id="note"></div>
   </body>
 </html>
