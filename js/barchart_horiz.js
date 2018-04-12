@@ -48,8 +48,8 @@
  * each unique value in this column.
  * @param {string} value_column - bar chart will have one Y axis bar for
  * each unique value in this column. Value determines length of bar.
- * @param {integer} area_width - drawing area width.
- * @param {integer} area_height - drawing area height.
+ * @param {integer} width - drawing area width.
+ * @param {integer} height - drawing area height.
  */
 function draw_bar_horiz(data_file,
                         id_tag,
