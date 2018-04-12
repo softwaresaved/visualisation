@@ -74,7 +74,7 @@ function draw_bar_horiz(data_file,
     const yValue = d => d[label_column];
     const yLabel = label_column;
 
-    const margin = { left: 200, right: 30, top: 30, bottom: 75 };
+    const margin = { left: 300, right: 30, top: 30, bottom: 75 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
