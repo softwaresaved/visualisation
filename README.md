@@ -236,7 +236,7 @@ Storing credentials to /home/someuser/credentials/sheets.googleapis.com-python-q
 
 When you run any of the download scripts, you will not be asked to authenticate again.
 
-### Download updated data
+### Download updated Google Sheets data
 
 Run:
 
@@ -260,12 +260,18 @@ Within GitHub:
 * Click Generate token
 * Copy the token text
 
-### Download updated data
+### Download updated GitHub data
 
 Run:
 
 ```
-$ GIT_TOKEN=<YOUR_GIT_TOKEN> bash get_repositories.sh	
+$ python src/download_repository_files.py --token <YOUR_GITUHUB_TOKEN> --repositories repositories.yml
+```
+
+As an alternative to the command-line flag, a GITHUB_TOKEN environment variable can be set e.g.
+
+```
+$ GITHUB_TOKEN=<YOUR_GITHUB_TOKEN> python src/download_repository_files.py --repositories repositories.yml
 ```
 
 ---
