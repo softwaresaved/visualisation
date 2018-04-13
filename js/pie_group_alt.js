@@ -59,7 +59,7 @@ function draw_pie_charts(data_file,
         var i = 0;
         for (i = 1; i < numHeaders; i++)
         {
-            var div = graphs.append("div").attr("id", prefix_id_tag);
+            var div = graphs.append("div").attr("id", prefix_id_tag + "div" + i);
             div.append("text").html(headers[i]);
             div.append("div").attr("id", prefix_id_tag + i).classed("pie", true);
             draw_pie(data_file, prefix_id_tag + i, categoryHeader, headers[i], width, height, colour_scheme);
