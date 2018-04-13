@@ -73,7 +73,7 @@ function draw_pie(data_file,
         .value(function(d) { return d[value_column]; });
 
     var id_tag_link = "#" + id_tag;
-    var element = d3.select(id_tag_link)
+    var element = d3.select(id_tag_link);
     var svg = element.append("svg")
         .attr("width", width)
         .attr("height", height);
