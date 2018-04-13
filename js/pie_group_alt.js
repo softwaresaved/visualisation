@@ -43,7 +43,6 @@
  * colours must match the number of categories in the first column,
  * which are assumed to be unique. 
  */
-
 function draw_pie_charts(data_file,
                          id_tag,
                          prefix_id_tag,
@@ -60,8 +59,9 @@ function draw_pie_charts(data_file,
         var i = 0;
         for (i = 1; i < numHeaders; i++)
         {
-            graphs.append("h2").html(headers[i]);
-            graphs.append("p").attr("id", prefix_id_tag + i).classed("pie", true);
+            var div = graphs.append("div").attr("id", prefix_id_tag);
+            div.append("text").html(headers[i]);
+            div.append("div").attr("id", prefix_id_tag + i).classed("pie", true);
             draw_pie(data_file, prefix_id_tag + i, categoryHeader, headers[i], width, height, colour_scheme);
         }
     });
