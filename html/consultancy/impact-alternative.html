@@ -24,6 +24,16 @@
       .pie .arc path {
         stroke: #ffffff;
       }
+      .pie .wedge-value {
+        padding: 5px 5px 5px 5px;
+        border-style: solid;
+        border-width: 1px;
+        color: #000000;
+        background-color: #ffffff;
+      }
+      .pie .legend text {
+        font: 10px sans-serif;
+      }
     </style>
 
     <div id="graphs"></div>
@@ -31,7 +41,7 @@
       draw_pie_charts("../../data/sheets/as-is/project_impact.csv",
                       "graphs",
                       "pieFunderEffort",
-                      500,
+                      800,
                       400,
                       "Red,Orange,Yellow,LightGreen,Lime");
     </script>
