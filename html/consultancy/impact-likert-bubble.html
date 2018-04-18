@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Software Sustainability Institute</title>
+  </head>
+  <body>
+    <h1>Consultancy: Project impact based on questionnaire results (Likert bubble view)</h1>
+    <script src="../../js/d3.min.js"></script>
+    <script src="../../js/likert_bubble.js"></script>
+    <style>
+      body {
+        margin: 0px;
+      }
+      .likert_bubble .domain {
+        display: none;
+      }
+      .likert_bubble rect {
+        fill: steelblue;
+      }
+      .likert_bubble .tick line {
+        stroke: #C0C0BB;
+      }
+      .likert_bubble .tick text {
+        fill: #000000;
+        font-size: 8pt;
+        font-family: sans-serif;
+      }
+      .likert_bubble .axis-label {
+        fill: #000000;
+        font-size: 8pt;
+        font-family: sans-serif;
+      }
+
+      .likert_bubble .bubble-value {
+        padding: 5px 5px 5px 5px;
+        border-style: solid;
+        border-width: 1px;
+        color: #000000;
+        background-color: #ffffff;
+      }
+    </style>
+
+    <div id="impact" class="likert_bubble"></div>
+    <script>
+      draw_likert_bubble("../../data/sheets/as-is/project_impact.csv",
+                         "impact",
+                         true,
+                         "#FFA07A", // lightsalmon
+                         "#ffffff", // white
+                         1000,
+                         1000);
+    </script>
+  </body>
+</html>
