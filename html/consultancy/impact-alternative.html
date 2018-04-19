@@ -17,12 +17,12 @@
     <script src="../../js/pie.js"></script>
     <script src="../../js/pie_group_alt.js"></script>
     <style>
-      .pie .arc text {
-        font: 10px sans-serif;
-        text-anchor: middle;
-      }
       .pie .arc path {
         stroke: #ffffff;
+      }
+      .pie .arc-labels text {
+        font: 15px sans-serif;
+        text-anchor: end;
       }
       .pie .wedge-value {
         padding: 5px 5px 5px 5px;
@@ -32,10 +32,9 @@
         background-color: #ffffff;
       }
       .pie .legend text {
-        font: 10px sans-serif;
+        font: 15px sans-serif;
       }
     </style>
-
     <div id="graphs"></div>
     <script>
       draw_pie_charts("../../data/sheets/as-is/project_impact.csv",

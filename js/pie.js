@@ -107,10 +107,14 @@ function draw_pie(data_file,
             .style("fill", function(d) { return colours[d.index]; }
         );
 
-        g.append("text")
-            .attr("transform", function(d) {
-             return "translate(" + labelArc.centroid(d) + ")";
-            })
+        // As labels can be obscured by wedges, draw another
+        // pie chart with labels only.
+        var g_labels = svg_g.selectAll(".arc-labels")
+            .data(pie(data))
+            .enter().append("g")
+            .attr("class", "arc-labels");
+        g_labels.append("text")
+            .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
             .attr("dy", ".35em")
             .text(function(d) {
                 if (d.data[value_column] > 0) {
@@ -121,6 +125,7 @@ function draw_pie(data_file,
                };
             });
 
+        // Draw legend.
         var labels = [];
         var i = 0;
         data.forEach(function(d)
