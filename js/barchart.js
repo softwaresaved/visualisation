@@ -74,7 +74,7 @@ function draw_bar(data_file,
     const yValue = d => d[value_column];
     const yLabel = value_column;
 
-    const margin = { left: 75, right: 30, top: 30, bottom: 200 };
+    const margin = { left: 75, right: 30, top: 30, bottom: 250 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 

@@ -65,7 +65,7 @@ function draw_likert_bubble(data_file,
         .style("position", "absolute")
         .style("visibility", "hidden");
 
-    const margin = { left: 500, right: 30, top: 100, bottom: 200 };
+    const margin = { left: 550, right: 30, top: 100, bottom: 200 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
     const radius = 40;
