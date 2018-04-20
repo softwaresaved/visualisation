@@ -1,21 +1,21 @@
-Research Class,Number of projects
-(I1) Computer science,12
-(I2) Information systems,7
-"(B1) Anatomy, physiology & pathology",7
-(F3) Physics,7
-"(C7) Molecular biology, biophysics & biochemistry",6
-(C4) Genetics,4
-(F7) Science of aquatic & terrestrial environments,3
-(H1) General engineering,2
-(F2) Materials science,2
-(C1) Biology,2
-(I5) Health informatics,2
-(C8) Psychology,2
-(H2) Civil engineering,1
-(F5) Astronomy,1
-"(K4) Planning (urban, rural & regional)",1
-(X3) Academic studies in education,1
-(F8) Physical geographical sciences,1
-(G1) Mathematics,1
-(D5) Forestry & arboriculture,1
-(L0) Broadly-based programmes within social studies,1
+Research Class,Number of projects,Research Subject
+(F8) Physical geographical sciences,1,(6) Physical sciences
+(L1) Economics,1,(B) Social studies
+(F4) Forensic & archaeological sciences,1,(6) Physical sciences
+(X3) Academic studies in education,1,(I) Education
+(F1) Chemistry,1,(6) Physical sciences
+(D5) Forestry & arboriculture,1,(5) Agriculture & related subjects
+(D4) Agriculture,1,(5) Agriculture & related subjects
+(B5) Ophthalmics,1,(2) Subjects allied to medicine
+(C8) Psychology,2,(3) Biological sciences
+(H1) General engineering,2,(9) Engineering & technology
+(I5) Health informatics,2,(8) Computer science
+(C1) Biology,2,(3) Biological sciences
+(F2) Materials science,2,(6) Physical sciences
+(F7) Science of aquatic & terrestrial environments,3,(6) Physical sciences
+(C4) Genetics,4,(3) Biological sciences
+"(C7) Molecular biology, biophysics & biochemistry",6,(3) Biological sciences
+(F3) Physics,7,(6) Physical sciences
+(I2) Information systems,7,(8) Computer science
+"(B1) Anatomy, physiology & pathology",7,(2) Subjects allied to medicine
+(I1) Computer science,12,(8) Computer science

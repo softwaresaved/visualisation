@@ -2,7 +2,7 @@
 - user: softwaresaved
   repository: metrics
   files:
-    - file: consultancy/data/project_metrics/output_csv/effort_by_jacs
+    - file: consultancy/data/project_metrics/output_csv/effort_by_jacs.csv
       local_file: data/repositories/consultancy/effort_by_jacs.csv
     - file: consultancy/data/project_metrics/output_csv/projects_by_jacs.csv
       local_file: data/repositories/consultancy/projects_by_jacs.csv
