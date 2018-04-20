@@ -363,7 +363,7 @@ D3 horizontal bar chart
 * https://bl.ocks.org/curran/e842c1b64974666c60fc3e437f8c8cf9
 * Copyright 2017, Curran Kelleher
 * Licence: [MITc License](https://opensource.org/licenses/MIT)
-* Local code: `js/barchart_horiz.js` and `js/barchart.js` are modified versions.
+* Local code: `js/barchart_horiz.js`, `js/barchart_horiz_shaded.js` and `js/barchart.js` are modified versions.
 
 D3 pie chart
 
